@@ -1,5 +1,5 @@
 header {
-    height: 40vh;
+    min-height: 40vh;
     padding-top: 7rem;
     overflow: hidden;
 }
