@@ -64,14 +64,14 @@ header {
 /* Media query (medium-device) tablets */
 @media screen and (max-width:1024px) {
     header {
-        height: 40vh;
+        min-height: 40vh;
     }
 }
 
 /* Media query (small-device) mobiles */
 @media screen and (max-width:600px) {
     header {
-        height: 40vh;
+        min-height: 40vh;
     }
     .header__socials, .scroll__down {
         display: none;
