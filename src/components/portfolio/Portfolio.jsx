@@ -1,7 +1,7 @@
 import React from 'react'
 import './portfolio.css'
 import IMG1 from '../../assets/portfolio1.jpg'
-import IMG2 from '../../assets/portfolio2.jpg'
+import IMG2 from '../../assets/portfolio2.png'
 import IMG3 from '../../assets/portfolio3.jpg'
 import IMG4 from '../../assets/portfolio4.jpg'
 
@@ -9,16 +9,16 @@ const data = [
   {
     id: 1,
     image: IMG1, 
-    title: 'Lorem Ipsum',
+    title: 'Mokabar Caffe Kosova',
     github: 'https://github.com', 
-    demo: 'https://github.com/AlbertBislimi'
+    demo: 'https://mokabar-kosova.com'
   },
   {
     id: 2,
     image: IMG2, 
-    title: 'Lorem Ipsum',
+    title: 'AME Company',
     github: 'https://github.com', 
-    demo: 'https://github.com/AlbertBislimi'
+    demo: 'https://ame-company.com'
   },
   {
     id: 3,
