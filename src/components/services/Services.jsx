@@ -27,54 +27,27 @@ const Services = () => {
               <BiCheck className='service__list-icon' />
               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
             </li>
-            <li>
-              <BiCheck className='service__list-icon' />
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
-            </li>
-            <li>
-              <BiCheck className='service__list-icon' />
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
-            </li>
-            <li>
-              <BiCheck className='service__list-icon' />
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
-            </li>
+           
           </ul>
         </article>
        {/* END OF UI/UX */}
         <article className='service'>
             <div className="service__head">
-              <h3>Web Development</h3>
+              <h3>Front-end Development</h3>
             </div>
 
             <ul className='service__list'>
               <li>
                 <BiCheck className='service__list-icon' />
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
+                <p>HTML+CSS+Javascript</p>
               </li>
               <li>
                 <BiCheck className='service__list-icon' />
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
+                <p>ReactJS</p>
               </li>
               <li>
                 <BiCheck className='service__list-icon' />
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
-              </li>
-              <li>
-                <BiCheck className='service__list-icon' />
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
-              </li>
-              <li>
-                <BiCheck className='service__list-icon' />
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
-              </li>
-              <li>
-                <BiCheck className='service__list-icon' />
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
-              </li>
-              <li>
-                <BiCheck className='service__list-icon' />
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
+                <p>ES5/ES6</p>
               </li>
             </ul>
         </article>
@@ -97,18 +70,7 @@ const Services = () => {
                 <BiCheck className='service__list-icon' />
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
               </li>
-              <li>
-                <BiCheck className='service__list-icon' />
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
-              </li>
-              <li>
-                <BiCheck className='service__list-icon' />
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
-              </li>
-              <li>
-                <BiCheck className='service__list-icon' />
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elite.</p>
-              </li>
+             
             </ul>
         </article>
         {/* END OF CONTENT CREATION */}

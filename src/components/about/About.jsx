@@ -38,7 +38,7 @@ const About = () => {
           </div>
 
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis accusantium pariatur error, debitis cupiditate optio quidem libero nemo dolorum suscipit aperiam recusandae expedita quibusdam quos quod architecto officiis eum! Exercitationem?
+              Since beginning my journey as a self-taught developer, I've been in love with coding and creating freshly websites for clients around the world. I have a diverse set of skills, ranging from design, to HTML + CSS + Javascript, all the way to React.
           </p>
 
           <a href="#contact" className='btn btn-primary'>Let's Talk</a>
