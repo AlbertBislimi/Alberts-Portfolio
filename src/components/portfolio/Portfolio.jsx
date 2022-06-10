@@ -15,9 +15,9 @@ const data = [
   {
     id: 2,
     image: IMG2, 
-    title: 'AME Company',
+    title: 'Lorem Ipsum',
     github: 'https://github.com', 
-    demo: 'https://ame-company.com'
+    demo: '#'
   },
   {
     id: 3,
