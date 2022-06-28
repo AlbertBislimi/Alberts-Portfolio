@@ -8,23 +8,23 @@ const data = [
   {
     id: 1,
     image: IMG1, 
-    title: 'Mokabar Caffe Kosova',
+    title: 'Project in review',
     github: 'https://github.com', 
-    demo: 'https://mokabar-kosova.com'
+    demo: '#'
   },
   {
     id: 2,
     image: IMG2, 
-    title: 'Lorem Ipsum',
-    github: 'https://github.com', 
+    title: 'Project in review',
+    github: '#', 
     demo: '#'
   },
   {
     id: 3,
     image: IMG3, 
-    title: 'Lorem Ipsum',
+    title: 'Project in review',
     github: 'https://github.com', 
-    demo: 'https://github.com/AlbertBislimi'
+    demo: '#'
   },
 ]
 
@@ -44,7 +44,7 @@ const Portfolio = () => {
                 </div>
                 <h3>{title}</h3>
                 <div className="portfolio__item-cta">
-                  <a href={github} className='btn' target='_blank'>Github</a>
+                  {/*<a href={github} className='btn' target='_blank'>Github</a>*/}
                   <a href={demo} className='btn btn-primary' target='_blank'>Live Demo</a>
                 </div>
               </article>

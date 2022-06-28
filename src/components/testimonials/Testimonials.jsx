@@ -18,23 +18,19 @@ const data = [
   {
     avatar: AVTR1,
     name: 'Flandra Sadiku',
-    review: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptatibus fugit eaque? Nostrum voluptas, assumenda nobis molestias rerum cupiditate, veritatis repudiandae velit quam tenetur nemo, pariatur ullam id dicta vero!'
+    review: 'Very helpful when building my website, I now have my ecommerce store built from scratch'
   },
   {
     avatar: AVTR2,
-    name: 'Albert Bislimi',
-    review: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptatibus fugit eaque? Nostrum voluptas, assumenda nobis molestias rerum cupiditate, veritatis repudiandae velit quam tenetur nemo, pariatur ullam id dicta vero!'
+    name: 'Endrit',
+    review: 'Albert was very helpful and fast to respond to my inquiry to help with my website issues.  His knowledge was comprehensive.'
   },
   {
     avatar: AVTR3,
-    name: 'Endriti',
-    review: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptatibus fugit eaque? Nostrum voluptas, assumenda nobis molestias rerum cupiditate, veritatis repudiandae velit quam tenetur nemo, pariatur ullam id dicta vero!'
+    name: 'Eric',
+    review: 'Fantastic service and great guy. We recommend to anyone who needs a website or web services. Well be using for any further web based services we require!'
   },
-  {
-    avatar: AVTR4,
-    name: 'Marigona',
-    review: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore voluptatibus fugit eaque? Nostrum voluptas, assumenda nobis molestias rerum cupiditate, veritatis repudiandae velit quam tenetur nemo, pariatur ullam id dicta vero!'
-  },
+
 ]
 
 const Testimonials = () => {
