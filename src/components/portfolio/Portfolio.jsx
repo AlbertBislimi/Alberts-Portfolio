@@ -16,7 +16,7 @@ const data = [
     id: 2,
     image: IMG2, 
     title: 'Project in review',
-    github: '#', 
+    github: 'https://github.com', 
     demo: '#'
   },
   {
@@ -44,7 +44,7 @@ const Portfolio = () => {
                 </div>
                 <h3>{title}</h3>
                 <div className="portfolio__item-cta">
-                  {/*<a href={github} className='btn' target='_blank'>Github</a>*/}
+                  <a href={github} className='btn' target='_blank'>Github</a>
                   <a href={demo} className='btn btn-primary' target='_blank'>Live Demo</a>
                 </div>
               </article>
