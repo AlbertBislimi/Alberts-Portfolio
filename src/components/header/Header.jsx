@@ -1,82 +1,104 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import CTA from './CTA'
-import HeaderSocials from './HeaderSocials'
+import { BsLinkedin, BsTwitter, BsGithub } from 'react-icons/bs'
+import { SiDribbble } from 'react-icons/si'
 
 const Header = () => {
+  const socials = [
+    { icon: BsLinkedin, link: 'https://www.linkedin.com/in/albert-bislimi/' },
+    { icon: BsGithub, link: 'https://github.com/AlbertBislimi' },
+    { icon: BsTwitter, link: 'https://twitter.com/AlbertBislimi' },
+    { icon: SiDribbble, link: '#' },
+  ]
+
   return (
-    <header className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Gradient blur effects */}
-      <div className="gradient-blur gradient-blur-1"></div>
-      <div className="gradient-blur gradient-blur-2"></div>
-      
-      <div className="section-container">
-        <motion.div 
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h5 
-            className="text-gray-400 text-lg mb-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            Hello, I'm
-          </motion.h5>
-          
-          <motion.h1 
-            className="text-6xl md:text-7xl lg:text-8xl font-bold mb-4 bg-gradient-to-r from-white via-primary-light to-primary bg-clip-text text-transparent"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            Albert Bislimi
-          </motion.h1>
-          
-          <motion.h5 
-            className="text-xl md:text-2xl text-gray-300 mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            Frontend Developer & Product Builder
-          </motion.h5>
-          
-          <motion.div
+    <>
+      {/* Top Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-dark-bg/80 backdrop-blur-sm border-b border-white/5">
+        <div className="section-container">
+          <div className="flex justify-between items-center py-6">
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="text-2xl font-bold cursor-pointer"
+            >
+              <span className="text-white">Albert</span>
+              <span className="text-cyan">/</span>
+            </button>
+            <div className="hidden md:flex gap-8 text-sm">
+              <a href="#about" className="text-text-gray hover:text-cyan transition-colors">About</a>
+              <a href="#experience" className="text-text-gray hover:text-cyan transition-colors">Experience</a>
+              <a href="#portfolio" className="text-text-gray hover:text-cyan transition-colors">Projects</a>
+              <a href="#contact" className="text-text-gray hover:text-cyan transition-colors">Contact</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <header className="min-h-screen flex items-center pt-24">
+        <div className="section-container">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* Left: Code Square */}
+            <motion.div 
+              className="flex justify-center md:justify-start"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="cyan-square flex items-center justify-center">
+                <span className="text-6xl font-mono text-cyan">&lt;/&gt;</span>
+              </div>
+            </motion.div>
+
+            {/* Right: Intro Text */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h1 className="text-5xl md:text-6xl font-bold mb-4">
+                Hi, I'm <span className="text-cyan">Albert.</span>
+              </h1>
+              <h2 className="text-3xl md:text-4xl font-bold text-text-gray mb-6">
+                Frontend Developer
+              </h2>
+              
+              {/* Social Links */}
+              <div className="flex gap-4">
+                {socials.map((social, index) => {
+                  const Icon = social.icon
+                  return (
+                    <a
+                      key={index}
+                      href={social.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-10 h-10 border border-text-gray/30 flex items-center justify-center hover:border-cyan hover:text-cyan transition-colors"
+                    >
+                      <Icon className="text-lg" />
+                    </a>
+                  )
+                })}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Tech Stack Bar */}
+          <motion.div 
+            className="mt-24 border-y border-white/10 py-6 overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <CTA />
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-          >
-            <HeaderSocials />
-          </motion.div>
-          
-          <motion.a 
-            href="#about" 
-            className="absolute bottom-12 left-1/2 transform -translate-x-1/2 text-primary hover:text-primary-light transition-colors"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-          >
-            <div className="flex flex-col items-center gap-2 animate-float">
-              <span className="text-sm">Scroll Down</span>
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
+            <div className="flex gap-4 justify-center flex-wrap">
+              {['REACT', 'JAVASCRIPT', 'TYPESCRIPT', 'TAILWIND', 'NODE.JS', 'FIGMA', 'GIT', 'HTML', 'CSS'].map((tech, i) => (
+                <span key={i} className="tech-badge">{tech}</span>
+              ))}
             </div>
-          </motion.a>
-        </motion.div>
-      </div>
-    </header>
+          </motion.div>
+        </div>
+      </header>
+    </>
   )
 }
 

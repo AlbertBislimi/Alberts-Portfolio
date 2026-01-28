@@ -1,108 +1,102 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { FiArrowUpRight, FiGithub } from 'react-icons/fi'
 import IMG1 from '../../assets/portfolio1.jpg'
 import IMG2 from '../../assets/portfolio2.png'
 
-const data = [
-  {
-    id: 1,
-    image: IMG1,
-    title: 'Nubis',
-    description: 'AI-powered project management tool with generative AI workflow automation',
-    tags: ['AI', 'Project Management', 'Automation'],
-    github: 'https://github.com',
-    demo: 'https://nubis.app'
-  },
-  {
-    id: 2,
-    image: IMG2,
-    title: 'Gjeje Online',
-    description: 'Full-featured online marketplace platform built for Kosovo, connecting buyers and sellers',
-    tags: ['E-commerce', 'Marketplace', 'React'],
-    github: 'https://github.com',
-    demo: 'https://gjejeonline.com'
-  },
-]
-
 const Portfolio = () => {
+  const projects = [
+    {
+      image: IMG1,
+      title: 'Nubis',
+      description: 'AI-powered project management platform with generative workflow automation. Built with React, TypeScript, and integrated AI capabilities for intelligent task management.',
+      tags: ['React', 'TypeScript', 'AI', 'Node.js'],
+      github: 'https://github.com',
+      demo: 'https://nubis.app'
+    },
+    {
+      image: IMG2,
+      title: 'Gjeje Online',
+      description: 'Full-featured marketplace platform for Kosovo connecting buyers and sellers. Complete e-commerce solution with payment integration and real-time notifications.',
+      tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+      github: 'https://github.com',
+      demo: 'https://gjejeonline.com'
+    },
+  ]
+
   return (
     <section id='portfolio' className="py-24">
       <div className="section-container">
-        <motion.div 
+        <motion.h2 
           className="section-title"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
         >
-          <h5 className="section-subtitle">My Recent Work</h5>
-          <h2 className="section-heading">Portfolio</h2>
-        </motion.div>
+          Projects<span className="text-cyan">.</span>
+        </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {data.map(({ id, image, title, description, tags, github, demo }, index) => (
-            <motion.article
-              key={id}
-              className="glass-card group"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              className="group border border-white/10 hover:border-cyan/50 transition-all duration-300 overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ delay: index * 0.1 }}
             >
-              <div className="relative overflow-hidden rounded-xl mb-6">
+              {/* Project Image */}
+              <div className="relative overflow-hidden h-64 bg-dark-lighter">
                 <img 
-                  src={image} 
-                  alt={title}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              
-              <h3 className="text-2xl font-bold mb-3">{title}</h3>
-              <p className="text-gray-400 mb-4 text-sm leading-relaxed">{description}</p>
-              
-              <div className="flex flex-wrap gap-2 mb-6">
-                {tags.map((tag, i) => (
-                  <span 
-                    key={i}
-                    className="px-3 py-1 text-xs bg-primary/20 text-primary-light rounded-full border border-primary/30"
+
+              {/* Project Info */}
+              <div className="p-6 bg-dark-lighter/50">
+                <h3 className="text-2xl font-bold mb-3 flex items-center justify-between">
+                  {project.title}
+                  <FiArrowUpRight className="text-cyan" />
+                </h3>
+                <p className="text-text-gray text-sm leading-relaxed mb-4">
+                  {project.description}
+                </p>
+                
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map((tag, i) => (
+                    <span key={i} className="px-3 py-1 text-xs border border-cyan/30 text-cyan font-mono">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                <div className="flex gap-4">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 text-sm text-text-gray hover:text-cyan transition-colors"
                   >
-                    {tag}
-                  </span>
-                ))}
+                    <FiGithub /> Code
+                  </a>
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-2 text-sm text-text-gray hover:text-cyan transition-colors"
+                  >
+                    <FiArrowUpRight /> Live Demo
+                  </a>
+                </div>
               </div>
-              
-              <div className="flex gap-4">
-                <a 
-                  href={github} 
-                  className="btn-outline text-sm py-2 px-6"
-                  target='_blank'
-                  rel="noreferrer"
-                >
-                  Github
-                </a>
-                <a 
-                  href={demo} 
-                  className="btn-primary text-sm py-2 px-6"
-                  target='_blank'
-                  rel="noreferrer"
-                >
-                  Live Demo
-                </a>
-              </div>
-            </motion.article>
+            </motion.div>
           ))}
         </div>
-        
-        <motion.div 
-          className="text-center mt-12"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-        >
-          <p className="text-gray-400 text-sm">More projects coming soon...</p>
-        </motion.div>
       </div>
     </section>
   )

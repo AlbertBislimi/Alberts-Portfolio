@@ -1,133 +1,79 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
-import { MdOutlineMail } from 'react-icons/md'
-import { RiMessengerLine } from 'react-icons/ri'
-import { BsWhatsapp } from 'react-icons/bs'
-import emailjs from 'emailjs-com'
+import { FiLinkedin, FiGithub, FiMail, FiArrowUpRight } from 'react-icons/fi'
+import { BsTwitter } from 'react-icons/bs'
 
 const Contact = () => {
-  const form = useRef()
-
-  const sendEmail = (e) => {
-    e.preventDefault()
-    emailjs.sendForm(
-      'service_khnuiib', 
-      'template_zvb1tu1', 
-      form.current, 
-      'user_KZFemUp6O7YlSR7vNkVl4'
-    )
-    e.target.reset()
-  }
-
-  const contactOptions = [
+  const contacts = [
     {
-      icon: MdOutlineMail,
-      title: 'Email',
-      value: 'ialbertbislimi@gmail.com',
+      icon: FiLinkedin,
+      name: 'LinkedIn',
+      link: 'https://www.linkedin.com/in/albert-bislimi/'
+    },
+    {
+      icon: FiGithub,
+      name: 'GitHub',
+      link: 'https://github.com/AlbertBislimi'
+    },
+    {
+      icon: BsTwitter,
+      name: 'Twitter',
+      link: 'https://twitter.com/AlbertBislimi'
+    },
+    {
+      icon: FiMail,
+      name: 'E-mail',
       link: 'mailto:ialbertbislimi@gmail.com'
     },
-    {
-      icon: RiMessengerLine,
-      title: 'Messenger',
-      value: 'Facebook Messenger',
-      link: 'https://m.me/albert.bislimii/'
-    },
-    {
-      icon: BsWhatsapp,
-      title: 'WhatsApp',
-      value: '+38349588569',
-      link: 'https://api.whatsapp.com/send?phone=38349588569'
-    }
   ]
 
   return (
     <section id='contact' className="py-24">
       <div className="section-container">
-        <motion.div 
+        <motion.h2 
           className="section-title"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
         >
-          <h5 className="section-subtitle">Get in Touch</h5>
-          <h2 className="section-heading">Contact Me</h2>
-        </motion.div>
+          Contact<span className="text-cyan">.</span>
+        </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Options */}
-          <motion.div 
-            className="space-y-6"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            {contactOptions.map((option, index) => {
-              const Icon = option.icon
-              return (
-                <motion.article
-                  key={index}
-                  className="glass-card text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 + 0.3 }}
-                >
-                  <Icon className="text-4xl text-primary mx-auto mb-4" />
-                  <h4 className="text-xl font-semibold mb-2">{option.title}</h4>
-                  <h5 className="text-gray-400 text-sm mb-4">{option.value}</h5>
-                  <a 
-                    href={option.link} 
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-primary hover:text-primary-light text-sm transition-colors"
-                  >
-                    Send a message →
-                  </a>
-                </motion.article>
-              )
-            })}
-          </motion.div>
+        <motion.p 
+          className="text-center text-text-gray mb-12 max-w-md mx-auto"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+        >
+          Contact me or follow my social media
+        </motion.p>
 
-          {/* Contact Form */}
-          <motion.form 
-            ref={form} 
-            onSubmit={sendEmail}
-            className="space-y-6"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <input 
-              type="text" 
-              name='name' 
-              placeholder='Your Full Name' 
-              required 
-              className="w-full px-6 py-4 bg-dark-lighter border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors"
-            />
-            <input 
-              type="email" 
-              name='email'  
-              placeholder='Your Email' 
-              required
-              className="w-full px-6 py-4 bg-dark-lighter border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors"
-            />
-            <textarea 
-              name="message" 
-              rows="7" 
-              placeholder='Your Message' 
-              required
-              className="w-full px-6 py-4 bg-dark-lighter border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors resize-none"
-            />
-            <button 
-              type='submit' 
-              className='btn-primary w-full py-4'
-            >
-              Send Message
-            </button>
-          </motion.form>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          {contacts.map((contact, index) => {
+            const Icon = contact.icon
+            return (
+              <motion.a
+                key={index}
+                href={contact.link}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center justify-between p-6 border border-white/10 hover:border-cyan transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 flex items-center justify-center border border-white/20 group-hover:border-cyan transition-colors">
+                    <Icon className="text-xl" />
+                  </div>
+                  <span className="font-semibold">{contact.name}</span>
+                </div>
+                <FiArrowUpRight className="text-cyan opacity-0 group-hover:opacity-100 transition-opacity" />
+              </motion.a>
+            )
+          })}
         </div>
       </div>
     </section>
