@@ -1,95 +1,67 @@
-import { motion } from 'framer-motion'
-import { ExternalLink, Github } from 'lucide-react'
-import { useInView } from '../hooks/useInView'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import p1 from '../assets/portfolio1.jpg'
+import p2 from '../assets/portfolio2.png'
+import p3 from '../assets/portfolio3.jpg'
+import p5 from '../assets/portfolio5.png'
+import p6 from '../assets/portfolio6.jpg'
 
 const projects = [
-  {
-    title: 'Gjeje Online',
-    desc: 'Kosovo marketplace for buying and selling used items. Full-stack: React, Supabase, TypeScript, Tailwind. 100+ categories, real-time messaging, premium seller subscriptions.',
-    tags: ['React', 'Supabase', 'TypeScript', 'Tailwind'],
-    github: 'https://github.com/AlbertBislimi/marketplace',
-    demo: 'https://gjejeonline.com',
-    color: 'from-blue-500/20 to-cyan-500/20',
-    accent: 'border-blue-500/30',
-  },
-  {
-    title: 'Mission Control Dashboard',
-    desc: 'Multi-agent AI coordination dashboard. Real-time task management, agent monitoring, Kanban boards, and team communication for AI development teams.',
-    tags: ['React', 'Convex', 'TypeScript', 'Real-time'],
-    github: 'https://github.com/AlbertBislimi',
-    demo: '#',
-    color: 'from-violet-500/20 to-purple-500/20',
-    accent: 'border-violet-500/30',
-  },
-  {
-    title: 'E-Commerce Platform',
-    desc: 'Full e-commerce solution with product management, payments, order tracking, and admin dashboard. Built for small Kosovo businesses to sell online.',
-    tags: ['Next.js', 'Node.js', 'PostgreSQL', 'Stripe'],
-    github: 'https://github.com/AlbertBislimi',
-    demo: '#',
-    color: 'from-emerald-500/20 to-teal-500/20',
-    accent: 'border-emerald-500/30',
-  },
-  {
-    title: 'Restaurant Booking System',
-    desc: 'Table reservation system with admin panel, automated confirmations, and real-time availability calendar. Deployed for a Pristina restaurant.',
-    tags: ['React', 'Node.js', 'Supabase', 'Realtime'],
-    github: 'https://github.com/AlbertBislimi',
-    demo: '#',
-    color: 'from-orange-500/20 to-rose-500/20',
-    accent: 'border-orange-500/30',
-  },
+  { id: 1, title: 'OneWay Gym Ferizaj', category: 'Website', tags: ['React', 'Vite', 'Tailwind'], image: p1, desc: 'Dark aesthetic gym site with real Instagram media, gallery with video lightbox and animated sections.' },
+  { id: 2, title: 'E-Commerce Platform', category: 'E-commerce', tags: ['React', 'Node.js', 'Stripe'], image: p2, desc: 'Modern online store with cart, payments and inventory management.' },
+  { id: 3, title: 'Restaurant Landing Page', category: 'Website', tags: ['React', 'Framer Motion'], image: p3, desc: 'Animated landing page with menu showcase, gallery and reservation form.' },
+  { id: 4, title: 'Web App Dashboard', category: 'Web App', tags: ['React', 'Tailwind', 'Convex'], image: p5, desc: 'Real-time dashboard with live data, multi-user support and analytics.' },
+  { id: 5, title: 'Beauty Salon Site', category: 'Website', tags: ['React', 'EmailJS'], image: p6, desc: 'Elegant website featuring service menu, team section and booking form.' },
 ]
 
+const cats = ['All', 'Website', 'E-commerce', 'Web App']
+const fadeUp = { hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0 } }
+
 export default function Portfolio() {
-  const { ref, inView } = useInView()
+  const [active, setActive] = useState('All')
+  const filtered = active === 'All' ? projects : projects.filter(p => p.category === active)
 
   return (
-    <section id="portfolio" ref={ref} className="py-28 px-6">
+    <section id="portfolio" className="py-32 px-6">
       <div className="max-w-6xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="text-center mb-16">
-          <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-3">My Work</p>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Recent Projects</h2>
-          <p className="text-slate-400 max-w-xl mx-auto">A selection of projects I've built — from marketplaces to dashboards to business tools.</p>
+        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={{ show: { transition: { staggerChildren: 0.1 } } }} className="text-center mb-12">
+          <motion.p variants={fadeUp} className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-3">Our Work</motion.p>
+          <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-bold">Recent Projects</motion.h2>
+          <motion.p variants={fadeUp} className="text-white/40 mt-4 max-w-xl mx-auto">A selection of websites and apps we've built for Kosovo businesses and beyond.</motion.p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project, i) => (
-            <motion.article
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
-              className={`group p-6 rounded-2xl bg-gradient-to-br ${project.color} border ${project.accent} glass hover:scale-[1.01] transition-transform`}
-            >
-              <div className="flex items-start justify-between mb-4">
-                <h3 className="text-white font-bold text-xl">{project.title}</h3>
-                <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 glass rounded-lg text-slate-400 hover:text-white transition-colors">
-                    <Github className="w-4 h-4" />
-                  </a>
-                  {project.demo !== '#' && (
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="p-2 glass rounded-lg text-slate-400 hover:text-white transition-colors">
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  )}
-                </div>
-              </div>
-              <p className="text-slate-400 text-sm leading-relaxed mb-4">{project.desc}</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map(tag => (
-                  <span key={tag} className="px-2.5 py-1 rounded-full bg-white/5 text-slate-300 text-xs font-medium border border-white/10">{tag}</span>
-                ))}
-              </div>
-            </motion.article>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-center justify-center gap-2 mb-12 flex-wrap">
+          {cats.map(cat => (
+            <button key={cat} onClick={() => setActive(cat)}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${active === cat ? 'bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] text-white' : 'bg-white/5 text-white/50 hover:text-white hover:bg-white/10'}`}>
+              {cat}
+            </button>
           ))}
-        </div>
+        </motion.div>
 
-        <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.5, delay: 0.7 }} className="text-center mt-10">
-          <a href="https://github.com/AlbertBislimi" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 glass border border-white/10 rounded-xl text-slate-300 hover:text-white transition-all font-medium">
-            <Github className="w-4 h-4" />
-            See More on GitHub
-          </a>
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence mode="popLayout">
+            {filtered.map(project => (
+              <motion.div key={project.id} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} whileHover={{ y: -8 }}
+                className="group bg-glass rounded-2xl overflow-hidden cursor-pointer">
+                <div className="relative overflow-hidden aspect-[4/3]">
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                    <p className="text-sm text-white/80">{project.desc}</p>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <div className="flex items-start justify-between mb-2">
+                    <h3 className="font-semibold text-base">{project.title}</h3>
+                    <span className="text-xs text-[#6366f1] bg-[#6366f1]/10 px-2 py-1 rounded-full whitespace-nowrap ml-2">{project.category}</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 mt-3">
+                    {project.tags.map(tag => <span key={tag} className="text-xs text-white/30 bg-white/5 px-2 py-0.5 rounded">{tag}</span>)}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
       </div>
     </section>
