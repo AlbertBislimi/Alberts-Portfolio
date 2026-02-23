@@ -1,38 +1,122 @@
-import { motion } from 'framer-motion'
-import { FiMonitor, FiShoppingBag, FiZap, FiStar, FiTrendingUp, FiSmartphone } from 'react-icons/fi'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { Zap, Building2, ShoppingCart, Palette, ArrowRight } from 'lucide-react'
 
 const services = [
-  { icon: FiMonitor, title: 'Business Websites', desc: 'Clean, modern websites that represent your brand and bring in customers 24/7.' },
-  { icon: FiShoppingBag, title: 'E-commerce Stores', desc: 'Sell online with a store that looks great and converts browsers into buyers.' },
-  { icon: FiZap, title: 'Landing Pages', desc: 'High-converting pages built to capture leads and drive specific actions.' },
-  { icon: FiStar, title: 'Restaurant & Cafe Sites', desc: 'Showcase your menu, atmosphere, and take reservations — all in one place.' },
-  { icon: FiTrendingUp, title: 'SEO & Google Visibility', desc: 'Get found on Google when locals search for your service. More visibility = more clients.' },
-  { icon: FiSmartphone, title: 'Mobile-First Design', desc: 'Every site we build looks flawless on phones — where 80% of your customers browse.' },
+  {
+    icon: Zap,
+    title: 'Landing Page',
+    desc: 'Faqe e vetme optimale për të kthyer vizitorët në klientë. Perfekte për biznese të reja ose promovime specifike.',
+    price: 'Nga €399',
+    features: ['Dizajn unik', '1 faqe + seksione', 'Formulë kontakti', 'Mobile-first', 'SEO bazë'],
+    tag: 'Popullore',
+    color: '#3B82F6',
+  },
+  {
+    icon: Building2,
+    title: 'Faqe Biznesi',
+    desc: 'Prezencë e plotë online për kompaninë tuaj — shumë faqe, profesionale dhe e personalizuar.',
+    price: 'Nga €799',
+    features: ['5-10 faqe', 'Blog/Lajme', 'Galeri imazhe', 'Formulë kontakti avancuar', 'SEO i plotë'],
+    tag: null,
+    color: '#8B5CF6',
+  },
+  {
+    icon: ShoppingCart,
+    title: 'E-commerce',
+    desc: 'Dyqan online i plotë me menaxhim produktesh, pagesa dhe porosi — gati për shitje.',
+    price: 'Nga €1,499',
+    features: ['Dyqan i plotë', 'Pagesa online', 'Menaxhim inventar', 'Paneli admin', 'Email automatik'],
+    tag: null,
+    color: '#EC4899',
+  },
+  {
+    icon: Palette,
+    title: 'Branding',
+    desc: 'Logo, identitet vizual dhe materiale marketing që e bëjnë biznesin tuaj të dallohet.',
+    price: 'Me marrëveshje',
+    features: ['Logo profesionale', 'Ngjyra & fontet', 'Vizita karta', 'Mediat sociale', 'Brand guide'],
+    tag: null,
+    color: '#F59E0B',
+  },
 ]
 
-const fadeUp = { hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0 } }
-
 export default function Services() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-60px' })
+
   return (
-    <section id="services" className="py-32 px-6">
-      <div className="max-w-6xl mx-auto">
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={{ show: { transition: { staggerChildren: 0.1 } } }} className="text-center mb-16">
-          <motion.p variants={fadeUp} className="text-[#6366f1] text-sm font-semibold uppercase tracking-widest mb-3">What We Build</motion.p>
-          <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-bold">Services</motion.h2>
-          <motion.p variants={fadeUp} className="text-white/40 mt-4 max-w-xl mx-auto">From a simple landing page to a full e-commerce store — we build it all, and we build it right.</motion.p>
+    <section id="sherbimet" ref={ref} className="py-20 sm:py-28 bg-[#0A0A0A]">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="mb-14"
+        >
+          <span className="section-label">Shërbimet</span>
+          <h2 className="mt-4 font-display font-800 text-3xl sm:text-4xl md:text-5xl text-white max-w-2xl leading-tight">
+            Çfarë ndërtojmë <span className="text-gradient">për ju</span>
+          </h2>
+          <p className="mt-4 text-white/50 max-w-xl leading-relaxed">
+            Nga landing page të thjeshta deri në platforma komplekse — çdo projekt trajtohet me vëmendje dhe profesionalizëm.
+          </p>
         </motion.div>
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={{ show: { transition: { staggerChildren: 0.1 } } }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map(({ icon: Icon, title, desc }) => (
-            <motion.div key={title} variants={fadeUp} whileHover={{ y: -5, scale: 1.02 }}
-              className="bg-glass rounded-2xl p-6 group cursor-default hover:border-[#6366f1]/30 transition-all">
-              <div className="w-12 h-12 bg-[#6366f1]/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#6366f1]/20 transition-colors">
-                <Icon className="text-[#6366f1]" size={22} />
+
+        {/* Cards grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {services.map((svc, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 32 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="card-surface-hover rounded-2xl p-6 flex flex-col group relative overflow-hidden"
+            >
+              {/* Tag */}
+              {svc.tag && (
+                <div className="absolute top-4 right-4 text-xs font-display font-600 bg-accent/20 text-accent px-2 py-0.5 rounded-full">
+                  {svc.tag}
+                </div>
+              )}
+
+              {/* Icon */}
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
+                style={{ background: `${svc.color}18` }}
+              >
+                <svc.icon size={22} style={{ color: svc.color }} />
               </div>
-              <h3 className="font-semibold text-lg mb-2">{title}</h3>
-              <p className="text-white/40 text-sm leading-relaxed">{desc}</p>
+
+              <h3 className="font-display font-700 text-lg text-white mb-2">{svc.title}</h3>
+              <p className="text-sm text-white/50 leading-relaxed flex-1">{svc.desc}</p>
+
+              {/* Price */}
+              <div className="my-5 pt-5 border-t border-white/6">
+                <span className="font-display font-700 text-xl text-white">{svc.price}</span>
+              </div>
+
+              {/* Features */}
+              <ul className="space-y-2 mb-6">
+                {svc.features.map((f, j) => (
+                  <li key={j} className="flex items-center gap-2 text-sm text-white/60">
+                    <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: svc.color }} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="#kontakt"
+                className="flex items-center gap-2 text-sm font-display font-600 mt-auto group-hover:gap-3 transition-all"
+                style={{ color: svc.color }}
+              >
+                Fillo tani <ArrowRight size={15} />
+              </a>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

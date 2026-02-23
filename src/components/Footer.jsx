@@ -1,15 +1,108 @@
-import { Github, Linkedin, Heart } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { MapPin, Mail, Github, Linkedin, Instagram } from 'lucide-react'
+
+const footerLinks = {
+  'Shërbime': [
+    { label: 'Landing Page', href: '#sherbimet' },
+    { label: 'Faqe Biznesi', href: '#sherbimet' },
+    { label: 'E-commerce', href: '#sherbimet' },
+    { label: 'Branding', href: '#sherbimet' },
+  ],
+  'Kompania': [
+    { label: 'Rreth nesh', href: '#rreth' },
+    { label: 'Punimet', href: '#punimet' },
+    { label: 'Procesi', href: '#procesi' },
+    { label: 'Çmimet', href: '#cmimet' },
+  ],
+  'Support': [
+    { label: 'FAQ', href: '#faq' },
+    { label: 'Kontakti', href: '#kontakt' },
+    { label: 'WhatsApp', href: 'https://wa.me/38344000000' },
+    { label: 'Email', href: 'mailto:albert@abstudio.dev' },
+  ],
+}
+
+const socials = [
+  { icon: Github, href: 'https://github.com/AlbertBislimi', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://linkedin.com/in/albertbislimi', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://instagram.com/albertbislimi', label: 'Instagram' },
+]
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 py-8 px-6">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-slate-500 text-sm flex items-center gap-1.5">
-          © {new Date().getFullYear()} Albert Bislimi. Built with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" /> in Kosovo.
-        </p>
-        <div className="flex items-center gap-4">
-          <a href="https://github.com/AlbertBislimi" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors"><Github className="w-5 h-5" /></a>
-          <a href="https://www.linkedin.com/in/albertbislimi/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
+    <footer className="bg-[#080808] border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-14">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
+          {/* Brand column */}
+          <div className="col-span-2 sm:col-span-3 lg:col-span-2">
+            <a href="#" className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
+                <span className="font-display font-800 text-white text-sm">AB</span>
+              </div>
+              <span className="font-display font-700 text-white text-lg">AB Studio</span>
+            </a>
+
+            <p className="text-white/45 text-sm leading-relaxed max-w-xs">
+              Agjensi web me bazë në Ferizaj, Kosovë. Ndërtojmë faqe që sjellin klientë të rinj.
+            </p>
+
+            <div className="mt-4 flex items-center gap-2 text-white/40 text-sm">
+              <MapPin size={13} className="text-accent flex-shrink-0" />
+              <span>Ferizaj, Kosovë</span>
+            </div>
+
+            <div className="mt-2 flex items-center gap-2 text-white/40 text-sm">
+              <Mail size={13} className="text-accent flex-shrink-0" />
+              <a href="mailto:albert@abstudio.dev" className="hover:text-white transition-colors">
+                albert@abstudio.dev
+              </a>
+            </div>
+
+            {/* Socials */}
+            <div className="mt-5 flex gap-3">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="w-9 h-9 rounded-lg bg-white/5 border border-white/8 flex items-center justify-center text-white/40 hover:text-white hover:border-white/20 transition-all"
+                >
+                  <s.icon size={15} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Link columns */}
+          {Object.entries(footerLinks).map(([title, links]) => (
+            <div key={title}>
+              <h4 className="font-display font-700 text-white text-sm mb-4">{title}</h4>
+              <ul className="space-y-3">
+                {links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="text-sm text-white/40 hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom bar */}
+        <div className="mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/25">
+          <span>© 2025 AB Studio · Ferizaj, Kosovë · All rights reserved</span>
+          <span className="flex items-center gap-1.5">
+            Ndërtuar me
+            <span className="text-red-400">♥</span>
+            në Kosovë
+          </span>
         </div>
       </div>
     </footer>

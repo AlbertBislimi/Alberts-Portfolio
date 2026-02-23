@@ -4,32 +4,38 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        display: ['"Space Grotesk"', 'sans-serif'],
         sans: ['Inter', 'sans-serif'],
       },
       colors: {
-        // Legacy aliases (keep for any old components)
-        accent: '#6366f1',
-        accent2: '#8b5cf6',
-        // Primary palette used throughout new components
-        primary: {
-          DEFAULT: '#0ea5e9',
-          dark: '#0284c7',
-        },
-        // Dark backgrounds
-        dark: {
-          DEFAULT: '#0a0a0f',
-          2: '#111118',
-          3: '#1a1a25',
-        },
+        bg: '#0A0A0A',
+        surface: '#1A1A1A',
+        accent: '#3B82F6',
+        'accent-hover': '#2563EB',
+        border: 'rgba(255,255,255,0.08)',
+        muted: '#6B7280',
       },
       animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'counter': 'counter 2s ease-out forwards',
+        'grain': 'grain 8s steps(10) infinite',
+        'fade-up': 'fadeUp 0.6s ease-out forwards',
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
+        grain: {
+          '0%, 100%': { transform: 'translate(0, 0)' },
+          '10%': { transform: 'translate(-2%, -3%)' },
+          '20%': { transform: 'translate(3%, 1%)' },
+          '30%': { transform: 'translate(-1%, 4%)' },
+          '40%': { transform: 'translate(2%, -2%)' },
+          '50%': { transform: 'translate(-3%, 2%)' },
+          '60%': { transform: 'translate(1%, -4%)' },
+          '70%': { transform: 'translate(-2%, 3%)' },
+          '80%': { transform: 'translate(3%, -1%)' },
+          '90%': { transform: 'translate(-1%, 2%)' },
+        },
+        fadeUp: {
+          from: { opacity: '0', transform: 'translateY(24px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
         },
       },
     },

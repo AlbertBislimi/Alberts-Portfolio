@@ -1,90 +1,130 @@
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { ArrowRight, Eye } from 'lucide-react'
 
-const businessTypes = ['Restaurants', 'Gyms', 'Salons', 'Hotels', 'Clinics', 'Shops']
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: i * 0.12, ease: [0.25, 0.1, 0.25, 1] },
+  }),
+}
 
 export default function Hero() {
-  const [idx, setIdx] = useState(0)
-  const [displayed, setDisplayed] = useState('')
-  const [deleting, setDeleting] = useState(false)
-
-  useEffect(() => {
-    const word = businessTypes[idx]
-    let t
-    if (!deleting && displayed.length < word.length) {
-      t = setTimeout(() => setDisplayed(word.slice(0, displayed.length + 1)), 80)
-    } else if (!deleting && displayed.length === word.length) {
-      t = setTimeout(() => setDeleting(true), 2000)
-    } else if (deleting && displayed.length > 0) {
-      t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 50)
-    } else {
-      setDeleting(false)
-      setIdx(i => (i + 1) % businessTypes.length)
-    }
-    return () => clearTimeout(t)
-  }, [displayed, deleting, idx])
-
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Orbs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div animate={{ scale: [1,1.2,1], opacity: [0.3,0.5,0.3] }} transition={{ duration: 8, repeat: Infinity }}
-          className="absolute -top-40 -left-40 w-96 h-96 rounded-full blur-3xl bg-[#6366f1]/20" />
-        <motion.div animate={{ scale: [1.2,1,1.2], opacity: [0.2,0.4,0.2] }} transition={{ duration: 10, repeat: Infinity }}
-          className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full blur-3xl bg-[#8b5cf6]/20" />
-        <motion.div animate={{ x: [0,30,0], y: [0,-30,0] }} transition={{ duration: 12, repeat: Infinity }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-3xl bg-pink-500/10" />
-      </div>
-      {/* Grid */}
-      <div className="absolute inset-0 opacity-[0.03]"
-        style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)', backgroundSize: '60px 60px' }} />
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#0A0A0A]">
+      {/* Grain texture overlay */}
+      <div className="grain absolute inset-0 pointer-events-none" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-white/60 mb-8">
-          <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-          Available for new projects · Kosovo & Remote
+      {/* Background glow blobs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-accent/10 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-blue-400/5 blur-[100px] pointer-events-none" />
+
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.03]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px',
+        }}
+      />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 pt-28 pb-20">
+        {/* Badge */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0}
+          className="inline-flex items-center gap-2 mb-8"
+        >
+          <span className="flex h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+          <span className="text-xs font-display font-600 tracking-widest uppercase text-white/50">
+            Ferizaj, Kosovë · Disponibël tani
+          </span>
         </motion.div>
 
-        <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
-          Websites That Bring<br />Clients To Your{' '}
-          <span className="text-gradient">{displayed}<span className="animate-pulse">|</span></span>
+        {/* Main headline */}
+        <motion.h1
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={1}
+          className="font-display font-800 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight max-w-4xl"
+        >
+          Faqe interneti që{' '}
+          <span className="text-gradient">bizneset e Kosovës</span>
+          {' '}i duan
         </motion.h1>
 
-        <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl text-white/50 max-w-2xl mx-auto mb-10 font-light">
-          Kosovo's modern web studio. Fast, beautiful websites that rank on Google and convert visitors into real customers.
+        {/* Subheadline */}
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={2}
+          className="mt-6 text-lg sm:text-xl text-white/55 max-w-2xl leading-relaxed"
+        >
+          Projektojmë dhe ndërtojmë faqe profesionale që sjellin klientë të rinj — 
+          me çmime transparente, dorëzim i shpejtë, dhe komunikim në shqip.
         </motion.p>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] px-8 py-4 rounded-full text-base font-semibold hover:opacity-90 transition-all hover:scale-105 shadow-lg shadow-[#6366f1]/25">
-            See Our Work
-          </button>
-          <button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="border border-white/20 px-8 py-4 rounded-full text-base font-medium text-white/70 hover:text-white hover:border-white/40 transition-all">
-            Get a Free Quote →
-          </button>
+        {/* CTAs */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={3}
+          className="mt-10 flex flex-col sm:flex-row gap-4"
+        >
+          <a href="#kontakt" className="btn-primary text-base py-4 px-8">
+            Fillo projektin
+            <ArrowRight size={18} />
+          </a>
+          <a href="#punimet" className="btn-secondary text-base py-4 px-8">
+            <Eye size={18} />
+            Shiko punimet
+          </a>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex items-center justify-center gap-12 mt-16 pt-16 border-t border-white/5">
-          {[['20+', 'Projects Delivered'], ['3+', 'Years Experience'], ['100%', 'Client Satisfaction']].map(([n, l]) => (
-            <div key={l} className="text-center">
-              <div className="text-3xl font-bold text-gradient">{n}</div>
-              <div className="text-sm text-white/40 mt-1">{l}</div>
-            </div>
-          ))}
+        {/* Trust indicators */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={4}
+          className="mt-14 flex flex-wrap items-center gap-6 text-sm text-white/40"
+        >
+          <span className="flex items-center gap-2">
+            <span className="text-accent">✓</span>
+            Çmime transparente
+          </span>
+          <span className="w-px h-4 bg-white/10 hidden sm:block" />
+          <span className="flex items-center gap-2">
+            <span className="text-accent">✓</span>
+            Komunikim në shqip
+          </span>
+          <span className="w-px h-4 bg-white/10 hidden sm:block" />
+          <span className="flex items-center gap-2">
+            <span className="text-accent">✓</span>
+            Dorëzim brenda 7 ditëve
+          </span>
         </motion.div>
       </div>
 
-      <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/20">
-        <div className="w-6 h-10 border-2 border-current rounded-full flex items-start justify-center pt-1.5">
-          <div className="w-1 h-2 bg-current rounded-full" />
-        </div>
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <span className="text-xs text-white/30 tracking-widest uppercase">Zbulo</span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+          className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent"
+        />
       </motion.div>
     </section>
   )
