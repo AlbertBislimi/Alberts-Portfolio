@@ -6,7 +6,7 @@ import { useInView } from '../hooks/useInView'
 
 const EMAILJS_SERVICE = 'service_khnuiib'
 const EMAILJS_TEMPLATE = 'template_zvb1tu1'
-const EMAILJS_PUBLIC_KEY = 'user_KZFemUp6O7YlSR7vNkVl4'
+const EMAILJS_PUBLIC_KEY = 'KZFemUp6O7YlSR7vNkVl4'
 
 export default function Contact() {
   const { ref, inView } = useInView()
