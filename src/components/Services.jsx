@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Zap, Building2, ShoppingCart, Palette, ArrowRight } from 'lucide-react'
+import { Zap, Building2, ShoppingCart, ArrowRight, Search, ShieldCheck, TrendingUp } from 'lucide-react'
 
 const services = [
   {
@@ -30,15 +30,6 @@ const services = [
     tag: null,
     color: '#EC4899',
   },
-  {
-    icon: Palette,
-    title: 'Branding',
-    desc: 'Logo, identitet vizual dhe materiale marketing që e bëjnë biznesin tuaj të dallohet.',
-    price: 'Me marrëveshje',
-    features: ['Logo profesionale', 'Ngjyra & fontet', 'Vizita karta', 'Mediat sociale', 'Brand guide'],
-    tag: null,
-    color: '#F59E0B',
-  },
 ]
 
 export default function Services() {
@@ -65,7 +56,7 @@ export default function Services() {
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((svc, i) => (
             <motion.div
               key={i}
@@ -117,6 +108,50 @@ export default function Services() {
             </motion.div>
           ))}
         </div>
+        {/* Why you need a website */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-10 rounded-2xl bg-[#111]/60 border border-white/6 p-8 sm:p-10"
+        >
+          <p className="section-label mb-6">Pse keni nevojë për një website?</p>
+          <div className="grid sm:grid-cols-3 gap-8">
+            <div className="flex gap-4">
+              <div className="w-10 h-10 rounded-xl bg-[#3B82F6]/10 flex items-center justify-center flex-shrink-0">
+                <Search size={18} className="text-[#3B82F6]" />
+              </div>
+              <div>
+                <h4 className="font-display font-700 text-white text-sm mb-1.5">SEO & Google</h4>
+                <p className="text-white/45 text-sm leading-relaxed">
+                  Një website i optimizuar mirë renditet në Google dhe sjell vizitorë falas — 24 orë në ditë, 7 ditë në javë.
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-10 h-10 rounded-xl bg-[#8B5CF6]/10 flex items-center justify-center flex-shrink-0">
+                <ShieldCheck size={18} className="text-[#8B5CF6]" />
+              </div>
+              <div>
+                <h4 className="font-display font-700 text-white text-sm mb-1.5">Besueshmëri & Imazh</h4>
+                <p className="text-white/45 text-sm leading-relaxed">
+                  Klientët e vlerësojnë biznesin tuaj online para se t'ju kontaktojnë. Një website profesionale krijon besim në sekonda.
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-10 h-10 rounded-xl bg-[#10B981]/10 flex items-center justify-center flex-shrink-0">
+                <TrendingUp size={18} className="text-[#10B981]" />
+              </div>
+              <div>
+                <h4 className="font-display font-700 text-white text-sm mb-1.5">Shitje & Klientë të Rinj</h4>
+                <p className="text-white/45 text-sm leading-relaxed">
+                  Website juaj punon edhe kur ju nuk jeni online — mbledh kontakte, rezervime dhe kërkesa automatikisht, çdo ditë.
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

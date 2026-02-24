@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ABLogo from './Logo'
 
 const navLinks = [
   { label: 'Shërbimet', href: '#sherbimet' },
@@ -30,14 +31,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-            <span className="font-display font-800 text-white text-sm">AB</span>
-          </div>
-          <span className="font-display font-700 text-white text-lg">
-            AB Studio
-          </span>
-        </a>
+        <ABLogo size="sm" />
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">

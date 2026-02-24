@@ -5,8 +5,8 @@ import Services from './components/Services'
 import SelectedWork from './components/SelectedWork'
 import Process from './components/Process'
 import About from './components/About'
-import Testimonials from './components/Testimonials'
 import Pricing from './components/Pricing'
+import PriceEstimator from './components/PriceEstimator'
 import FAQ from './components/FAQ'
 import FinalCTA from './components/FinalCTA'
 import Footer from './components/Footer'
@@ -22,8 +22,8 @@ export default function App() {
         <SelectedWork />
         <Process />
         <About />
-        <Testimonials />
-        <Pricing />
+<Pricing />
+        <PriceEstimator />
         <FAQ />
         <FinalCTA />
       </main>

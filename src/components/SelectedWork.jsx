@@ -4,37 +4,26 @@ import { ExternalLink, ArrowUpRight } from 'lucide-react'
 
 const projects = [
   {
-    title: 'OneWay Gym',
-    category: 'Fitness & Gym',
-    desc: 'Faqe moderne për palestrën OneWay në Francë. Dark theme premium, galeri klase, dhe sistem rezervimi.',
-    url: 'https://onewaygym.fr',
-    tags: ['React', 'Tailwind', 'Framer Motion'],
-    color: '#EF4444',
-    year: '2024',
-    highlight: 'Dizajn dark premium',
-    emoji: '🏋️',
-  },
-  {
     title: 'Nubis.app',
     category: 'Project Management SaaS',
-    desc: 'Platformë e menaxhimit të projekteve me board-e, tasks, dhe kolab oracion në kohë reale.',
+    desc: 'Platformë e menaxhimit të projekteve me board-e, tasks, dhe kolaboracion në kohë reale.',
     url: 'https://nubis.app',
+    image: '/projects/nubis.png',
     tags: ['React', 'Node.js', 'PostgreSQL'],
     color: '#3B82F6',
     year: '2024',
     highlight: 'SaaS i plotë',
-    emoji: '☁️',
   },
   {
     title: 'Gjeje.online',
     category: 'Discovery Platform · Kosovo',
     desc: 'Platformë lokale për zbulimin e bizneseve dhe shërbimeve në Kosovë — me harta, filtra, dhe reviews.',
-    url: 'https://gjeje.online',
+    url: 'https://gjejeonline.com',
+    image: '/projects/gjeje.png',
     tags: ['React', 'Supabase', 'Maps API'],
     color: '#10B981',
     year: '2025',
     highlight: 'Made in Kosovo',
-    emoji: '📍',
   },
 ]
 
@@ -65,7 +54,7 @@ export default function SelectedWork() {
         </motion.div>
 
         {/* Project cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, i) => (
             <motion.div
               key={i}
@@ -75,45 +64,28 @@ export default function SelectedWork() {
               className="group relative rounded-2xl overflow-hidden card-surface flex flex-col"
             >
               {/* Project preview area */}
-              <div
-                className="relative h-48 sm:h-52 flex items-center justify-center overflow-hidden"
-                style={{ background: `${project.color}10` }}
-              >
-                {/* Background gradient */}
-                <div
-                  className="absolute inset-0 opacity-20"
-                  style={{
-                    background: `radial-gradient(circle at 50% 50%, ${project.color} 0%, transparent 70%)`,
-                  }}
+              <div className="relative h-52 sm:h-60 overflow-hidden bg-[#111]">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />
-
-                {/* Center content */}
-                <div className="relative z-10 text-center">
-                  <div className="text-5xl mb-3">{project.emoji}</div>
-                  <div
-                    className="font-display font-700 text-2xl"
-                    style={{ color: project.color }}
-                  >
-                    {project.title}
-                  </div>
-                  <div className="text-white/40 text-sm mt-1">{project.category}</div>
-                </div>
 
                 {/* Highlight badge */}
                 <div
-                  className="absolute top-4 left-4 text-xs font-display font-600 px-2.5 py-1 rounded-full"
-                  style={{ background: `${project.color}25`, color: project.color }}
+                  className="absolute top-4 left-4 text-xs font-display font-600 px-2.5 py-1 rounded-full backdrop-blur-sm"
+                  style={{ background: `${project.color}30`, color: project.color }}
                 >
                   {project.highlight}
                 </div>
 
                 {/* Year badge */}
-                <div className="absolute top-4 right-4 text-xs text-white/40 font-medium">
+                <div className="absolute top-4 right-4 text-xs text-white/60 font-medium bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded-full">
                   {project.year}
                 </div>
 
                 {/* Hover overlay */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <a
                     href={project.url}
                     target="_blank"

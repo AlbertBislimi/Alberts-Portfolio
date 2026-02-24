@@ -1,14 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Albert Bislimi — Web Developer. We build websites that bring you clients. Kosovo's modern web studio." />
+
+    <!-- Primary SEO -->
+    <title>Albert Bislimi — Web Developer Kosovë | Website Profesionale</title>
+    <meta name="description" content="Albert Bislimi — web developer nga Ferizaj, Kosovë. Ndërtojmë website profesionale për biznese në Kosovë, Shqipëri dhe Maqedoni. Landing page nga €399, dorëzim brenda 7 ditëve." />
+    <meta name="keywords" content="web developer kosovë, website kosovë, web dizajn ferizaj, ndërtim faqesh, web developer shqipëri, landing page kosovë, e-commerce kosovë, albert bislimi, ab studio" />
+    <meta name="author" content="Albert Bislimi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://abstudio.dev" />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://abstudio.dev" />
+    <meta property="og:title" content="Albert Bislimi — Web Developer Kosovë" />
+    <meta property="og:description" content="Ndërtojmë website profesionale për biznese në Kosovë. Çmime transparente, dorëzim brenda 7 ditëve, komunikim në shqip." />
+    <meta property="og:image" content="https://abstudio.dev/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="sq_AL" />
+    <meta property="og:site_name" content="AB Studio" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Albert Bislimi — Web Developer Kosovë" />
+    <meta name="twitter:description" content="Ndërtojmë website profesionale për biznese në Kosovë. Çmime transparente, dorëzim brenda 7 ditëve." />
+    <meta name="twitter:image" content="https://abstudio.dev/og-image.png" />
+
+    <!-- Structured Data: Person + LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://abstudio.dev/#albert",
+          "name": "Albert Bislimi",
+          "jobTitle": "Web Developer",
+          "url": "https://abstudio.dev",
+          "email": "albert@abstudio.dev",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ferizaj",
+            "addressCountry": "XK"
+          },
+          "sameAs": [
+            "https://github.com/AlbertBislimi",
+            "https://linkedin.com/in/albertbislimi"
+          ]
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://abstudio.dev/#business",
+          "name": "AB Studio",
+          "description": "Agjenci web me bazë në Ferizaj, Kosovë. Ndërtojmë website profesionale që sjellin klientë të rinj.",
+          "url": "https://abstudio.dev",
+          "email": "albert@abstudio.dev",
+          "telephone": "+38349588569",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ferizaj",
+            "addressCountry": "XK"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "42.3706",
+            "longitude": "21.1489"
+          },
+          "priceRange": "€€",
+          "openingHours": "Mo-Fr 09:00-18:00",
+          "areaServed": ["Kosovo", "Albania", "North Macedonia"],
+          "serviceType": ["Web Development", "Web Design", "E-commerce", "SEO"],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Web Development Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Landing Page",
+                "price": "399",
+                "priceCurrency": "EUR",
+                "description": "Faqe e vetme optimale për të kthyer vizitorët në klientë."
+              },
+              {
+                "@type": "Offer",
+                "name": "Faqe Biznesi",
+                "price": "799",
+                "priceCurrency": "EUR",
+                "description": "Prezencë e plotë online për kompaninë tuaj."
+              },
+              {
+                "@type": "Offer",
+                "name": "E-commerce",
+                "price": "1499",
+                "priceCurrency": "EUR",
+                "description": "Dyqan online i plotë me menaxhim produktesh dhe pagesa."
+              }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://abstudio.dev/#website",
+          "url": "https://abstudio.dev",
+          "name": "AB Studio — Web Developer Kosovë",
+          "description": "Website profesionale për biznese në Kosovë, Shqipëri dhe Maqedoni.",
+          "inLanguage": "sq",
+          "publisher": { "@id": "https://abstudio.dev/#business" }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <title>Albert Bislimi — Web Developer Kosovo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>

@@ -36,7 +36,7 @@ export default function About() {
                   <Zap size={16} className="text-green-400" />
                 </div>
                 <div>
-                  <p className="text-white text-sm font-display font-700">Disponibël për projekte</p>
+                  <p className="text-white text-sm font-display font-700">Pranon projekte</p>
                   <p className="text-white/40 text-xs">Pranojmë klientë të rinj tani</p>
                 </div>
               </div>

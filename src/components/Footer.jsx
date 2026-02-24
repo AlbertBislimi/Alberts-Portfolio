@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion'
 import { MapPin, Mail, Github, Linkedin, Instagram } from 'lucide-react'
+import ABLogo from './Logo'
 
 const footerLinks = {
   'Shërbime': [
     { label: 'Landing Page', href: '#sherbimet' },
     { label: 'Faqe Biznesi', href: '#sherbimet' },
     { label: 'E-commerce', href: '#sherbimet' },
-    { label: 'Branding', href: '#sherbimet' },
+    { label: 'Vlerësuesi', href: '#estimator' },
   ],
   'Kompania': [
     { label: 'Rreth nesh', href: '#rreth' },
@@ -35,12 +36,9 @@ export default function Footer() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand column */}
           <div className="col-span-2 sm:col-span-3 lg:col-span-2">
-            <a href="#" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-                <span className="font-display font-800 text-white text-sm">AB</span>
-              </div>
-              <span className="font-display font-700 text-white text-lg">AB Studio</span>
-            </a>
+            <div className="mb-4">
+              <ABLogo size="md" />
+            </div>
 
             <p className="text-white/45 text-sm leading-relaxed max-w-xs">
               Agjensi web me bazë në Ferizaj, Kosovë. Ndërtojmë faqe që sjellin klientë të rinj.

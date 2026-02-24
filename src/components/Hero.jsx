@@ -40,7 +40,7 @@ export default function Hero() {
         >
           <span className="flex h-2 w-2 rounded-full bg-green-400 animate-pulse" />
           <span className="text-xs font-display font-600 tracking-widest uppercase text-white/50">
-            Ferizaj, Kosovë · Disponibël tani
+            Ferizaj, Kosovë · Pranon projekte
           </span>
         </motion.div>
 
@@ -52,7 +52,7 @@ export default function Hero() {
           custom={1}
           className="font-display font-800 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight max-w-4xl"
         >
-          Faqe interneti që{' '}
+          Website që{' '}
           <span className="text-gradient">bizneset e Kosovës</span>
           {' '}i duan
         </motion.h1>
@@ -65,7 +65,7 @@ export default function Hero() {
           custom={2}
           className="mt-6 text-lg sm:text-xl text-white/55 max-w-2xl leading-relaxed"
         >
-          Projektojmë dhe ndërtojmë faqe profesionale që sjellin klientë të rinj — 
+          Projektojmë dhe ndërtojmë website profesionale që sjellin klientë të rinj — 
           me çmime transparente, dorëzim i shpejtë, dhe komunikim në shqip.
         </motion.p>
 
@@ -84,6 +84,24 @@ export default function Hero() {
           <a href="#punimet" className="btn-secondary text-base py-4 px-8">
             <Eye size={18} />
             Shiko punimet
+          </a>
+        </motion.div>
+
+        {/* Estimator nudge */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={3.5}
+          className="mt-5"
+        >
+          <a
+            href="#estimator"
+            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors group"
+          >
+            <span className="text-accent">💰</span>
+            Nuk jeni të sigurt për çmimin?
+            <span className="text-accent group-hover:underline underline-offset-2">Llogaritni këtu →</span>
           </a>
         </motion.div>
 
