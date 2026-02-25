@@ -4,6 +4,17 @@ import { ExternalLink, ArrowUpRight } from 'lucide-react'
 
 const projects = [
   {
+    title: 'MySearch Agency',
+    category: 'Job & Real Estate Platform · Kosovo',
+    desc: 'Platformë për punësime dhe patundshmëri në Kosovë — me listim postimesh, filtra të avancuar dhe panel admin.',
+    url: 'https://mysearchagency.com',
+    image: '/projects/mysearch.png',
+    tags: ['React', 'Supabase', 'Tailwind'],
+    color: '#F97316',
+    year: '2025',
+    highlight: 'Platform i plotë',
+  },
+  {
     title: 'Nubis.app',
     category: 'Project Management SaaS',
     desc: 'Platformë e menaxhimit të projekteve me board-e, tasks, dhe kolaboracion në kohë reale.',
@@ -54,7 +65,7 @@ export default function SelectedWork() {
         </motion.div>
 
         {/* Project cards */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {projects.map((project, i) => (
             <motion.div
               key={i}
