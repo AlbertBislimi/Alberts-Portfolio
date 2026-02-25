@@ -19,14 +19,14 @@ const footerLinks = {
     { label: 'FAQ', href: '#faq' },
     { label: 'Kontakti', href: '#kontakt' },
     { label: 'WhatsApp', href: 'https://wa.me/38344000000' },
-    { label: 'Email', href: 'mailto:albert@abstudio.dev' },
+    { label: 'Email', href: 'mailto:ialbertbislimi@gmail.com' },
   ],
 }
 
 const socials = [
   { icon: Github, href: 'https://github.com/AlbertBislimi', label: 'GitHub' },
   { icon: Linkedin, href: 'https://linkedin.com/in/albertbislimi', label: 'LinkedIn' },
-  { icon: Instagram, href: 'https://instagram.com/albertbislimi', label: 'Instagram' },
+  { icon: Instagram, href: 'https://instagram.com/ialbertbislimi', label: 'Instagram' },
 ]
 
 export default function Footer() {
@@ -51,8 +51,8 @@ export default function Footer() {
 
             <div className="mt-2 flex items-center gap-2 text-white/40 text-sm">
               <Mail size={13} className="text-accent flex-shrink-0" />
-              <a href="mailto:albert@abstudio.dev" className="hover:text-white transition-colors">
-                albert@abstudio.dev
+              <a href="mailto:ialbertbislimi@gmail.com" className="hover:text-white transition-colors">
+                ialbertbislimi@gmail.com
               </a>
             </div>
 

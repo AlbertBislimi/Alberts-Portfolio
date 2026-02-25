@@ -72,11 +72,11 @@ export default function FinalCTA() {
 
               {/* Email CTA */}
               <a
-                href="mailto:albert@abstudio.dev"
+                href="mailto:ialbertbislimi@gmail.com"
                 className="flex items-center justify-center gap-2 btn-secondary text-base py-4 px-8"
               >
                 <Mail size={18} />
-                albert@abstudio.dev
+                ialbertbislimi@gmail.com
               </a>
             </motion.div>
 
