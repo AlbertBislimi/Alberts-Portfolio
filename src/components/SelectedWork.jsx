@@ -6,7 +6,7 @@ const projects = [
   {
     title: 'MySearch Agency',
     category: 'Job & Real Estate Platform · Kosovo',
-    desc: 'Platformë për punësime dhe patundshmëri në Kosovë — me listim postimesh, filtra të avancuar dhe panel admin.',
+    desc: 'Platformë për punësime dhe patundshmëri në Kosovë, me listim postimesh, filtra të avancuar dhe panel admin.',
     url: 'https://mysearchagency.com',
     image: '/projects/mysearch.png',
     tags: ['React', 'Supabase', 'Tailwind'],
@@ -28,7 +28,7 @@ const projects = [
   {
     title: 'Gjeje.online',
     category: 'Discovery Platform · Kosovo',
-    desc: 'Platformë lokale për zbulimin e bizneseve dhe shërbimeve në Kosovë — me harta, filtra, dhe reviews.',
+    desc: 'Platformë lokale për zbulimin e bizneseve dhe shërbimeve në Kosovë, me harta, filtra, dhe reviews.',
     url: 'https://gjejeonline.com',
     image: '/projects/gjeje.png',
     tags: ['React', 'Supabase', 'Maps API'],

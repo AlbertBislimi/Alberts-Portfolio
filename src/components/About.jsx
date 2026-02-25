@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { MapPin, Code2, Zap } from 'lucide-react'
+import { MapPin, Code2 } from 'lucide-react'
 
 const skills = ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion', 'Node.js', 'Supabase', 'Figma', 'SEO']
 
@@ -11,83 +11,71 @@ export default function About() {
   return (
     <section id="rreth" ref={ref} className="py-20 sm:py-28 bg-[#0D0D0D]">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left: photo placeholder */}
+        <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+          {/* Left: heading + bio */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="relative"
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
           >
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-[#1A1A1A] border border-white/8 flex items-center justify-center max-w-sm mx-auto md:mx-0">
-              {/* Placeholder */}
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-purple-500/5" />
-              <div className="relative z-10 text-center">
-                <div className="w-24 h-24 rounded-full bg-[#2A2A2A] border-2 border-accent/30 mx-auto flex items-center justify-center mb-4">
-                  <span className="font-display font-800 text-3xl text-accent">AB</span>
-                </div>
-                <p className="text-white/40 text-sm font-medium">Foto e Albert</p>
-                <p className="text-white/25 text-xs mt-1">Foto do të shtohet</p>
-              </div>
-
-              {/* Floating badge */}
-              <div className="absolute bottom-5 left-5 right-5 bg-[#0A0A0A]/90 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
-                  <Zap size={16} className="text-green-400" />
-                </div>
-                <div>
-                  <p className="text-white text-sm font-display font-700">Pranon projekte</p>
-                  <p className="text-white/40 text-xs">Pranojmë klientë të rinj tani</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Experience badge */}
-            <div className="absolute -top-4 -right-4 md:right-0 w-20 h-20 rounded-2xl bg-accent flex flex-col items-center justify-center shadow-lg shadow-accent/30">
-              <span className="font-display font-800 text-2xl text-white">3+</span>
-              <span className="text-white/80 text-xs font-medium leading-tight text-center">vite exp.</span>
-            </div>
-          </motion.div>
-
-          {/* Right: content */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1 }}
-          >
-            <span className="section-label">Rreth meje</span>
+            <span className="section-label">Rreth nesh</span>
             <h2 className="mt-4 font-display font-800 text-3xl sm:text-4xl md:text-5xl text-white leading-tight">
-              Developer nga{' '}
-              <span className="text-gradient">Ferizaj</span>
+              Ndërtojmë website{' '}
+              <span className="text-gradient">që punojnë</span>
             </h2>
 
-            <div className="mt-2 flex items-center gap-2 text-white/50">
-              <MapPin size={14} className="text-accent" />
-              <span className="text-sm font-medium">Ferizaj, Kosovë</span>
+            <div className="mt-3 flex items-center gap-2 text-white/40">
+              <MapPin size={13} className="text-accent flex-shrink-0" />
+              <span className="text-sm">Kosovë</span>
             </div>
 
             <p className="mt-6 text-white/60 leading-relaxed">
-              Jam <strong className="text-white">Albert Bislimi</strong>, web developer me bazë në Ferizaj, Kosovë. 
-              Ndërtoj faqe profesionale për bizneset lokale dhe ndërkombëtare që duan prezencë serioze online.
+              Jam <strong className="text-white">Albert Bislimi</strong>, web developer me mbi 4 vjet eksperiencë
+              në ndërtimin e produkteve dixhitale. Kam punuar me biznese nga Kosova, Shqipëria,
+              Maqedonia dhe Franca, duke i ndihmuar të kalojnë nga "nuk kemi faqe" tek
+              "klientët po na gjejnë çdo ditë online".
             </p>
 
             <p className="mt-4 text-white/60 leading-relaxed">
-              E kam ndërtuar vetë këtë faqe — që do të thotë se di çfarë po bëj. 
-              Punojë me klientë nga Kosova, Shqipëria, Maqedonia, dhe Franca — 
-              gjithmonë me komunikim të qartë dhe rezultate reale.
+              Ndryshe nga agjencitë e mëdha ku humbet në radhë pritjeje,
+              këtu punon direkt me mua nga ideja deri në lansim.
+              Komunikim i qartë, çmime të hapura, dhe rezultate që mund t'i matësh.
             </p>
 
-            {/* Skills */}
-            <div className="mt-8">
+            {/* Quick facts */}
+            <div className="mt-8 grid grid-cols-3 gap-4">
+              {[
+                { value: '15+', label: 'Projekte' },
+                { value: '4+', label: 'Vite exp.' },
+                { value: '7 ditë', label: 'Dorëzim' },
+              ].map((stat) => (
+                <div key={stat.label} className="p-4 rounded-xl bg-[#1A1A1A] border border-white/8 text-center">
+                  <div className="font-display font-800 text-xl text-white">{stat.value}</div>
+                  <div className="text-xs text-white/40 mt-0.5">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right: skills + stack */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="space-y-6"
+          >
+            {/* Stack */}
+            <div className="rounded-2xl bg-[#111] border border-white/8 p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Code2 size={14} className="text-accent" />
-                <span className="text-sm font-display font-600 text-white/70">Teknologjitë që përdor</span>
+                <span className="text-sm font-display font-600 text-white/70">Stack & teknologji</span>
               </div>
               <div className="flex flex-wrap gap-2">
-                {skills.map((skill, i) => (
+                {skills.map((skill) => (
                   <span
-                    key={i}
-                    className="text-sm font-medium px-3 py-1.5 rounded-lg bg-white/5 border border-white/8 text-white/70"
+                    key={skill}
+                    className="text-sm font-medium px-3 py-1.5 rounded-lg bg-white/5 border border-white/8 text-white/70 hover:text-white hover:border-white/20 transition-colors"
                   >
                     {skill}
                   </span>
@@ -95,18 +83,31 @@ export default function About() {
               </div>
             </div>
 
-            {/* Quick facts */}
-            <div className="mt-8 grid grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl bg-[#1A1A1A] border border-white/8">
-                <div className="font-display font-700 text-lg text-white">15+</div>
-                <div className="text-xs text-white/50 mt-0.5">Projekte të gatshme</div>
+            {/* Values */}
+            {[
+              {
+                title: 'Transparencë totale',
+                desc: 'Çmimet janë publike. Nuk ka surpriza fature pas lansimit, çdo gjë diskutohet para se të fillojmë.',
+              },
+              {
+                title: 'Rezultate, jo premtime',
+                desc: 'Çdo website ndërtohet me SEO, shpejtësi dhe konvertim në mendje, jo vetëm për të dukur mirë.',
+              },
+              {
+                title: 'Punojmë shqip',
+                desc: 'Komunikimi bëhet në gjuhën tënde. Nuk ka nevojë për terma teknikë, shpjegojmë çdo gjë thjesht.',
+              },
+            ].map((item) => (
+              <div key={item.title} className="flex gap-4">
+                <div className="w-1 flex-shrink-0 rounded-full bg-accent/40 mt-1" />
+                <div>
+                  <p className="font-display font-700 text-white text-sm">{item.title}</p>
+                  <p className="text-white/45 text-sm mt-1 leading-relaxed">{item.desc}</p>
+                </div>
               </div>
-              <div className="p-4 rounded-xl bg-[#1A1A1A] border border-white/8">
-                <div className="font-display font-700 text-lg text-white">7 ditë</div>
-                <div className="text-xs text-white/50 mt-0.5">Dorëzim mesatar</div>
-              </div>
-            </div>
+            ))}
           </motion.div>
+
         </div>
       </div>
     </section>

@@ -315,7 +315,7 @@ export default function PriceEstimator() {
                 </motion.div>
 
                 <p className="text-white/30 text-xs mb-6 leading-relaxed">
-                  Ky është një vlerësim fillestar — çmimi final varet nga detajet e projektit.
+                  Ky është një vlerësim fillestar, çmimi final varet nga detajet e projektit.
                   Konsultimi është 100% falas dhe pa angazhim.
                 </p>
 

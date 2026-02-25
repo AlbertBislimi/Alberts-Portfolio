@@ -30,19 +30,6 @@ export default function Hero() {
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 pt-28 pb-20">
-        {/* Badge */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0}
-          className="inline-flex items-center gap-2 mb-8"
-        >
-          <span className="flex h-2 w-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-xs font-display font-600 tracking-widest uppercase text-white/50">
-            Ferizaj, Kosovë · Pranon projekte
-          </span>
-        </motion.div>
 
         {/* Main headline */}
         <motion.h1
@@ -65,7 +52,7 @@ export default function Hero() {
           custom={2}
           className="mt-6 text-lg sm:text-xl text-white/55 max-w-2xl leading-relaxed"
         >
-          Projektojmë dhe ndërtojmë website profesionale që sjellin klientë të rinj — 
+          Projektojmë dhe ndërtojmë website profesionale që sjellin klientë të rinj
           me çmime transparente, dorëzim i shpejtë, dhe komunikim në shqip.
         </motion.p>
 

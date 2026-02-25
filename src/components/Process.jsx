@@ -10,7 +10,7 @@ const steps = [
     desc: 'Takohemi (online ose personalisht) dhe diskutojmë qëllimet, stilin, dhe nevojat e projektit tuaj.',
     time: 'Ditë 1',
     color: '#3B82F6',
-    detail: 'Konsultimi është falas dhe pa asnjë detyrim. Mund të flasim në WhatsApp, Zoom, ose personalisht në Ferizaj.',
+    detail: 'Konsultimi është falas dhe pa asnjë detyrim. Mund të flasim në WhatsApp, Zoom, ose personalisht.',
   },
   {
     num: '02',

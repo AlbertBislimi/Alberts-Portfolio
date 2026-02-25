@@ -15,7 +15,7 @@ const services = [
   {
     icon: Building2,
     title: 'Faqe Biznesi',
-    desc: 'Prezencë e plotë online për kompaninë tuaj — shumë faqe, profesionale dhe e personalizuar.',
+    desc: 'Prezencë e plotë online për kompaninë tuaj, shumë faqe, profesionale dhe e personalizuar.',
     price: 'Nga €799',
     features: ['5-10 faqe', 'Blog/Lajme', 'Galeri imazhe', 'Formulë kontakti avancuar', 'SEO i plotë'],
     tag: null,
@@ -24,7 +24,7 @@ const services = [
   {
     icon: ShoppingCart,
     title: 'E-commerce',
-    desc: 'Dyqan online i plotë me menaxhim produktesh, pagesa dhe porosi — gati për shitje.',
+    desc: 'Dyqan online i plotë me menaxhim produktesh, pagesa dhe porosi, gati për shitje.',
     price: 'Nga €1,499',
     features: ['Dyqan i plotë', 'Pagesa online', 'Menaxhim inventar', 'Paneli admin', 'Email automatik'],
     tag: null,
@@ -51,7 +51,7 @@ export default function Services() {
             Çfarë ndërtojmë <span className="text-gradient">për ju</span>
           </h2>
           <p className="mt-4 text-white/50 max-w-xl leading-relaxed">
-            Nga landing page të thjeshta deri në platforma komplekse — çdo projekt trajtohet me vëmendje dhe profesionalizëm.
+            Nga landing page të thjeshta deri në platforma komplekse, çdo projekt trajtohet me vëmendje dhe profesionalizëm.
           </p>
         </motion.div>
 
@@ -124,7 +124,7 @@ export default function Services() {
               <div>
                 <h4 className="font-display font-700 text-white text-sm mb-1.5">SEO & Google</h4>
                 <p className="text-white/45 text-sm leading-relaxed">
-                  Një website i optimizuar mirë renditet në Google dhe sjell vizitorë falas — 24 orë në ditë, 7 ditë në javë.
+                  Një website i optimizuar mirë renditet në Google dhe sjell vizitorë falas, 24 orë në ditë, 7 ditë në javë.
                 </p>
               </div>
             </div>
@@ -146,7 +146,7 @@ export default function Services() {
               <div>
                 <h4 className="font-display font-700 text-white text-sm mb-1.5">Shitje & Klientë të Rinj</h4>
                 <p className="text-white/45 text-sm leading-relaxed">
-                  Website juaj punon edhe kur ju nuk jeni online — mbledh kontakte, rezervime dhe kërkesa automatikisht, çdo ditë.
+                  Website juaj punon edhe kur ju nuk jeni online, mbledh kontakte, rezervime dhe kërkesa automatikisht, çdo ditë.
                 </p>
               </div>
             </div>

@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     q: 'A punoni në gjuhën shqipe?',
-    a: 'Po, absolutisht! Komunikimi ynë kryesor është shqip. Jemi nga Ferizaj dhe kuptojmë nevojat e bizneseve kosovare. Mund të punojmë edhe anglisht apo frëngjisht nëse keni nevojë.',
+    a: 'Po, absolutisht! Komunikimi ynë kryesor është shqip. Kuptojmë nevojat e bizneseve kosovare. Mund të punojmë edhe anglisht apo frëngjisht nëse keni nevojë.',
   },
   {
     q: 'Çfarë mënyrash pagese pranoni?',
@@ -84,10 +84,10 @@ export default function FAQ() {
               <span className="text-gradient">shpeshta</span>
             </h2>
             <p className="mt-4 text-white/50 leading-relaxed">
-              Nuk gjeni përgjigjen? Na kontaktoni direkt — i përgjigjemi brenda 2 orësh gjatë orarit të punës.
+              Nuk gjeni përgjigjen? Na kontaktoni direkt dhe i përgjigjemi brenda 2 orësh gjatë orarit të punës.
             </p>
             <a
-              href="https://wa.me/38344000000"
+              href="https://wa.me/38349588569"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 text-sm font-display font-600 text-green-400 hover:text-green-300 transition-colors"

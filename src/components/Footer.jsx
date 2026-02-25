@@ -18,7 +18,7 @@ const footerLinks = {
   'Support': [
     { label: 'FAQ', href: '#faq' },
     { label: 'Kontakti', href: '#kontakt' },
-    { label: 'WhatsApp', href: 'https://wa.me/38344000000' },
+    { label: 'WhatsApp', href: 'https://wa.me/38349588569' },
     { label: 'Email', href: 'mailto:ialbertbislimi@gmail.com' },
   ],
 }
@@ -41,12 +41,12 @@ export default function Footer() {
             </div>
 
             <p className="text-white/45 text-sm leading-relaxed max-w-xs">
-              Agjensi web me bazë në Ferizaj, Kosovë. Ndërtojmë faqe që sjellin klientë të rinj.
+              Agjensi web nga Kosova. Ndërtojmë faqe që sjellin klientë të rinj.
             </p>
 
             <div className="mt-4 flex items-center gap-2 text-white/40 text-sm">
               <MapPin size={13} className="text-accent flex-shrink-0" />
-              <span>Ferizaj, Kosovë</span>
+              <span>Kosovë</span>
             </div>
 
             <div className="mt-2 flex items-center gap-2 text-white/40 text-sm">
@@ -95,7 +95,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/25">
-          <span>© 2025 AB Studio · Ferizaj, Kosovë · All rights reserved</span>
+          <span>© 2025 AB Studio · Kosovë · All rights reserved</span>
           <span className="flex items-center gap-1.5">
             Ndërtuar me
             <span className="text-red-400">♥</span>

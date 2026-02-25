@@ -95,7 +95,7 @@ export default function Pricing() {
             <span className="text-gradient">pa surpriza</span>
           </h2>
           <p className="mt-4 text-white/45 max-w-md mx-auto text-sm leading-relaxed">
-            Na dallojmë nga konkurrentët: çmimet tona janë publike. Nuk ka tarifë të fshehura.
+            Ne dallojmë nga konkurrentët: çmimet tona janë publike.
           </p>
         </motion.div>
 

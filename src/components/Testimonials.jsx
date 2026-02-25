@@ -14,7 +14,7 @@ const testimonials = [
   },
   {
     name: 'Ardita Morina',
-    company: 'Studio Ardita — Kozmetikë',
+    company: 'Studio Ardita, Kozmetikë',
     location: 'Prishtinë',
     text: 'Isha skeptike fillimisht, por Albert ishte shumë profesional. Faqja jonë është tani e bukur, shpejt, dhe kemi numër rezervimesh online që nuk e kemi patur kurrë. Gjuha shqipe gjatë komunikimit bëri gjithçka shumë më të lehtë.',
     rating: 5,
@@ -52,7 +52,7 @@ export default function Testimonials() {
             <span className="text-gradient">klientët</span>
           </h2>
           <p className="mt-4 text-white/45 max-w-md mx-auto text-sm leading-relaxed">
-            Bizneset kosovare që besuan te ne — dhe nuk u penduan.
+            Bizneset kosovare që besuan te ne, dhe nuk u penduan.
           </p>
         </motion.div>
 
