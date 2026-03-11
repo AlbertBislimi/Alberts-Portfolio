@@ -1,29 +1,30 @@
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { ArrowRight, RotateCcw, Sparkles } from 'lucide-react'
+import { useLang } from '../i18n/useLang'
 
 // ─── Pricing logic ────────────────────────────────────────────────────────────
 
-const SITE_TYPES = [
-  { id: 'prezantim', label: 'Faqe prezantimi', emoji: '🏢', base: 399 },
-  { id: 'blog',      label: 'Blog / Lajme',    emoji: '📝', base: 550 },
-  { id: 'dyqan',     label: 'Dyqan online',    emoji: '🛒', base: 1200 },
-  { id: 'rezervim',  label: 'Sistem rezervimesh', emoji: '📅', base: 800 },
-  { id: 'portofol',  label: 'Portofol',        emoji: '🎨', base: 349 },
-  { id: 'saas',      label: 'SaaS / Aplikacion', emoji: '⚡', base: 2000 },
-]
+const BASE_PRICES = {
+  prezantim: 399,
+  blog: 550,
+  dyqan: 1200,
+  rezervim: 800,
+  portofol: 349,
+  saas: 2000,
+}
 
-const PAGE_OPTIONS = [
-  { id: '1',    label: '1 faqe',    multiplier: 1.0 },
-  { id: '2-5',  label: '2–5 faqe', multiplier: 1.2 },
-  { id: '5-10', label: '5–10 faqe',multiplier: 1.5 },
-  { id: '10+',  label: '10+ faqe', multiplier: 2.0 },
-]
+const PAGE_MULTIPLIERS = {
+  '1': 1.0,
+  '2-5': 1.2,
+  '5-10': 1.5,
+  '10+': 2.0,
+}
 
-const DESIGN_OPTIONS = [
-  { id: 'yes', label: 'Po, kemi dizajn', bonus: 0 },
-  { id: 'no',  label: 'Jo, duhet dizajn', bonus: 200 },
-]
+const DESIGN_BONUSES = {
+  yes: 0,
+  no: 200,
+}
 
 function roundTo50(n) {
   return Math.round(n / 50) * 50
@@ -31,12 +32,12 @@ function roundTo50(n) {
 
 function calcEstimate(types, pages, design) {
   if (!types.length) return null
-  const bases = types.map(id => SITE_TYPES.find(t => t.id === id).base)
+  const bases = types.map(id => BASE_PRICES[id])
   const primary = Math.max(...bases)
   const extras = bases.filter(b => b !== primary).reduce((sum, b) => sum + b * 0.5, 0)
   const base = primary + extras
-  const pageMult = PAGE_OPTIONS.find(p => p.id === pages)?.multiplier ?? 1
-  const designBonus = DESIGN_OPTIONS.find(d => d.id === design)?.bonus ?? 0
+  const pageMult = PAGE_MULTIPLIERS[pages] ?? 1
+  const designBonus = DESIGN_BONUSES[design] ?? 0
   const mid = base * pageMult + designBonus
   const low  = roundTo50(mid * 0.88)
   const high = roundTo50(mid * 1.15)
@@ -81,6 +82,7 @@ const slideVariants = {
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function PriceEstimator() {
+  const { t } = useLang()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-60px' })
 
@@ -89,6 +91,27 @@ export default function PriceEstimator() {
   const [types, setTypes]     = useState([])   // multi-select
   const [pages, setPages]     = useState(null)
   const [design, setDesign]   = useState(null)
+
+  const SITE_TYPES = [
+    { id: 'prezantim', label: t['estimator.type.prezantim'], emoji: '🏢' },
+    { id: 'blog',      label: t['estimator.type.blog'],      emoji: '📝' },
+    { id: 'dyqan',     label: t['estimator.type.dyqan'],     emoji: '🛒' },
+    { id: 'rezervim',  label: t['estimator.type.rezervim'],  emoji: '📅' },
+    { id: 'portofol',  label: t['estimator.type.portofol'],  emoji: '🎨' },
+    { id: 'saas',      label: t['estimator.type.saas'],      emoji: '⚡' },
+  ]
+
+  const PAGE_OPTIONS = [
+    { id: '1',    label: t['estimator.pages.1'] },
+    { id: '2-5',  label: t['estimator.pages.2-5'] },
+    { id: '5-10', label: t['estimator.pages.5-10'] },
+    { id: '10+',  label: t['estimator.pages.10+'] },
+  ]
+
+  const DESIGN_OPTIONS = [
+    { id: 'yes', label: t['estimator.design.yes'] },
+    { id: 'no',  label: t['estimator.design.no'] },
+  ]
 
   function goTo(next) {
     setDir(next > step ? 1 : -1)
@@ -109,18 +132,18 @@ export default function PriceEstimator() {
 
   const estimate = step === 3 ? calcEstimate(types, pages, design) : null
 
-  const selectedTypeLabels = types.map(id => SITE_TYPES.find(t => t.id === id)?.label).join(', ')
+  const selectedTypeLabels = types.map(id => SITE_TYPES.find(st => st.id === id)?.label).join(', ')
   const pagesLabel  = PAGE_OPTIONS.find(p => p.id === pages)?.label ?? ''
   const designLabel = DESIGN_OPTIONS.find(d => d.id === design)?.label ?? ''
 
   const whatsappMsg = estimate
     ? encodeURIComponent(
-        `Përshëndetje Albert! 👋\n\nKam përdorur vlerësuesin në faqen tuaj dhe rezultati ishte:\n\n` +
-        `📌 Lloji: ${selectedTypeLabels}\n` +
-        `📄 Faqet: ${pagesLabel}\n` +
-        `🎨 Dizajni: ${designLabel}\n` +
-        `💰 Vlerësimi: €${estimate.low} – €${estimate.high}\n\n` +
-        `Dëshiroj të diskutojmë më shumë!`
+        `${t['estimator.wa.greeting']}\n\n${t['estimator.wa.intro']}\n\n` +
+        `${t['estimator.wa.type']} ${selectedTypeLabels}\n` +
+        `${t['estimator.wa.pages']} ${pagesLabel}\n` +
+        `${t['estimator.wa.design']} ${designLabel}\n` +
+        `${t['estimator.wa.estimate']} €${estimate.low} – €${estimate.high}\n\n` +
+        t['estimator.wa.outro']
       )
     : ''
 
@@ -135,12 +158,12 @@ export default function PriceEstimator() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <span className="section-label">Vlerësuesi</span>
+          <span className="section-label">{t['estimator.label']}</span>
           <h2 className="mt-4 font-display font-800 text-3xl sm:text-4xl md:text-5xl text-white leading-tight">
-            Sa kushton <span className="text-gradient">faqja juaj?</span>
+            {t['estimator.title.before']} <span className="text-gradient">{t['estimator.title.highlight']}</span>
           </h2>
           <p className="mt-4 text-white/45 text-sm max-w-md mx-auto leading-relaxed">
-            Përgjigju 3 pyetjeve të shpejta dhe merrni një vlerësim çmimi në sekonda.
+            {t['estimator.subtitle']}
           </p>
         </motion.div>
 
@@ -166,18 +189,18 @@ export default function PriceEstimator() {
                 transition={{ duration: 0.3, ease: 'easeOut' }}
               >
                 <h3 className="font-display font-700 text-xl text-white mb-2">
-                  Çfarë doni të ndërtoni?
+                  {t['estimator.step1.title']}
                 </h3>
-                <p className="text-white/40 text-sm mb-6">Mund të zgjidhni më shumë se një opsion.</p>
+                <p className="text-white/40 text-sm mb-6">{t['estimator.step1.subtitle']}</p>
 
                 <div className="flex flex-wrap gap-3 mb-8">
-                  {SITE_TYPES.map(t => {
-                    const active = types.includes(t.id)
+                  {SITE_TYPES.map(st => {
+                    const active = types.includes(st.id)
                     return (
                       <motion.button
-                        key={t.id}
+                        key={st.id}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => toggleType(t.id)}
+                        onClick={() => toggleType(st.id)}
                         className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-display font-600 border transition-all"
                         style={{
                           background: active ? 'rgba(59,130,246,0.15)' : 'rgba(255,255,255,0.04)',
@@ -185,7 +208,7 @@ export default function PriceEstimator() {
                           color: active ? '#93C5FD' : 'rgba(255,255,255,0.6)',
                         }}
                       >
-                        <span>{t.emoji}</span> {t.label}
+                        <span>{st.emoji}</span> {st.label}
                       </motion.button>
                     )
                   })}
@@ -196,7 +219,7 @@ export default function PriceEstimator() {
                   disabled={!types.length}
                   className="btn-primary disabled:opacity-30 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  Vazhdo <ArrowRight size={16} />
+                  {t['estimator.continue']} <ArrowRight size={16} />
                 </button>
               </motion.div>
             )}
@@ -213,8 +236,8 @@ export default function PriceEstimator() {
                 transition={{ duration: 0.3, ease: 'easeOut' }}
               >
                 {/* Pages */}
-                <h3 className="font-display font-700 text-xl text-white mb-2">Sa faqe keni nevojë?</h3>
-                <p className="text-white/40 text-sm mb-5">Numri i faqeve ndikon drejtpërdrejt në çmim.</p>
+                <h3 className="font-display font-700 text-xl text-white mb-2">{t['estimator.step2.pages.title']}</h3>
+                <p className="text-white/40 text-sm mb-5">{t['estimator.step2.pages.subtitle']}</p>
 
                 <div className="flex flex-wrap gap-3 mb-8">
                   {PAGE_OPTIONS.map(p => {
@@ -238,8 +261,8 @@ export default function PriceEstimator() {
                 </div>
 
                 {/* Design */}
-                <h3 className="font-display font-700 text-xl text-white mb-2">Keni dizajn gati?</h3>
-                <p className="text-white/40 text-sm mb-5">Dizajni nga fillimi shton pak kohë dhe kosto.</p>
+                <h3 className="font-display font-700 text-xl text-white mb-2">{t['estimator.step2.design.title']}</h3>
+                <p className="text-white/40 text-sm mb-5">{t['estimator.step2.design.subtitle']}</p>
 
                 <div className="flex flex-wrap gap-3 mb-8">
                   {DESIGN_OPTIONS.map(d => {
@@ -267,14 +290,14 @@ export default function PriceEstimator() {
                     onClick={() => goTo(1)}
                     className="btn-secondary"
                   >
-                    Mbrapa
+                    {t['estimator.back']}
                   </button>
                   <button
                     onClick={() => goTo(3)}
                     disabled={!pages || !design}
                     className="btn-primary disabled:opacity-30 disabled:cursor-not-allowed disabled:transform-none"
                   >
-                    Shiko vlerësimin <ArrowRight size={16} />
+                    {t['estimator.showEstimate']} <ArrowRight size={16} />
                   </button>
                 </div>
               </motion.div>
@@ -293,7 +316,7 @@ export default function PriceEstimator() {
               >
                 <div className="flex items-center gap-2 mb-6">
                   <Sparkles size={18} className="text-accent" />
-                  <span className="font-display font-600 text-white/60 text-sm">Vlerësimi juaj është gati</span>
+                  <span className="font-display font-600 text-white/60 text-sm">{t['estimator.result.ready']}</span>
                 </div>
 
                 {/* Estimate card */}
@@ -303,20 +326,19 @@ export default function PriceEstimator() {
                   transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
                   className="rounded-2xl bg-gradient-to-br from-accent/15 to-blue-600/5 border border-accent/25 p-6 mb-6"
                 >
-                  <p className="text-white/50 text-sm font-display mb-1">Çmimi i parashikuar</p>
+                  <p className="text-white/50 text-sm font-display mb-1">{t['estimator.result.price']}</p>
                   <p className="font-display font-800 text-4xl sm:text-5xl text-white mb-3">
                     €{estimate.low.toLocaleString()}
                     <span className="text-white/40 text-3xl"> – </span>
                     €{estimate.high.toLocaleString()}
                   </p>
                   <p className="text-white/40 text-xs leading-relaxed">
-                    Bazuar në: {selectedTypeLabels} · {pagesLabel} · {designLabel}
+                    {t['estimator.result.based']} {selectedTypeLabels} · {pagesLabel} · {designLabel}
                   </p>
                 </motion.div>
 
                 <p className="text-white/30 text-xs mb-6 leading-relaxed">
-                  Ky është një vlerësim fillestar, çmimi final varet nga detajet e projektit.
-                  Konsultimi është 100% falas dhe pa angazhim.
+                  {t['estimator.result.disclaimer']}
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-3">
@@ -329,7 +351,7 @@ export default function PriceEstimator() {
                     <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                     </svg>
-                    Diskuto në WhatsApp
+                    {t['estimator.result.whatsapp']}
                   </a>
 
                   <button
@@ -337,7 +359,7 @@ export default function PriceEstimator() {
                     className="flex items-center justify-center gap-2 btn-secondary text-sm py-3 px-5"
                   >
                     <RotateCcw size={14} />
-                    Fillo sërish
+                    {t['estimator.result.reset']}
                   </button>
                 </div>
               </motion.div>

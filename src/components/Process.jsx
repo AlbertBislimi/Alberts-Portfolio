@@ -1,45 +1,7 @@
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { MessageSquare, Figma, Code2, Rocket } from 'lucide-react'
-
-const steps = [
-  {
-    num: '01',
-    icon: MessageSquare,
-    title: 'Konsultim',
-    desc: 'Takohemi (online ose personalisht) dhe diskutojmë qëllimet, stilin, dhe nevojat e projektit tuaj.',
-    time: 'Ditë 1',
-    color: '#3B82F6',
-    detail: 'Konsultimi është falas dhe pa asnjë detyrim. Mund të flasim në WhatsApp, Zoom, ose personalisht.',
-  },
-  {
-    num: '02',
-    icon: Figma,
-    title: 'Dizajn',
-    desc: 'Krijojmë prototip vizual në Figma. Ju shihni çfarë do të ndërtojmë para se të fillojmë kodimin.',
-    time: 'Ditë 2–3',
-    color: '#8B5CF6',
-    detail: 'Ju aprovojeni dizajnin para çdo linje kodi. Ndryshimet në këtë fazë janë të lehta dhe falas.',
-  },
-  {
-    num: '03',
-    icon: Code2,
-    title: 'Zhvillim',
-    desc: 'Ndërtojmë faqen me teknologji moderne, responsive, dhe optimizuar për shpejtësi dhe SEO.',
-    time: 'Ditë 4–6',
-    color: '#10B981',
-    detail: 'React, Tailwind CSS, dhe hosting modern. Faqja ngarkohet nën 1 sekondë dhe funksionon perfekt në çdo pajisje.',
-  },
-  {
-    num: '04',
-    icon: Rocket,
-    title: 'Lansim',
-    desc: 'Testojmë çdo gjë, lançojmë faqen live, dhe ju mësojmë si ta menaxhoni vetë.',
-    time: 'Ditë 7',
-    color: '#F59E0B',
-    detail: '30 ditë mbështetje falas pas lansimit. Nëse diçka nuk funksionon, e rregullojmë menjëherë.',
-  },
-]
+import { useLang } from '../i18n/useLang'
 
 function StepCard({ step, i, isInView }) {
   const [hovered, setHovered] = useState(false)
@@ -139,8 +101,48 @@ function StepCard({ step, i, isInView }) {
 }
 
 export default function Process() {
+  const { t } = useLang()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-60px' })
+
+  const steps = [
+    {
+      num: '01',
+      icon: MessageSquare,
+      title: t['process.step1.title'],
+      desc: t['process.step1.desc'],
+      time: t['process.step1.time'],
+      color: '#3B82F6',
+      detail: t['process.step1.detail'],
+    },
+    {
+      num: '02',
+      icon: Figma,
+      title: t['process.step2.title'],
+      desc: t['process.step2.desc'],
+      time: t['process.step2.time'],
+      color: '#8B5CF6',
+      detail: t['process.step2.detail'],
+    },
+    {
+      num: '03',
+      icon: Code2,
+      title: t['process.step3.title'],
+      desc: t['process.step3.desc'],
+      time: t['process.step3.time'],
+      color: '#10B981',
+      detail: t['process.step3.detail'],
+    },
+    {
+      num: '04',
+      icon: Rocket,
+      title: t['process.step4.title'],
+      desc: t['process.step4.desc'],
+      time: t['process.step4.time'],
+      color: '#F59E0B',
+      detail: t['process.step4.detail'],
+    },
+  ]
 
   return (
     <section id="procesi" ref={ref} className="py-20 sm:py-28 bg-[#0A0A0A]">
@@ -152,14 +154,14 @@ export default function Process() {
           transition={{ duration: 0.6 }}
           className="mb-14 text-center"
         >
-          <span className="section-label">Procesi</span>
+          <span className="section-label">{t['process.label']}</span>
           <h2 className="mt-4 font-display font-800 text-3xl sm:text-4xl md:text-5xl text-white leading-tight">
-            Nga idea deri në{' '}
-            <span className="text-gradient">lansim</span>
-            <br />brenda 7 ditëve
+            {t['process.title.before']}{' '}
+            <span className="text-gradient">{t['process.title.highlight']}</span>
+            <br />{t['process.title.after']}
           </h2>
           <p className="mt-4 text-white/40 text-sm">
-            Zhvendos kursorin mbi çdo hap për të mësuar më shumë
+            {t['process.hover']}
           </p>
         </motion.div>
 
@@ -194,7 +196,7 @@ export default function Process() {
           className="mt-14 text-center"
         >
           <a href="#kontakt" className="btn-primary inline-flex text-base">
-            Fillo me konsultimin falas
+            {t['process.cta']}
           </a>
         </motion.div>
       </div>

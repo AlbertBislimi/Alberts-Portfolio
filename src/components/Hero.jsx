@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Eye } from 'lucide-react'
+import { useLang } from '../i18n/useLang'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -11,6 +12,8 @@ const fadeUp = {
 }
 
 export default function Hero() {
+  const { t } = useLang()
+
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#0A0A0A]">
       {/* Grain texture overlay */}
@@ -39,9 +42,9 @@ export default function Hero() {
           custom={1}
           className="font-display font-800 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight max-w-4xl"
         >
-          Website që{' '}
-          <span className="text-gradient">bizneset e Kosovës</span>
-          {' '}i duan
+          {t['hero.title.before']}{' '}
+          <span className="text-gradient">{t['hero.title.highlight']}</span>
+          {' '}{t['hero.title.after']}
         </motion.h1>
 
         {/* Subheadline */}
@@ -52,8 +55,7 @@ export default function Hero() {
           custom={2}
           className="mt-6 text-lg sm:text-xl text-white/55 max-w-2xl leading-relaxed"
         >
-          Projektojmë dhe ndërtojmë website profesionale që sjellin klientë të rinj
-          me çmime transparente, dorëzim i shpejtë, dhe komunikim në shqip.
+          {t['hero.subtitle']}
         </motion.p>
 
         {/* CTAs */}
@@ -65,12 +67,12 @@ export default function Hero() {
           className="mt-10 flex flex-col sm:flex-row gap-4"
         >
           <a href="#kontakt" className="btn-primary text-base py-4 px-8">
-            Fillo projektin
+            {t['hero.cta.primary']}
             <ArrowRight size={18} />
           </a>
           <a href="#punimet" className="btn-secondary text-base py-4 px-8">
             <Eye size={18} />
-            Shiko punimet
+            {t['hero.cta.secondary']}
           </a>
         </motion.div>
 
@@ -87,8 +89,8 @@ export default function Hero() {
             className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors group"
           >
             <span className="text-accent">💰</span>
-            Nuk jeni të sigurt për çmimin?
-            <span className="text-accent group-hover:underline underline-offset-2">Llogaritni këtu →</span>
+            {t['hero.estimator.prefix']}
+            <span className="text-accent group-hover:underline underline-offset-2">{t['hero.estimator.link']}</span>
           </a>
         </motion.div>
 
@@ -102,17 +104,17 @@ export default function Hero() {
         >
           <span className="flex items-center gap-2">
             <span className="text-accent">✓</span>
-            Çmime transparente
+            {t['hero.trust.1']}
           </span>
           <span className="w-px h-4 bg-white/10 hidden sm:block" />
           <span className="flex items-center gap-2">
             <span className="text-accent">✓</span>
-            Komunikim në shqip
+            {t['hero.trust.2']}
           </span>
           <span className="w-px h-4 bg-white/10 hidden sm:block" />
           <span className="flex items-center gap-2">
             <span className="text-accent">✓</span>
-            Dorëzim brenda 7 ditëve
+            {t['hero.trust.3']}
           </span>
         </motion.div>
       </div>
@@ -124,7 +126,7 @@ export default function Hero() {
         transition={{ delay: 1.2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-xs text-white/30 tracking-widest uppercase">Zbulo</span>
+        <span className="text-xs text-white/30 tracking-widest uppercase">{t['hero.scroll']}</span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}

@@ -1,46 +1,48 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { ExternalLink, ArrowUpRight } from 'lucide-react'
-
-const projects = [
-  {
-    title: 'MySearch Agency',
-    category: 'Job & Real Estate Platform · Kosovo',
-    desc: 'Platformë për punësime dhe patundshmëri në Kosovë, me listim postimesh, filtra të avancuar dhe panel admin.',
-    url: 'https://mysearchagency.com',
-    image: '/projects/mysearch.png',
-    tags: ['React', 'Supabase', 'Tailwind'],
-    color: '#F97316',
-    year: '2025',
-    highlight: 'Platform i plotë',
-  },
-  {
-    title: 'Nubis.app',
-    category: 'Project Management SaaS',
-    desc: 'Platformë e menaxhimit të projekteve me board-e, tasks, dhe kolaboracion në kohë reale.',
-    url: 'https://nubis.app',
-    image: '/projects/nubis.png',
-    tags: ['React', 'Node.js', 'PostgreSQL'],
-    color: '#3B82F6',
-    year: '2024',
-    highlight: 'SaaS i plotë',
-  },
-  {
-    title: 'Gjeje.online',
-    category: 'Discovery Platform · Kosovo',
-    desc: 'Platformë lokale për zbulimin e bizneseve dhe shërbimeve në Kosovë, me harta, filtra, dhe reviews.',
-    url: 'https://gjejeonline.com',
-    image: '/projects/gjeje.png',
-    tags: ['React', 'Supabase', 'Maps API'],
-    color: '#10B981',
-    year: '2025',
-    highlight: 'Made in Kosovo',
-  },
-]
+import { useLang } from '../i18n/useLang'
 
 export default function SelectedWork() {
+  const { t } = useLang()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-60px' })
+
+  const projects = [
+    {
+      title: 'MySearch Agency',
+      category: 'Job & Real Estate Platform · Kosovo',
+      desc: t['work.mysearch.desc'],
+      url: 'https://mysearchagency.com',
+      image: '/projects/mysearch.png',
+      tags: ['React', 'Supabase', 'Tailwind'],
+      color: '#F97316',
+      year: '2025',
+      highlight: t['work.mysearch.highlight'],
+    },
+    {
+      title: 'Nubis.app',
+      category: 'Project Management SaaS',
+      desc: t['work.nubis.desc'],
+      url: 'https://nubis.app',
+      image: '/projects/nubis.png',
+      tags: ['React', 'Node.js', 'PostgreSQL'],
+      color: '#3B82F6',
+      year: '2024',
+      highlight: t['work.nubis.highlight'],
+    },
+    {
+      title: 'Gjeje.online',
+      category: 'Discovery Platform · Kosovo',
+      desc: t['work.gjeje.desc'],
+      url: 'https://gjejeonline.com',
+      image: '/projects/gjeje.png',
+      tags: ['React', 'Supabase', 'Maps API'],
+      color: '#10B981',
+      year: '2025',
+      highlight: t['work.gjeje.highlight'],
+    },
+  ]
 
   return (
     <section id="punimet" ref={ref} className="py-20 sm:py-28 bg-[#0D0D0D]">
@@ -53,14 +55,14 @@ export default function SelectedWork() {
           className="mb-14 flex flex-col sm:flex-row sm:items-end justify-between gap-6"
         >
           <div>
-            <span className="section-label">Punimet</span>
+            <span className="section-label">{t['work.label']}</span>
             <h2 className="mt-4 font-display font-800 text-3xl sm:text-4xl md:text-5xl text-white leading-tight">
-              Projektet e{' '}
-              <span className="text-gradient">zgjedhura</span>
+              {t['work.title.before']}{' '}
+              <span className="text-gradient">{t['work.title.highlight']}</span>
             </h2>
           </div>
           <p className="text-white/45 max-w-xs sm:text-right text-sm leading-relaxed">
-            Projekte reale, klientë të vërtetë, rezultate të matshme.
+            {t['work.subtitle']}
           </p>
         </motion.div>
 
@@ -104,7 +106,7 @@ export default function SelectedWork() {
                     className="flex items-center gap-2 bg-white text-black font-display font-700 text-sm px-4 py-2.5 rounded-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
                   >
                     <ExternalLink size={14} />
-                    Shiko live
+                    {t['work.viewLive']}
                   </a>
                 </div>
               </div>

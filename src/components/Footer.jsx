@@ -1,27 +1,7 @@
 import { motion } from 'framer-motion'
 import { MapPin, Mail, Github, Linkedin, Instagram } from 'lucide-react'
 import ABLogo from './Logo'
-
-const footerLinks = {
-  'Shërbime': [
-    { label: 'Landing Page', href: '#sherbimet' },
-    { label: 'Faqe Biznesi', href: '#sherbimet' },
-    { label: 'E-commerce', href: '#sherbimet' },
-    { label: 'Vlerësuesi', href: '#estimator' },
-  ],
-  'Kompania': [
-    { label: 'Rreth nesh', href: '#rreth' },
-    { label: 'Punimet', href: '#punimet' },
-    { label: 'Procesi', href: '#procesi' },
-    { label: 'Çmimet', href: '#cmimet' },
-  ],
-  'Support': [
-    { label: 'FAQ', href: '#faq' },
-    { label: 'Kontakti', href: '#kontakt' },
-    { label: 'WhatsApp', href: 'https://wa.me/38349588569' },
-    { label: 'Email', href: 'mailto:ialbertbislimi@gmail.com' },
-  ],
-}
+import { useLang } from '../i18n/useLang'
 
 const socials = [
   { icon: Github, href: 'https://github.com/AlbertBislimi', label: 'GitHub' },
@@ -30,6 +10,29 @@ const socials = [
 ]
 
 export default function Footer() {
+  const { t } = useLang()
+
+  const footerLinks = {
+    [t['footer.col1.title']]: [
+      { label: 'Landing Page', href: '#sherbimet' },
+      { label: t['pricing.business.name'], href: '#sherbimet' },
+      { label: 'E-commerce', href: '#sherbimet' },
+      { label: t['footer.col1.estimator'], href: '#estimator' },
+    ],
+    [t['footer.col2.title']]: [
+      { label: t['footer.col2.about'], href: '#rreth' },
+      { label: t['footer.col2.work'], href: '#punimet' },
+      { label: t['footer.col2.process'], href: '#procesi' },
+      { label: t['footer.col2.pricing'], href: '#cmimet' },
+    ],
+    [t['footer.col3.title']]: [
+      { label: t['faq.label'], href: '#faq' },
+      { label: t['footer.col3.contact'], href: '#kontakt' },
+      { label: 'WhatsApp', href: 'https://wa.me/38349588569' },
+      { label: 'Email', href: 'mailto:ialbertbislimi@gmail.com' },
+    ],
+  }
+
   return (
     <footer className="bg-[#080808] border-t border-white/5">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 py-14">
@@ -41,12 +44,12 @@ export default function Footer() {
             </div>
 
             <p className="text-white/45 text-sm leading-relaxed max-w-xs">
-              Agjensi web nga Kosova. Ndërtojmë faqe që sjellin klientë të rinj.
+              {t['footer.brand']}
             </p>
 
             <div className="mt-4 flex items-center gap-2 text-white/40 text-sm">
               <MapPin size={13} className="text-accent flex-shrink-0" />
-              <span>Kosovë</span>
+              <span>{t['footer.location']}</span>
             </div>
 
             <div className="mt-2 flex items-center gap-2 text-white/40 text-sm">
@@ -95,11 +98,11 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/25">
-          <span>© 2025 AB Studio · Kosovë · All rights reserved</span>
+          <span>{t['footer.copyright']}</span>
           <span className="flex items-center gap-1.5">
-            Ndërtuar me
+            {t['footer.madeWith']}
             <span className="text-red-400">♥</span>
-            në Kosovë
+            {t['footer.madeIn']}
           </span>
         </div>
       </div>

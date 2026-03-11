@@ -1,12 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
-
-const stats = [
-  { value: 15, suffix: '+', label: 'Projekte të përfunduara' },
-  { value: 100, suffix: '%', label: 'Klientë të kënaqur' },
-  { value: 7, suffix: ' ditë', label: 'Dorëzim mesatar' },
-  { value: 3, suffix: '+', label: 'Vite eksperiencë' },
-]
+import { useLang } from '../i18n/useLang'
 
 function CountUp({ target, suffix, isVisible }) {
   const [count, setCount] = useState(0)
@@ -41,8 +35,16 @@ function CountUp({ target, suffix, isVisible }) {
 }
 
 export default function StatsBar() {
+  const { t } = useLang()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+
+  const stats = [
+    { value: 15, suffix: '+', label: t['stats.projects'] },
+    { value: 100, suffix: '%', label: t['stats.clients'] },
+    { value: 7, suffix: t['stats.delivery.suffix'], label: t['stats.delivery'] },
+    { value: 3, suffix: '+', label: t['stats.experience'] },
+  ]
 
   return (
     <section ref={ref} className="bg-[#111111] border-y border-white/5 py-12 sm:py-16">

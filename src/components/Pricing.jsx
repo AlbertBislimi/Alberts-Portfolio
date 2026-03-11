@@ -1,83 +1,67 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Check, ArrowRight, MessageCircle } from 'lucide-react'
-
-const plans = [
-  {
-    name: 'Landing Page',
-    price: '€399',
-    desc: 'Faqe e vetme me ndikim të lartë.',
-    features: [
-      'Dizajn unik & modern',
-      '1 faqe me seksione',
-      'Formulë kontakti',
-      'Mobile responsive',
-      'SEO bazë',
-      '2 rishikime',
-      'Dorëzim 5 ditë',
-    ],
-    cta: 'Fillo tani',
-    featured: false,
-    color: '#6B7280',
-  },
-  {
-    name: 'Faqe Biznesi',
-    price: '€799',
-    desc: 'Prezencë e plotë online.',
-    features: [
-      'Gjithçka nga Landing Page',
-      '5–10 faqe',
-      'Blog / Lajme',
-      'Galeri imazhe / video',
-      'Formularë avancuar',
-      'SEO i plotë',
-      '3 rishikime',
-      'Dorëzim 7 ditë',
-    ],
-    cta: 'Zgjedh këtë',
-    featured: true,
-    color: '#3B82F6',
-  },
-  {
-    name: 'E-commerce',
-    price: '€1,499',
-    desc: 'Dyqan online i gatshëm.',
-    features: [
-      'Gjithçka nga Faqe Biznesi',
-      'Dyqan me produkte',
-      'Pagesa online (Stripe)',
-      'Menaxhim porosi',
-      'Email automatik',
-      'Paneli admin',
-      'Trajnim 1h',
-      'Dorëzim 14 ditë',
-    ],
-    cta: 'Fillo tani',
-    featured: false,
-    color: '#EC4899',
-  },
-  {
-    name: 'Custom',
-    price: 'Flasim',
-    desc: 'Projekt i madh ose unik? Le të diskutojmë.',
-    features: [
-      'SaaS & aplikacione',
-      'Platform komplekse',
-      'Integrime API',
-      'Dizajn nga zero',
-      'Support i dedikuar',
-      'Mirëmbajtje mujore',
-    ],
-    cta: 'Na kontaktoni',
-    featured: false,
-    color: '#8B5CF6',
-    isCustom: true,
-  },
-]
+import { useLang } from '../i18n/useLang'
 
 export default function Pricing() {
+  const { t } = useLang()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-60px' })
+
+  const plans = [
+    {
+      name: t['pricing.landing.name'],
+      price: '€399',
+      desc: t['pricing.landing.desc'],
+      features: [
+        t['pricing.landing.f1'], t['pricing.landing.f2'], t['pricing.landing.f3'],
+        t['pricing.landing.f4'], t['pricing.landing.f5'], t['pricing.landing.f6'],
+        t['pricing.landing.f7'],
+      ],
+      cta: t['pricing.landing.cta'],
+      featured: false,
+      color: '#6B7280',
+    },
+    {
+      name: t['pricing.business.name'],
+      price: '€799',
+      desc: t['pricing.business.desc'],
+      features: [
+        t['pricing.business.f1'], t['pricing.business.f2'], t['pricing.business.f3'],
+        t['pricing.business.f4'], t['pricing.business.f5'], t['pricing.business.f6'],
+        t['pricing.business.f7'], t['pricing.business.f8'],
+      ],
+      cta: t['pricing.business.cta'],
+      featured: true,
+      color: '#3B82F6',
+    },
+    {
+      name: t['pricing.ecommerce.name'],
+      price: '€1,499',
+      desc: t['pricing.ecommerce.desc'],
+      features: [
+        t['pricing.ecommerce.f1'], t['pricing.ecommerce.f2'], t['pricing.ecommerce.f3'],
+        t['pricing.ecommerce.f4'], t['pricing.ecommerce.f5'], t['pricing.ecommerce.f6'],
+        t['pricing.ecommerce.f7'], t['pricing.ecommerce.f8'],
+      ],
+      cta: t['pricing.ecommerce.cta'],
+      featured: false,
+      color: '#EC4899',
+    },
+    {
+      name: t['pricing.custom.name'],
+      price: t['pricing.custom.price'],
+      desc: t['pricing.custom.desc'],
+      features: [
+        t['pricing.custom.f1'], t['pricing.custom.f2'], t['pricing.custom.f3'],
+        t['pricing.custom.f4'], t['pricing.custom.f5'], t['pricing.custom.f6'],
+      ],
+      cta: t['pricing.custom.cta'],
+      featured: false,
+      color: '#8B5CF6',
+      isCustom: true,
+    },
+  ]
 
   return (
     <section id="cmimet" ref={ref} className="py-20 sm:py-28 bg-[#0D0D0D]">
@@ -89,13 +73,13 @@ export default function Pricing() {
           transition={{ duration: 0.6 }}
           className="mb-14 text-center"
         >
-          <span className="section-label">Çmimet</span>
+          <span className="section-label">{t['pricing.label']}</span>
           <h2 className="mt-4 font-display font-800 text-3xl sm:text-4xl md:text-5xl text-white leading-tight">
-            Çmime transparente,{' '}
-            <span className="text-gradient">pa surpriza</span>
+            {t['pricing.title.before']}{' '}
+            <span className="text-gradient">{t['pricing.title.highlight']}</span>
           </h2>
           <p className="mt-4 text-white/45 max-w-md mx-auto text-sm leading-relaxed">
-            Ne dallojmë nga konkurrentët: çmimet tona janë publike.
+            {t['pricing.subtitle']}
           </p>
         </motion.div>
 
@@ -116,7 +100,7 @@ export default function Pricing() {
               {/* Featured badge */}
               {plan.featured && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-accent font-display font-700 text-xs px-3 py-1 rounded-full">
-                  Më i popullarizuar
+                  {t['pricing.featured']}
                 </div>
               )}
 
@@ -134,9 +118,9 @@ export default function Pricing() {
                 <span className={`font-display font-800 text-4xl ${plan.featured ? 'text-white' : 'text-white'}`}>
                   {plan.price}
                 </span>
-                {plan.price !== 'Flasim' && (
+                {!plan.isCustom && (
                   <span className={`text-sm ml-1 ${plan.featured ? 'text-white/60' : 'text-white/40'}`}>
-                    njëherësh
+                    {t['pricing.oneTime']}
                   </span>
                 )}
               </div>
@@ -187,7 +171,7 @@ export default function Pricing() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="mt-8 text-center text-white/35 text-sm"
         >
-          * Çmimet mund të ndryshojnë sipas kompleksitetit të projektit. Konsultimi fillestar është gjithmonë falas.
+          {t['pricing.note']}
         </motion.p>
       </div>
     </section>

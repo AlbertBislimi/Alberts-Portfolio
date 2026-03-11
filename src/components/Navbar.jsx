@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ABLogo from './Logo'
-
-const navLinks = [
-  { label: 'Shërbimet', href: '#sherbimet' },
-  { label: 'Punimet', href: '#punimet' },
-  { label: 'Çmimet', href: '#cmimet' },
-  { label: 'Rreth nesh', href: '#rreth' },
-  { label: 'FAQ', href: '#faq' },
-]
+import LangToggle from './LangToggle'
+import { useLang } from '../i18n/useLang'
 
 export default function Navbar() {
+  const { t } = useLang()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const navLinks = [
+    { label: t['nav.services'], href: '#sherbimet' },
+    { label: t['nav.work'], href: '#punimet' },
+    { label: t['nav.pricing'], href: '#cmimet' },
+    { label: t['nav.about'], href: '#rreth' },
+    { label: t['nav.faq'], href: '#faq' },
+  ]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -46,13 +49,16 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CTA */}
-        <a
-          href="#kontakt"
-          className="hidden md:inline-flex btn-primary text-sm py-2.5 px-5"
-        >
-          Fillo projektin
-        </a>
+        {/* Right side: lang toggle + CTA */}
+        <div className="hidden md:flex items-center gap-4">
+          <LangToggle />
+          <a
+            href="#kontakt"
+            className="btn-primary text-sm py-2.5 px-5"
+          >
+            {t['nav.cta']}
+          </a>
+        </div>
 
         {/* Mobile hamburger */}
         <button
@@ -95,13 +101,16 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="#kontakt"
-                onClick={() => setMenuOpen(false)}
-                className="btn-primary justify-center mt-2"
-              >
-                Fillo projektin
-              </a>
+              <div className="flex items-center justify-between mt-2">
+                <LangToggle />
+                <a
+                  href="#kontakt"
+                  onClick={() => setMenuOpen(false)}
+                  className="btn-primary text-sm py-2.5 px-5"
+                >
+                  {t['nav.cta']}
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
