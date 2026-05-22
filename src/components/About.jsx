@@ -50,7 +50,7 @@ export default function About() {
             {/* Quick facts */}
             <div className="mt-8 grid grid-cols-3 gap-4">
               {[
-                { value: '15+', label: t['about.stat.projects'] },
+                { value: '20+', label: t['about.stat.projects'] },
                 { value: '4+', label: t['about.stat.years'] },
                 { value: '7 ditë', label: t['about.stat.delivery'] },
               ].map((stat) => (

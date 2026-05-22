@@ -49,6 +49,19 @@ export default function Pricing() {
       color: '#EC4899',
     },
     {
+      name: t['pricing.maintenance.name'],
+      price: '€49',
+      priceSuffix: t['pricing.maintenance.priceSuffix'],
+      desc: t['pricing.maintenance.desc'],
+      features: [
+        t['pricing.maintenance.f1'], t['pricing.maintenance.f2'], t['pricing.maintenance.f3'],
+        t['pricing.maintenance.f4'], t['pricing.maintenance.f5'], t['pricing.maintenance.f6'],
+      ],
+      cta: t['pricing.maintenance.cta'],
+      featured: false,
+      color: '#10B981',
+    },
+    {
       name: t['pricing.custom.name'],
       price: t['pricing.custom.price'],
       desc: t['pricing.custom.desc'],
@@ -84,7 +97,7 @@ export default function Pricing() {
         </motion.div>
 
         {/* Plans grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
           {plans.map((plan, i) => (
             <motion.div
               key={i}
@@ -118,11 +131,15 @@ export default function Pricing() {
                 <span className={`font-display font-800 text-4xl ${plan.featured ? 'text-white' : 'text-white'}`}>
                   {plan.price}
                 </span>
-                {!plan.isCustom && (
+                {plan.priceSuffix ? (
+                  <span className={`text-sm ml-1 ${plan.featured ? 'text-white/60' : 'text-white/40'}`}>
+                    {plan.priceSuffix}
+                  </span>
+                ) : !plan.isCustom ? (
                   <span className={`text-sm ml-1 ${plan.featured ? 'text-white/60' : 'text-white/40'}`}>
                     {t['pricing.oneTime']}
                   </span>
-                )}
+                ) : null}
               </div>
 
               {/* Features */}
