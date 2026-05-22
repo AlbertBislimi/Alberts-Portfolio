@@ -125,7 +125,7 @@ export default function Services() {
               </div>
               <div>
                 <h4 className="font-display font-700 text-white text-sm mb-1.5">{t['services.why.seo.title']}</h4>
-                <p className="text-white/45 text-sm leading-relaxed">
+                <p className="text-white/55 text-sm leading-relaxed">
                   {t['services.why.seo.desc']}
                 </p>
               </div>
@@ -136,7 +136,7 @@ export default function Services() {
               </div>
               <div>
                 <h4 className="font-display font-700 text-white text-sm mb-1.5">{t['services.why.trust.title']}</h4>
-                <p className="text-white/45 text-sm leading-relaxed">
+                <p className="text-white/55 text-sm leading-relaxed">
                   {t['services.why.trust.desc']}
                 </p>
               </div>
@@ -147,7 +147,7 @@ export default function Services() {
               </div>
               <div>
                 <h4 className="font-display font-700 text-white text-sm mb-1.5">{t['services.why.sales.title']}</h4>
-                <p className="text-white/45 text-sm leading-relaxed">
+                <p className="text-white/55 text-sm leading-relaxed">
                   {t['services.why.sales.desc']}
                 </p>
               </div>

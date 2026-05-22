@@ -79,6 +79,63 @@ const slideVariants = {
   exit:  (dir) => ({ opacity: 0, x: dir > 0 ? -40 : 40 }),
 }
 
+function EstimatePreview({ t, estimate, selectedTypeLabels, pagesLabel, designLabel }) {
+  return (
+    <motion.aside
+      initial={{ opacity: 0, x: 28 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.55, delay: 0.25 }}
+      className="hidden lg:flex rounded-2xl border border-accent/20 bg-accent/10 p-6 flex-col justify-between"
+    >
+      <div>
+        <div className="mb-6 flex items-center gap-2">
+          <Sparkles size={17} className="text-accent" />
+          <span className="font-display text-sm font-700 text-white">
+            {t['estimator.preview.title']}
+          </span>
+        </div>
+
+        {estimate ? (
+          <>
+            <p className="text-xs font-display font-600 uppercase tracking-[0.16em] text-white/45">
+              {t['estimator.result.price']}
+            </p>
+            <p className="mt-2 font-display text-4xl font-800 leading-none text-white">
+              €{estimate.low.toLocaleString()}
+              <span className="text-2xl text-white/45"> – </span>
+              €{estimate.high.toLocaleString()}
+            </p>
+            <p className="mt-4 text-xs leading-relaxed text-white/55">
+              {t['estimator.preview.subtitle']}
+            </p>
+          </>
+        ) : (
+          <div className="rounded-xl border border-white/10 bg-black/15 p-4">
+            <p className="text-sm leading-relaxed text-white/60">
+              {t['estimator.preview.empty']}
+            </p>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-8 space-y-3">
+        {[
+          [t['estimator.preview.type'], selectedTypeLabels || t['estimator.preview.emptyType']],
+          [t['estimator.preview.pages'], pagesLabel || t['estimator.preview.defaultPages']],
+          [t['estimator.preview.design'], designLabel || t['estimator.preview.defaultDesign']],
+        ].map(([label, value]) => (
+          <div key={label} className="rounded-xl border border-white/10 bg-black/15 p-3">
+            <p className="text-[11px] font-display font-600 uppercase tracking-[0.14em] text-white/35">
+              {label}
+            </p>
+            <p className="mt-1 text-sm text-white/70">{value}</p>
+          </div>
+        ))}
+      </div>
+    </motion.aside>
+  )
+}
+
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function PriceEstimator() {
@@ -131,6 +188,7 @@ export default function PriceEstimator() {
   }
 
   const estimate = step === 3 ? calcEstimate(types, pages, design) : null
+  const previewEstimate = calcEstimate(types, pages ?? '1', design ?? 'yes')
 
   const selectedTypeLabels = types.map(id => SITE_TYPES.find(st => st.id === id)?.label).join(', ')
   const pagesLabel  = PAGE_OPTIONS.find(p => p.id === pages)?.label ?? ''
@@ -162,21 +220,22 @@ export default function PriceEstimator() {
           <h2 className="mt-4 font-display font-800 text-3xl sm:text-4xl md:text-5xl text-white leading-tight">
             {t['estimator.title.before']} <span className="text-gradient">{t['estimator.title.highlight']}</span>
           </h2>
-          <p className="mt-4 text-white/45 text-sm max-w-md mx-auto leading-relaxed">
+          <p className="mt-4 text-white/55 text-sm max-w-md mx-auto leading-relaxed">
             {t['estimator.subtitle']}
           </p>
         </motion.div>
 
-        {/* Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="max-w-2xl mx-auto rounded-2xl bg-[#111] border border-white/8 p-8 sm:p-10 overflow-hidden"
-        >
-          <StepDots step={step} />
+        <div className="mx-auto grid max-w-5xl gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
+          {/* Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="rounded-2xl bg-[#111] border border-white/8 p-8 sm:p-10 overflow-hidden"
+          >
+            <StepDots step={step} />
 
-          <AnimatePresence mode="wait" custom={dir}>
+            <AnimatePresence mode="wait" custom={dir}>
             {/* ── Step 1: type picker ── */}
             {step === 1 && (
               <motion.div
@@ -191,7 +250,7 @@ export default function PriceEstimator() {
                 <h3 className="font-display font-700 text-xl text-white mb-2">
                   {t['estimator.step1.title']}
                 </h3>
-                <p className="text-white/40 text-sm mb-6">{t['estimator.step1.subtitle']}</p>
+                <p className="text-white/55 text-sm mb-6">{t['estimator.step1.subtitle']}</p>
 
                 <div className="flex flex-wrap gap-3 mb-8">
                   {SITE_TYPES.map(st => {
@@ -237,7 +296,7 @@ export default function PriceEstimator() {
               >
                 {/* Pages */}
                 <h3 className="font-display font-700 text-xl text-white mb-2">{t['estimator.step2.pages.title']}</h3>
-                <p className="text-white/40 text-sm mb-5">{t['estimator.step2.pages.subtitle']}</p>
+                <p className="text-white/55 text-sm mb-5">{t['estimator.step2.pages.subtitle']}</p>
 
                 <div className="flex flex-wrap gap-3 mb-8">
                   {PAGE_OPTIONS.map(p => {
@@ -262,7 +321,7 @@ export default function PriceEstimator() {
 
                 {/* Design */}
                 <h3 className="font-display font-700 text-xl text-white mb-2">{t['estimator.step2.design.title']}</h3>
-                <p className="text-white/40 text-sm mb-5">{t['estimator.step2.design.subtitle']}</p>
+                <p className="text-white/55 text-sm mb-5">{t['estimator.step2.design.subtitle']}</p>
 
                 <div className="flex flex-wrap gap-3 mb-8">
                   {DESIGN_OPTIONS.map(d => {
@@ -332,12 +391,12 @@ export default function PriceEstimator() {
                     <span className="text-white/40 text-3xl"> – </span>
                     €{estimate.high.toLocaleString()}
                   </p>
-                  <p className="text-white/40 text-xs leading-relaxed">
+                  <p className="text-white/55 text-xs leading-relaxed">
                     {t['estimator.result.based']} {selectedTypeLabels} · {pagesLabel} · {designLabel}
                   </p>
                 </motion.div>
 
-                <p className="text-white/30 text-xs mb-6 leading-relaxed">
+                <p className="text-white/45 text-xs mb-6 leading-relaxed">
                   {t['estimator.result.disclaimer']}
                 </p>
 
@@ -364,8 +423,17 @@ export default function PriceEstimator() {
                 </div>
               </motion.div>
             )}
-          </AnimatePresence>
-        </motion.div>
+            </AnimatePresence>
+          </motion.div>
+
+          <EstimatePreview
+            t={t}
+            estimate={previewEstimate}
+            selectedTypeLabels={selectedTypeLabels}
+            pagesLabel={pagesLabel}
+            designLabel={designLabel}
+          />
+        </div>
       </div>
     </section>
   )

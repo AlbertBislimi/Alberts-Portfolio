@@ -89,7 +89,7 @@ export default function FinalCTA() {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.6, duration: 0.5 }}
-              className="mt-8 text-white/30 text-sm"
+              className="mt-8 text-white/45 text-sm"
             >
               {t['cta.trust']}
             </motion.p>

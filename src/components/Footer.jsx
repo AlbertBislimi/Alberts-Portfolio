@@ -43,16 +43,16 @@ export default function Footer() {
               <ABLogo size="md" />
             </div>
 
-            <p className="text-white/45 text-sm leading-relaxed max-w-xs">
+            <p className="text-white/55 text-sm leading-relaxed max-w-xs">
               {t['footer.brand']}
             </p>
 
-            <div className="mt-4 flex items-center gap-2 text-white/40 text-sm">
+            <div className="mt-4 flex items-center gap-2 text-white/50 text-sm">
               <MapPin size={13} className="text-accent flex-shrink-0" />
               <span>{t['footer.location']}</span>
             </div>
 
-            <div className="mt-2 flex items-center gap-2 text-white/40 text-sm">
+            <div className="mt-2 flex items-center gap-2 text-white/50 text-sm">
               <Mail size={13} className="text-accent flex-shrink-0" />
               <a href="mailto:ialbertbislimi@gmail.com" className="hover:text-white transition-colors">
                 ialbertbislimi@gmail.com
@@ -85,7 +85,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-white/40 hover:text-white transition-colors"
+                      className="text-sm text-white/50 hover:text-white transition-colors"
                     >
                       {link.label}
                     </a>
