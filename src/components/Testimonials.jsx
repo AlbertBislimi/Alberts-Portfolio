@@ -51,7 +51,7 @@ export default function Testimonials() {
             Çfarë thonë{' '}
             <span className="text-gradient">klientët</span>
           </h2>
-          <p className="mt-4 text-white/45 max-w-md mx-auto text-sm leading-relaxed">
+          <p className="mt-4 text-white/55 max-w-md mx-auto text-sm leading-relaxed">
             Bizneset kosovare që besuan te ne, dhe nuk u penduan.
           </p>
         </motion.div>
@@ -91,7 +91,7 @@ export default function Testimonials() {
                 </div>
                 <div>
                   <div className="text-white font-display font-700 text-sm">{t.name}</div>
-                  <div className="text-white/40 text-xs">{t.company} · {t.location}</div>
+                  <div className="text-white/50 text-xs">{t.company} · {t.location}</div>
                 </div>
               </div>
             </motion.div>

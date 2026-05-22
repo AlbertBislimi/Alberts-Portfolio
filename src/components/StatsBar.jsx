@@ -40,10 +40,10 @@ export default function StatsBar() {
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   const stats = [
-    { value: 15, suffix: '+', label: t['stats.projects'] },
+    { value: 20, suffix: '+', label: t['stats.projects'] },
     { value: 100, suffix: '%', label: t['stats.clients'] },
     { value: 7, suffix: t['stats.delivery.suffix'], label: t['stats.delivery'] },
-    { value: 3, suffix: '+', label: t['stats.experience'] },
+    { value: 4, suffix: '+', label: t['stats.experience'] },
   ]
 
   return (

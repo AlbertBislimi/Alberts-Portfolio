@@ -33,7 +33,7 @@ export default function About() {
               <span className="text-gradient">{t['about.title.highlight']}</span>
             </h2>
 
-            <div className="mt-3 flex items-center gap-2 text-white/40">
+            <div className="mt-3 flex items-center gap-2 text-white/50">
               <MapPin size={13} className="text-accent flex-shrink-0" />
               <span className="text-sm">{t['about.location']}</span>
             </div>
@@ -50,13 +50,13 @@ export default function About() {
             {/* Quick facts */}
             <div className="mt-8 grid grid-cols-3 gap-4">
               {[
-                { value: '15+', label: t['about.stat.projects'] },
+                { value: '20+', label: t['about.stat.projects'] },
                 { value: '4+', label: t['about.stat.years'] },
                 { value: '7 ditë', label: t['about.stat.delivery'] },
               ].map((stat) => (
                 <div key={stat.label} className="p-4 rounded-xl bg-[#1A1A1A] border border-white/8 text-center">
                   <div className="font-display font-800 text-xl text-white">{stat.value}</div>
-                  <div className="text-xs text-white/40 mt-0.5">{stat.label}</div>
+                  <div className="text-xs text-white/50 mt-0.5">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -93,7 +93,7 @@ export default function About() {
                 <div className="w-1 flex-shrink-0 rounded-full bg-accent/40 mt-1" />
                 <div>
                   <p className="font-display font-700 text-white text-sm">{item.title}</p>
-                  <p className="text-white/45 text-sm mt-1 leading-relaxed">{item.desc}</p>
+                  <p className="text-white/55 text-sm mt-1 leading-relaxed">{item.desc}</p>
                 </div>
               </div>
             ))}

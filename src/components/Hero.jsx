@@ -11,6 +11,64 @@ const fadeUp = {
   }),
 }
 
+function HeroPreview() {
+  const previews = [
+    {
+      src: '/projects/mysearch.png',
+      label: 'MySearch Agency',
+      className: 'left-0 top-20 w-[360px] rotate-[-4deg]',
+      objectPosition: 'center top',
+    },
+    {
+      src: '/projects/swiss-dental.png',
+      label: 'Swiss Dental Ferizaj',
+      className: 'right-2 top-0 w-[340px] rotate-[3deg]',
+      objectPosition: 'center top',
+    },
+    {
+      src: '/projects/nubis.png',
+      label: 'Nubis.app',
+      className: 'bottom-14 left-24 w-[390px] rotate-[2deg]',
+      objectPosition: 'center top',
+    },
+  ]
+
+  return (
+    <motion.div
+      aria-hidden="true"
+      initial={{ opacity: 0, x: 42, scale: 0.96 }}
+      animate={{ opacity: 1, x: 0, scale: 1 }}
+      transition={{ duration: 0.85, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+      className="hero-preview pointer-events-none absolute right-0 top-[45%] z-[2] hidden h-[560px] w-[620px] -translate-y-1/2 xl:block"
+    >
+      <div className="absolute inset-0 bg-accent/10 blur-[120px]" />
+      {previews.map((preview, index) => (
+        <motion.div
+          key={preview.label}
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, delay: 0.5 + index * 0.12 }}
+          className={`absolute overflow-hidden rounded-2xl border border-white/12 bg-[#151515] shadow-2xl shadow-black/40 ${preview.className}`}
+        >
+          <div className="flex h-9 items-center gap-2 border-b border-white/10 bg-white/[0.04] px-4">
+            <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
+            <span className="h-2.5 w-2.5 rounded-full bg-yellow-300/80" />
+            <span className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
+            <span className="hero-preview-label ml-3 truncate text-xs font-medium text-white/45">{preview.label}</span>
+          </div>
+          <img
+            src={preview.src}
+            alt=""
+            className="h-52 w-full object-cover object-top"
+            style={{ objectPosition: preview.objectPosition }}
+            loading="eager"
+          />
+        </motion.div>
+      ))}
+    </motion.div>
+  )
+}
+
 export default function Hero() {
   const { t } = useLang()
 
@@ -32,7 +90,9 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 pt-28 pb-20">
+      <HeroPreview />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 pt-28 pb-20 xl:pr-[500px]">
 
         {/* Main headline */}
         <motion.h1
@@ -40,7 +100,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={1}
-          className="font-display font-800 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight max-w-4xl"
+          className="font-display font-800 text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight max-w-4xl xl:max-w-3xl"
         >
           {t['hero.title.before']}{' '}
           <span className="text-gradient">{t['hero.title.highlight']}</span>

@@ -67,7 +67,12 @@ function StepCard({ step, i, isInView }) {
         </span>
 
         <h3 className="font-display font-700 text-lg text-white mb-2">{step.title}</h3>
-        <p className="text-sm text-white/45 leading-relaxed flex-1">{step.desc}</p>
+        <p className="text-sm text-white/55 leading-relaxed flex-1">{step.desc}</p>
+
+        {/* Extra detail is always visible on touch-sized layouts. */}
+        <p className="mt-3 text-xs leading-relaxed lg:hidden" style={{ color: step.color, opacity: 0.75 }}>
+          {step.detail}
+        </p>
 
         {/* Expanded detail on hover */}
         <AnimatePresence>
@@ -77,7 +82,7 @@ function StepCard({ step, i, isInView }) {
               animate={{ opacity: 1, height: 'auto', marginTop: 12 }}
               exit={{ opacity: 0, height: 0, marginTop: 0 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="text-xs leading-relaxed overflow-hidden"
+              className="hidden text-xs leading-relaxed overflow-hidden lg:block"
               style={{ color: step.color, opacity: 0.75 }}
             >
               {step.detail}
@@ -160,7 +165,7 @@ export default function Process() {
             <span className="text-gradient">{t['process.title.highlight']}</span>
             <br />{t['process.title.after']}
           </h2>
-          <p className="mt-4 text-white/40 text-sm">
+          <p className="mt-4 text-white/55 text-sm">
             {t['process.hover']}
           </p>
         </motion.div>
