@@ -25,7 +25,7 @@ const testimonials = [
     name: 'Fisnik Berisha',
     company: 'Berisha Ndërtim',
     location: 'Gjilan',
-    text: 'Kemi bërë faqe edhe me agjenci të tjera, por asnjë nuk ka dhënë rezultate si Albert. Çmimi transparent, dizajni modern, dhe support pas lansimit. Nuk do të shkojmë askund tjetër.',
+    text: 'Kemi bërë faqe edhe me agjenci të tjera, por asnjë nuk ka dhënë rezultate si Albert. Procesi ishte transparent, dizajni modern, dhe support pas lansimit. Nuk do të shkojmë askund tjetër.',
     rating: 5,
     initials: 'FB',
     color: '#10B981',

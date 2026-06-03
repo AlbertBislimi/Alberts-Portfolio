@@ -6,7 +6,6 @@ import SelectedWork from './components/SelectedWork'
 import Process from './components/Process'
 import About from './components/About'
 import Pricing from './components/Pricing'
-import PriceEstimator from './components/PriceEstimator'
 import FAQ from './components/FAQ'
 import FinalCTA from './components/FinalCTA'
 import Footer from './components/Footer'
@@ -22,8 +21,7 @@ export default function App() {
         <SelectedWork />
         <Process />
         <About />
-<Pricing />
-        <PriceEstimator />
+        <Pricing />
         <FAQ />
         <FinalCTA />
       </main>

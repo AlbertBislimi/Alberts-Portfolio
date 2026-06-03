@@ -13,7 +13,6 @@ export default function Services() {
       icon: Zap,
       title: t['services.landing.title'],
       desc: t['services.landing.desc'],
-      price: t['services.landing.price'],
       features: [t['services.landing.f1'], t['services.landing.f2'], t['services.landing.f3'], t['services.landing.f4'], t['services.landing.f5']],
       tag: t['services.landing.tag'],
       color: '#3B82F6',
@@ -22,7 +21,6 @@ export default function Services() {
       icon: Building2,
       title: t['services.business.title'],
       desc: t['services.business.desc'],
-      price: t['services.business.price'],
       features: [t['services.business.f1'], t['services.business.f2'], t['services.business.f3'], t['services.business.f4'], t['services.business.f5']],
       tag: null,
       color: '#8B5CF6',
@@ -31,7 +29,6 @@ export default function Services() {
       icon: ShoppingCart,
       title: t['services.ecommerce.title'],
       desc: t['services.ecommerce.desc'],
-      price: t['services.ecommerce.price'],
       features: [t['services.ecommerce.f1'], t['services.ecommerce.f2'], t['services.ecommerce.f3'], t['services.ecommerce.f4'], t['services.ecommerce.f5']],
       tag: null,
       color: '#EC4899',
@@ -85,13 +82,8 @@ export default function Services() {
               <h3 className="font-display font-700 text-lg text-white mb-2">{svc.title}</h3>
               <p className="text-sm text-white/50 leading-relaxed flex-1">{svc.desc}</p>
 
-              {/* Price */}
-              <div className="my-5 pt-5 border-t border-white/6">
-                <span className="font-display font-700 text-xl text-white">{svc.price}</span>
-              </div>
-
               {/* Features */}
-              <ul className="space-y-2 mb-6">
+              <ul className="mt-5 space-y-2 mb-6 pt-5 border-t border-white/6">
                 {svc.features.map((f, j) => (
                   <li key={j} className="flex items-center gap-2 text-sm text-white/60">
                     <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: svc.color }} />
