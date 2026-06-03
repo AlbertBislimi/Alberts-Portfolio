@@ -136,24 +136,6 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Estimator nudge */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={3.5}
-          className="mt-5"
-        >
-          <a
-            href="#estimator"
-            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors group"
-          >
-            <span className="text-accent">💰</span>
-            {t['hero.estimator.prefix']}
-            <span className="text-accent group-hover:underline underline-offset-2">{t['hero.estimator.link']}</span>
-          </a>
-        </motion.div>
-
         {/* Trust indicators */}
         <motion.div
           variants={fadeUp}

@@ -17,7 +17,6 @@ export default function Footer() {
       { label: 'Landing Page', href: '#sherbimet' },
       { label: t['pricing.business.name'], href: '#sherbimet' },
       { label: 'E-commerce', href: '#sherbimet' },
-      { label: t['footer.col1.estimator'], href: '#estimator' },
     ],
     [t['footer.col2.title']]: [
       { label: t['footer.col2.about'], href: '#rreth' },

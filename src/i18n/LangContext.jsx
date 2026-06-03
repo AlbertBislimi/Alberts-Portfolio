@@ -7,11 +7,11 @@ const STORAGE_KEY = 'ab-studio-lang'
 const META = {
   sq: {
     title: 'Albert Bislimi — Web Developer Kosovë | Website Profesionale',
-    description: 'Albert Bislimi — web developer nga Kosova. Ndërtojmë website profesionale për biznese në Kosovë, Shqipëri dhe Maqedoni. Landing page nga €399, dorëzim brenda 7 ditëve.',
+    description: 'Albert Bislimi — web developer nga Kosova. Ndërtojmë website profesionale për biznese në Kosovë, Shqipëri dhe Maqedoni, me proces të qartë dhe dorëzim të shpejtë.',
   },
   en: {
     title: 'Albert Bislimi — Web Developer Kosovo | Professional Websites',
-    description: 'Albert Bislimi — web developer from Kosovo. We build professional websites for businesses in Kosovo, Albania, and North Macedonia. Landing pages from €399, delivery within 7 days.',
+    description: 'Albert Bislimi — web developer from Kosovo. We build professional websites for businesses in Kosovo, Albania, and North Macedonia, with a clear process and fast delivery.',
   },
 }
 

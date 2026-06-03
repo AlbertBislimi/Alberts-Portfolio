@@ -9,7 +9,7 @@ function getAutoTheme(date = new Date()) {
 }
 
 export function ThemeProvider({ children }) {
-  const [mode, setMode] = useState(() => localStorage.getItem(STORAGE_KEY) || 'auto')
+  const [mode, setMode] = useState(() => localStorage.getItem(STORAGE_KEY) || 'light')
   const [autoTheme, setAutoTheme] = useState(() => getAutoTheme())
 
   useEffect(() => {

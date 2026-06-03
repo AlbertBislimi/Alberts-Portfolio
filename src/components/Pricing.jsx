@@ -11,7 +11,6 @@ export default function Pricing() {
   const plans = [
     {
       name: t['pricing.landing.name'],
-      price: '€399',
       desc: t['pricing.landing.desc'],
       features: [
         t['pricing.landing.f1'], t['pricing.landing.f2'], t['pricing.landing.f3'],
@@ -24,7 +23,6 @@ export default function Pricing() {
     },
     {
       name: t['pricing.business.name'],
-      price: '€799',
       desc: t['pricing.business.desc'],
       features: [
         t['pricing.business.f1'], t['pricing.business.f2'], t['pricing.business.f3'],
@@ -37,7 +35,6 @@ export default function Pricing() {
     },
     {
       name: t['pricing.ecommerce.name'],
-      price: '€1,499',
       desc: t['pricing.ecommerce.desc'],
       features: [
         t['pricing.ecommerce.f1'], t['pricing.ecommerce.f2'], t['pricing.ecommerce.f3'],
@@ -50,8 +47,6 @@ export default function Pricing() {
     },
     {
       name: t['pricing.maintenance.name'],
-      price: '€49',
-      priceSuffix: t['pricing.maintenance.priceSuffix'],
       desc: t['pricing.maintenance.desc'],
       features: [
         t['pricing.maintenance.f1'], t['pricing.maintenance.f2'], t['pricing.maintenance.f3'],
@@ -63,7 +58,6 @@ export default function Pricing() {
     },
     {
       name: t['pricing.custom.name'],
-      price: t['pricing.custom.price'],
       desc: t['pricing.custom.desc'],
       features: [
         t['pricing.custom.f1'], t['pricing.custom.f2'], t['pricing.custom.f3'],
@@ -128,24 +122,8 @@ export default function Pricing() {
                 </p>
               </div>
 
-              {/* Price */}
-              <div className="mb-6">
-                <span className={`font-display font-800 text-4xl ${plan.featured ? 'text-white' : 'text-white'}`}>
-                  {plan.price}
-                </span>
-                {plan.priceSuffix ? (
-                  <span className={`text-sm ml-1 ${plan.featured ? 'text-white/60' : 'text-white/50'}`}>
-                    {plan.priceSuffix}
-                  </span>
-                ) : !plan.isCustom ? (
-                  <span className={`text-sm ml-1 ${plan.featured ? 'text-white/60' : 'text-white/50'}`}>
-                    {t['pricing.oneTime']}
-                  </span>
-                ) : null}
-              </div>
-
               {/* Features */}
-              <ul className="space-y-3 flex-1 mb-8">
+              <ul className="space-y-3 flex-1 mb-8 border-t border-white/10 pt-6">
                 {plan.features.map((f, j) => (
                   <li key={j} className="flex items-start gap-2.5">
                     <Check
@@ -197,11 +175,6 @@ export default function Pricing() {
               <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/55">
                 {customPlan.desc}
               </p>
-              <div className="mt-5">
-                <span className="font-display font-800 text-4xl text-white">
-                  {customPlan.price}
-                </span>
-              </div>
             </div>
 
             <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:mt-0 lg:grid-cols-3">

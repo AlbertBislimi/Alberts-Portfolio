@@ -259,15 +259,6 @@ html[data-theme='light'] button[style*='rgba(255,255,255,0.6)'] {
   color: rgba(15, 23, 42, 0.62) !important;
 }
 
-html[data-theme='light'] #estimator button[style] {
-  color: rgba(15, 23, 42, 0.66) !important;
-}
-
-html[data-theme='light'] #estimator button[style*='59, 130, 246'],
-html[data-theme='light'] #estimator button[style*='59,130,246'] {
-  color: #2563EB !important;
-}
-
 html[data-theme='light'] .grain::before {
   opacity: 0.035;
   filter: invert(1);
