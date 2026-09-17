@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Eye } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Eye } from 'lucide-react'
 import { useLang } from '../i18n/useLang'
 
 const fadeUp = {
@@ -12,58 +12,128 @@ const fadeUp = {
 }
 
 function HeroPreview() {
+  const { t } = useLang()
   const previews = [
     {
       src: '/projects/mysearch.png',
       label: 'MySearch Agency',
-      className: 'left-0 top-20 w-[360px] rotate-[-4deg]',
-      objectPosition: 'center top',
+      tabLabel: 'MySearch',
+      href: 'https://mysearchagency.com',
+      accent: '#F97316',
+      className: 'left-0 top-0',
     },
     {
-      src: '/projects/swiss-dental.png',
-      label: 'Swiss Dental Ferizaj',
-      className: 'right-2 top-0 w-[340px] rotate-[3deg]',
-      objectPosition: 'center top',
+      src: '/projects/gjeje.png',
+      label: 'Gjeje.online',
+      tabLabel: 'Gjeje',
+      href: 'https://gjejeonline.com',
+      accent: '#10B981',
+      className: 'right-0 top-3',
     },
     {
       src: '/projects/nubis.png',
       label: 'Nubis.app',
-      className: 'bottom-14 left-24 w-[390px] rotate-[2deg]',
-      objectPosition: 'center top',
+      tabLabel: 'Nubis',
+      href: 'https://nubis.app',
+      accent: '#3B82F6',
+      className: 'left-5 top-[170px]',
+    },
+    {
+      src: '/projects/swiss-dental.png',
+      label: 'Swiss Dental Ferizaj',
+      tabLabel: 'Swiss Dental',
+      href: 'https://swiss-dental-ferizaj-demo.surge.sh',
+      accent: '#0EA5E9',
+      className: 'right-0 top-[176px]',
+    },
+    {
+      src: '/projects/ame-company.png',
+      label: 'AME Company',
+      tabLabel: 'AME',
+      href: 'https://ame-company.surge.sh/',
+      accent: '#F5C518',
+      className: 'left-0 top-[340px]',
+    },
+    {
+      src: '/projects/pps.png',
+      label: 'Prishtina Profesional Security',
+      tabLabel: 'PPS',
+      href: 'https://prishtina-profesional-security-demo.surge.sh',
+      accent: '#B91C1C',
+      className: 'right-2 top-[346px]',
     },
   ]
 
   return (
     <motion.div
-      aria-hidden="true"
       initial={{ opacity: 0, x: 42, scale: 0.96 }}
       animate={{ opacity: 1, x: 0, scale: 1 }}
       transition={{ duration: 0.85, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-      className="hero-preview pointer-events-none absolute right-0 top-[45%] z-[2] hidden h-[560px] w-[620px] -translate-y-1/2 xl:block"
+      style={{ top: 'calc(47% - 260px)' }}
+      className="hero-preview absolute right-4 z-20 hidden h-[520px] w-[470px] xl:block"
     >
-      <div className="absolute inset-0 bg-accent/10 blur-[120px]" />
+      <div className="pointer-events-none absolute inset-0 bg-accent/10 blur-[120px]" />
       {previews.map((preview, index) => (
-        <motion.div
+        <motion.a
           key={preview.label}
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.5 + index * 0.12 }}
-          className={`absolute overflow-hidden rounded-2xl border border-white/12 bg-[#151515] shadow-2xl shadow-black/40 ${preview.className}`}
+          href={preview.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${preview.label} — ${t['work.viewLive']}`}
+          initial={{ opacity: 0, x: 30, y: 18, scale: 0.94 }}
+          animate={{
+            opacity: 1,
+            x: 0,
+            y: 0,
+            scale: 1,
+            transition: { duration: 0.55, delay: 0.35 + index * 0.08, ease: [0.22, 1, 0.36, 1] },
+          }}
+          whileHover={{
+            y: -8,
+            scale: 1.25,
+            zIndex: 20,
+            transition: { type: 'spring', stiffness: 300, damping: 24 },
+          }}
+          whileFocus={{
+            y: -8,
+            scale: 1.25,
+            zIndex: 20,
+            transition: { type: 'spring', stiffness: 300, damping: 24 },
+          }}
+          whileTap={{ scale: 0.995 }}
+          className={`group absolute h-[154px] w-[214px] origin-center outline-none focus-visible:z-30 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-[#0A0A0A] ${preview.className}`}
         >
-          <div className="flex h-9 items-center gap-2 border-b border-white/10 bg-white/[0.04] px-4">
-            <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-            <span className="h-2.5 w-2.5 rounded-full bg-yellow-300/80" />
-            <span className="h-2.5 w-2.5 rounded-full bg-green-400/80" />
-            <span className="hero-preview-label ml-3 truncate text-xs font-medium text-white/45">{preview.label}</span>
+          <div className="absolute left-0 top-0 z-10 flex h-6 max-w-[138px] items-center gap-1.5 rounded-t-xl border border-b-0 border-white/10 bg-[#1A1A1A] px-3">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: preview.accent }} />
+            <span className="truncate text-[9px] font-semibold uppercase tracking-[0.1em] text-white/65">
+              {preview.tabLabel}
+            </span>
           </div>
-          <img
-            src={preview.src}
-            alt=""
-            className="h-52 w-full object-cover object-top"
-            style={{ objectPosition: preview.objectPosition }}
-            loading="eager"
-          />
-        </motion.div>
+          <div className="relative mt-5 h-[132px] overflow-hidden rounded-b-2xl rounded-tr-2xl border border-white/12 bg-[#111] shadow-xl shadow-black/30">
+            <img
+              src={preview.src}
+              alt=""
+              className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.08] group-focus-visible:scale-[1.08]"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/5 to-transparent opacity-85 transition-opacity duration-300 group-hover:opacity-100" />
+            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 px-3 pb-3">
+              <div className="min-w-0">
+                <span className="block truncate font-display text-sm font-700 text-white">{preview.label}</span>
+                <span
+                  className="mt-1 block text-[9px] font-semibold uppercase tracking-[0.13em] opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+                  style={{ color: preview.accent }}
+                >
+                  {t['work.viewLive']}
+                </span>
+              </div>
+              <ArrowUpRight
+                size={15}
+                className="mb-0.5 shrink-0 text-white/70 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-focus-visible:-translate-y-0.5 group-focus-visible:translate-x-0.5"
+              />
+            </div>
+          </div>
+        </motion.a>
       ))}
     </motion.div>
   )
