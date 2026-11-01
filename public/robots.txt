@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://abstudio.dev/sitemap.xml
+Sitemap: https://www.albertbislimi.com/sitemap.xml

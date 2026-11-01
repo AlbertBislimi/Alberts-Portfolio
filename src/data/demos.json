@@ -1,0 +1,377 @@
+[
+  {
+    "slug": "eda-sweet-cake",
+    "name": "Eda Sweet Cake",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "daka-wine",
+    "name": "DAKA Wine",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "black-hair-and-more",
+    "name": "Black Hair and More",
+    "sector": "sallone"
+  },
+  {
+    "slug": "cultr-barbershop",
+    "name": "CULTR Barbershop",
+    "sector": "sallone"
+  },
+  {
+    "slug": "ana-dental-care",
+    "name": "Ana Dental Care",
+    "sector": "klinika"
+  },
+  {
+    "slug": "abria-travel",
+    "name": "Abria Travel",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "art-dekor-furniture",
+    "name": "Art Dekor Furniture",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "auto-servis-adhurimi",
+    "name": "Auto Servis Adhurimi",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "besi-computers",
+    "name": "Besi Computers",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "blini-tex",
+    "name": "Blini Tex",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "cura-dentium",
+    "name": "Cura Dentium",
+    "sector": "klinika"
+  },
+  {
+    "slug": "dens-dental-clinic",
+    "name": "DENS DENTAL CLINIC",
+    "sector": "klinika"
+  },
+  {
+    "slug": "dental-studio-ferizaj",
+    "name": "Dental Studio Ferizaj",
+    "sector": "klinika"
+  },
+  {
+    "slug": "edona-hassani-fashion-atelier",
+    "name": "Edona Hassani — Fashion Atelier",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "ekstradent",
+    "name": "Ekstradent",
+    "sector": "klinika"
+  },
+  {
+    "slug": "eleganca-dekor",
+    "name": "Eleganca Dekor",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "erden-agro",
+    "name": "Erden Agro",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "euro-tours",
+    "name": "Euro Tours",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "finesse-dental-clinic",
+    "name": "Finesse Dental Clinic",
+    "sector": "klinika"
+  },
+  {
+    "slug": "fitness-gym-prishtina",
+    "name": "Fitness Gym Prishtina",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "fitness-zone-ferizaj",
+    "name": "Fitness Zone Ferizaj",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "fiziovital",
+    "name": "Fiziovital",
+    "sector": "klinika"
+  },
+  {
+    "slug": "furra-dojna",
+    "name": "Furra Dojna",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "gjeodet-erzen-halimi",
+    "name": "Erzen Halimi — Gjeodet i Licencuar",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "goga-dent",
+    "name": "GOGA DENT",
+    "sector": "klinika"
+  },
+  {
+    "slug": "green-hill-l-l-c",
+    "name": "Green Hill L.L.C",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "grill-hyska",
+    "name": "Grill Hyska",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "hamari-agroturizem",
+    "name": "Hamari Agroturizem",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "home-veterinaria",
+    "name": "Home Veterinaria",
+    "sector": "klinika"
+  },
+  {
+    "slug": "ice-caffe-family-concept-istog",
+    "name": "Ice Caffe \"Family Concept\" Istog",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "keza-tattoo",
+    "name": "KEZA Tattoo",
+    "sector": "sallone"
+  },
+  {
+    "slug": "klinika-dentare-luma",
+    "name": "Klinika Dentare Luma",
+    "sector": "klinika"
+  },
+  {
+    "slug": "kopshti-dayschool-prishtina",
+    "name": "Kopshti Dayschool Prishtina",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "kopshti-filizat-prishtina",
+    "name": "Kopshti Filizat Prishtina",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "libraria-rilindja",
+    "name": "Libraria RILINDJA",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "lola-nails",
+    "name": "Lola Nails",
+    "sector": "sallone"
+  },
+  {
+    "slug": "lulishtja-drita-drita-decor",
+    "name": "Lulishtja Drita (Drita Decor)",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "mali-fresket-restaurant",
+    "name": "Mali Freskët Restaurant",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "manuka-restaurant",
+    "name": "Manuka Restaurant",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "mario-napoletano-pizzeria",
+    "name": "Mario Napoletano Pizzeria",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "maris-restaurant-marec-villas",
+    "name": "Maris Restaurant & Marec Villas",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "medpro-clinic",
+    "name": "MedPro Clinic",
+    "sector": "klinika"
+  },
+  {
+    "slug": "mobileria-gala-home",
+    "name": "Mobileria GALA Home",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "moler-fasader-vlera-dekor",
+    "name": "Moler-Fasader Vlera Dekor",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "my-gym-fitness-center",
+    "name": "my Gym FITNESS CENTER",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "nivelizim-hoti",
+    "name": "Nivelizim Hoti",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "paradiso-granit-mermer-keramike",
+    "name": "Paradiso — Granit, Mermer & Keramikë",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "pishat-restaurant",
+    "name": "Pishat Restaurant",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "prishtina-ink-tattoo",
+    "name": "Prishtina INK Tattoo",
+    "sector": "sallone"
+  },
+  {
+    "slug": "prishtina-profesional-security",
+    "name": "Prishtina Profesional Security",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "restaurant-home",
+    "name": "Restaurant HOME",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "restaurant-ora",
+    "name": "Restaurant ORA",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "restaurant-rron",
+    "name": "Restaurant Rron",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "restaurant-urban-kitchen",
+    "name": "Restaurant URBAN Kitchen",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "restaurant-vala",
+    "name": "Restaurant Vala",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "restaurant-vata",
+    "name": "Restaurant VATA",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "rident-dental-clinic",
+    "name": "Rident Dental Clinic",
+    "sector": "klinika"
+  },
+  {
+    "slug": "sabaja-craft-brewery",
+    "name": "Sabaja Craft Brewery",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "sallon-ondulimi-yllka",
+    "name": "Sallon ondulimi YLLKA",
+    "sector": "sallone"
+  },
+  {
+    "slug": "salloni-perdeve-lili",
+    "name": "Salloni i Perdeve Lili",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "sela-glass",
+    "name": "Sela Glass",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "sense-coffe-more",
+    "name": "Sense Coffe & More",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "sheb-restaurant",
+    "name": "SHEB Restaurant",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "siari-lighting",
+    "name": "Siari Lighting",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "swiss-dental-ferizaj",
+    "name": "Swiss Dental Ferizaj",
+    "sector": "klinika"
+  },
+  {
+    "slug": "swissdent-shtime",
+    "name": "SwissDent Shtime",
+    "sector": "klinika"
+  },
+  {
+    "slug": "tasty-pizza-more",
+    "name": "Tasty Pizza & More",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "te-syla-prizren",
+    "name": "Te Syla — Prizren",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "trapezi",
+    "name": "Trapezi",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "ujevara-resort",
+    "name": "Ujëvara Resort",
+    "sector": "kafiteri"
+  },
+  {
+    "slug": "unik-barbershop",
+    "name": "UNIK BARBERSHOP",
+    "sector": "sallone"
+  },
+  {
+    "slug": "unique-laundry",
+    "name": "Unique Laundry",
+    "sector": "dyqane"
+  },
+  {
+    "slug": "veterinary-pet-home",
+    "name": "Veterinary Pet Home",
+    "sector": "klinika"
+  },
+  {
+    "slug": "white-dental",
+    "name": "White Dental",
+    "sector": "klinika"
+  },
+  {
+    "slug": "xhb-beauty-studio",
+    "name": "XHB Beauty Studio",
+    "sector": "sallone"
+  }
+]

@@ -1,0 +1,63 @@
+{
+  "kosove": {
+    "name": "Kosovë",
+    "currency": "EUR",
+    "symbol": "€",
+    "prices": [
+      19,
+      29,
+      49
+    ],
+    "foundingFee": 0,
+    "standardFee": 49,
+    "countries": [
+      "XK"
+    ]
+  },
+  "zvicer": {
+    "name": "Zvicër",
+    "currency": "CHF",
+    "symbol": "CHF ",
+    "prices": [
+      49,
+      69,
+      99
+    ],
+    "foundingFee": 290,
+    "standardFee": 490,
+    "countries": [
+      "CH"
+    ]
+  },
+  "gjermani": {
+    "name": "Gjermani/Austri",
+    "currency": "EUR",
+    "symbol": "€",
+    "prices": [
+      39,
+      59,
+      89
+    ],
+    "foundingFee": 290,
+    "standardFee": 490,
+    "countries": [
+      "DE",
+      "AT"
+    ]
+  },
+  "shba": {
+    "name": "SHBA",
+    "currency": "USD",
+    "symbol": "$",
+    "prices": [
+      39,
+      59,
+      99
+    ],
+    "foundingFee": 197,
+    "standardFee": 397,
+    "countries": [
+      "US"
+    ]
+  }
+}
