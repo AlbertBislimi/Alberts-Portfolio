@@ -4,14 +4,36 @@ import Lenis from 'lenis';
 import './v3c.css';
 window.gsap = gsap; window.ScrollTrigger = ScrollTrigger; window.Lenis = Lenis;
 
-/* contact form: no backend yet — compose an email in the visitor's mail app */
+/* contact form: POST to /api/contact (serverless) with mailto fallback on error */
 const form = document.getElementById('contact-form');
-if (form) form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const d = new FormData(form);
-  const body = `Name: ${d.get('name')}\nEmail: ${d.get('email')}\nProject type: ${d.get('type')}\n\n${d.get('message')}`;
-  location.href = `mailto:ialbertbislimi@gmail.com?subject=${encodeURIComponent('New project — ' + d.get('type'))}&body=${encodeURIComponent(body)}`;
-});
+if (form) {
+  const btn = form.querySelector('button[type=submit]');
+  const status = form.querySelector('.form-status');
+  const label = btn.textContent;
+  const setState = (st, msg) => { form.dataset.state = st; status.textContent = msg || ''; status.className = 'form-status is-' + st; };
+  const mailto = (d) => `mailto:ialbertbislimi@gmail.com?subject=${encodeURIComponent('New project — ' + d.get('type'))}&body=${encodeURIComponent(`Name: ${d.get('name')}\nEmail: ${d.get('email')}\nProject type: ${d.get('type')}\n\n${d.get('message')}`)}`;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (form.dataset.state === 'loading') return;
+    const d = new FormData(form);
+    const email = String(d.get('email') || '').trim(), msg = String(d.get('message') || '').trim();
+    if (!String(d.get('name') || '').trim()) return setState('error', 'Please add your name.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setState('error', 'That email doesn’t look right.');
+    if (msg.length < 10) return setState('error', 'A few more words about the project, please.');
+    setState('loading', 'Sending…'); btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      const r = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(d)) });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || !j.ok) throw new Error('send');
+      form.reset(); setState('success', 'Sent. I’ll reply within one working day.'); btn.textContent = 'Sent ✓';
+    } catch {
+      status.innerHTML = '';
+      setState('error', 'Couldn’t send just now. ');
+      const a = document.createElement('a'); a.href = mailto(d); a.textContent = 'Email me directly instead →'; status.appendChild(a);
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+}
 
 (function(){
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -19,11 +41,27 @@ if (form) form.addEventListener('submit', (e) => {
   /* ---------- Lenis smooth scroll ---------- */
   var lenis = null;
   if (!reduceMotion && window.Lenis) {
-    lenis = new Lenis({ duration: 1.05, smoothWheel: true });
+    lenis = new Lenis({ lerp: 0.13, wheelMultiplier: 1.1, smoothWheel: true, syncTouch: false });
     function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
     lenis.on('scroll', ScrollTrigger && ScrollTrigger.update);
   }
+
+  /* ---------- smooth in-page anchors ---------- */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href');
+    var target = id === '#' || id === '#top' ? document.body : document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    var navEl = document.getElementById('nav');
+    var offset = -((navEl && navEl.offsetHeight) || 0) - 8;
+    if (target === document.body) offset = 0;
+    if (lenis) lenis.scrollTo(target === document.body ? 0 : target, { offset: offset, duration: 1.1 });
+    else window.scrollTo({ top: target === document.body ? 0 : target.getBoundingClientRect().top + window.scrollY + offset, behavior: reduceMotion ? 'auto' : 'smooth' });
+    if (history.pushState) history.pushState(null, '', id);
+  });
 
   /* ---------- nav bg on scroll ---------- */
   var nav = document.getElementById('nav');
@@ -34,134 +72,97 @@ if (form) form.addEventListener('submit', (e) => {
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 
-  /* ---------- hero: kinetic headline + device scatter -> lock stage ----------
-     Line 1 is already on screen at scroll 0 (first frame can't be empty). Line 2
-     and the five device frames share one timeline: frames fly in from scattered,
-     blurred, dim corners of the full viewport to a tight sharp cluster, and line 2
-     reveals in step via a clip-mask slide — never an opacity/color fade, so no
-     word is ever "grey" mid-transition, only progressively unmasked. */
-  if (window.gsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+  /* Singularity: each wrapper owns one transform (entrance, idle, cursor, scroll).
+     CSS is the final frame, including before JS and under reduced motion. */
+  gsap.registerPlugin(ScrollTrigger);
+  const hero = document.getElementById('hero');
+  const heroMedia = gsap.matchMedia();
+  heroMedia.add({
+    reduced: '(prefers-reduced-motion: reduce)',
+    compact: '(max-width: 768px), (any-pointer: coarse)',
+    desktop: '(min-width: 769px) and (hover: hover) and (pointer: fine)'
+  }, (context) => {
+    if (context.conditions.reduced) return;
+    const compact = context.conditions.compact;
+    const windows = [...hero.querySelectorAll('.singularity-window')]
+      .filter(el => getComputedStyle(el).display !== 'none');
+    const core = hero.querySelector('.singularity-core');
+    const ring = hero.querySelector('.singularity-convergence');
+    const tilt = hero.querySelector('.singularity-tilt');
+    const idle = gsap.timeline({ paused: true, repeat: -1, yoyo: true });
+    windows.forEach((el, i) => {
+      idle.to(el.firstElementChild, {
+        y: 7 + (i % 3) * 4, rotation: compact ? 0 : (i % 2 ? 2 : -2),
+        duration: 2.4 + i * .3, ease: 'sine.inOut'
+      }, 0);
+    });
+    idle.to(core, { scale: 1.08, opacity: .8, duration: 2.4, ease: 'sine.inOut' }, 0);
+    if (!compact) idle.to('.singularity-field', { y: 10, opacity: .65, duration: 4, ease: 'sine.inOut' }, 0);
 
-  var h1 = document.getElementById('hero-h1');
-  Array.prototype.slice.call(h1.querySelectorAll('.hline')).forEach(function(line){
-    var words = line.textContent.trim().split(' ');
-    line.innerHTML = words.map(function(w){
-      return '<span class="word"><span>' + w + '&nbsp;</span></span>';
-    }).join('');
+    let visible = true;
+    let entered = false;
+    const syncIdle = () => {
+      if (entered && visible && !document.hidden) idle.play();
+      else idle.pause();
+    };
+    const intro = gsap.timeline({ onComplete: () => { entered = true; syncIdle(); } });
+    windows.forEach((el, i) => {
+      const style = getComputedStyle(el);
+      const x = parseFloat(style.getPropertyValue('--x'));
+      const y = parseFloat(style.getPropertyValue('--y'));
+      const rotation = parseFloat(style.getPropertyValue('--r'));
+      const scale = parseFloat(style.getPropertyValue('--s'));
+      const angle = Math.atan2(y, x);
+      const distance = compact ? 280 : Math.max(innerWidth, innerHeight) * .7;
+      intro.fromTo(el, {
+        xPercent: -50, yPercent: -50, x: Math.cos(angle) * distance,
+        y: Math.sin(angle) * distance, rotation: compact ? rotation : (i % 2 ? 110 : -110),
+        scale: .35, opacity: 0
+      }, { x, y, rotation, scale, opacity: 1, duration: compact ? 1 : 1.5,
+        ease: 'back.out(1.12)' }, .15 + i * .09);
+    });
+    intro.fromTo(core, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: .9, ease: 'power2.out' }, .25);
+    intro.from('.hero .hline', { y: 35, opacity: 0, duration: .7, stagger: .15, ease: 'power3.out' }, .35);
+    intro.from('.hero .eyebrow, .hero-copy-bottom', { y: 16, opacity: 0, duration: .6, stagger: .12 }, .6);
+
+    gsap.to(ring, {
+      scale: compact ? 1.06 : 1.15, y: -20, opacity: 0, ease: 'none',
+      scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }
+    });
+    // Animate parents separate from the intro's targets to avoid competing tweens.
+    gsap.fromTo('.singularity-stage', { y: 0, opacity: 1 }, {
+      y: -90, opacity: 0, ease: 'power1.in', immediateRender: false,
+      scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    let move, reset;
+    if (!compact && context.conditions.desktop) {
+      const setters = Object.fromEntries(['x', 'y', 'rotationX', 'rotationY'].map(key =>
+        [key, gsap.quickTo(tilt, key, { duration: .6, ease: 'power2.out' })]));
+      move = (event) => {
+        const rect = hero.getBoundingClientRect();
+        const x = gsap.utils.clamp(-1, 1, (event.clientX - rect.left) / rect.width * 2 - 1);
+        const y = gsap.utils.clamp(-1, 1, (event.clientY - rect.top) / rect.height * 2 - 1);
+        setters.x(x * 8); setters.y(y * 8);
+        setters.rotationY(x * 8); setters.rotationX(-y * 8);
+      };
+      reset = () => Object.values(setters).forEach(set => set(0));
+      hero.addEventListener('pointermove', move, { passive: true });
+      hero.addEventListener('pointerleave', reset);
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      syncIdle();
+    });
+    observer.observe(hero);
+    document.addEventListener('visibilitychange', syncIdle);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', syncIdle);
+      if (move) hero.removeEventListener('pointermove', move);
+      if (reset) hero.removeEventListener('pointerleave', reset);
+    };
   });
-  var line1Spans = h1.querySelectorAll('.hline-1 .word > span');
-  var line2Spans = h1.querySelectorAll('.hline-2 .word > span');
-
-  var devicesWrap = document.getElementById('hero-devices');
-  var devices = devicesWrap ? Array.prototype.slice.call(devicesWrap.querySelectorAll('.device')) : [];
-  var lockFlash = document.getElementById('hero-lock-flash');
-  var heroEl = document.getElementById('hero');
-
-  /* scatter: fraction of the hero's own box (so 1280x800 and 1440x900 scatter the
-     same way), blurred + dim + rotated — full-viewport corners/edges.
-     lock: small fixed px offsets from hero-center — a constant-size cluster that
-     can never clip at either target width, sharp (blur 0) and fully opaque.
-     mobile keeps only the lead browser + one phone, smaller lock offsets. */
-  var DESKTOP_CFG = {
-    'dv-lead':      {fx:-.30, fy:-.24, srot:-13, sscale:.60, sblur:6,  sop:.58, lx:-34,  ly: 10, lrot:-3},
-    'dv-browser-a': {fx: .36, fy:-.30, srot: 12, sscale:.52, sblur:5,  sop:.54, lx: 196, ly:-40, lrot: 5},
-    'dv-browser-b': {fx:-.38, fy: .30, srot: 15, sscale:.50, sblur:7, sop:.54, lx:-214, ly: 55, lrot:-6},
-    'dv-phone-a':   {fx: .33, fy: .33, srot:-12, sscale:.58, sblur:5,  sop:.58, lx: 206, ly: 85, lrot: 4},
-    'dv-phone-b':   {fx:-.05, fy:-.40, srot:  8, sscale:.52, sblur:6,  sop:.54, lx:-150, ly:108, lrot:-4}
-  };
-  var MOBILE_CFG = {
-    'dv-lead':    {fx:-.30, fy:-.22, srot:-10, sscale:.6, sblur:7, sop:.4, lx:0, ly:-74, lrot:-2},
-    'dv-phone-a': {fx: .30, fy: .26, srot: 10, sscale:.6, sblur:7, sop:.4, lx:0, ly: 86, lrot: 2}
-  };
-  function deviceKey(el){
-    for (var c in DESKTOP_CFG) { if (el.classList.contains(c)) return c; }
-    return null;
-  }
-  function cfgFor(el, mobile){
-    var key = deviceKey(el);
-    return key ? (mobile ? MOBILE_CFG[key] : DESKTOP_CFG[key]) : null;
-  }
-
-  var wasLocked = false;
-  function playLockFlash(){
-    if (!window.gsap || !lockFlash) return;
-    gsap.killTweensOf(lockFlash);
-    gsap.fromTo(lockFlash, {opacity:0, scale:.7}, {
-      opacity:1, scale:1.18, duration:.32, ease:'power2.out',
-      onComplete: function(){ gsap.to(lockFlash, {opacity:0, duration:.6, ease:'power2.in'}); }
-    });
-  }
-  function setLocked(on){
-    if (on === wasLocked) return;
-    wasLocked = on;
-    if (devicesWrap) devicesWrap.classList.toggle('is-locked', on);
-    h1.classList.toggle('is-locked', on);
-    if (on && !reduceMotion) playLockFlash();
-  }
-
-  function runHero(){
-    if (!window.gsap) return;
-    var mobile = window.matchMedia('(max-width:640px)').matches;
-
-    gsap.set(line1Spans, {yPercent:0});
-    gsap.set('.eyebrow, .hero-sub, .hero-ctas', {opacity:0, y:12});
-
-    if (reduceMotion) {
-      gsap.set(line2Spans, {yPercent:0});
-      gsap.set('.eyebrow, .hero-sub, .hero-ctas', {opacity:1, y:0});
-      devices.forEach(function(el){
-        var cfg = cfgFor(el, mobile);
-        if (!cfg) return;
-        gsap.set(el, {xPercent:-50, yPercent:-50, x:cfg.lx, y:cfg.ly, rotation:cfg.lrot, scale:1, filter:'blur(0px)', opacity:1});
-      });
-      setLocked(true);
-      return;
-    }
-
-    gsap.set(line2Spans, {yPercent:115});
-    gsap.to('.eyebrow, .hero-sub, .hero-ctas', {opacity:1, y:0, duration:.6, stagger:.08, ease:'power2.out', delay:.15});
-
-    var heroRect = heroEl.getBoundingClientRect();
-    devices.forEach(function(el){
-      var cfg = cfgFor(el, mobile);
-      if (!cfg) return;
-      gsap.set(el, {
-        xPercent:-50, yPercent:-50,
-        x: cfg.fx * heroRect.width, y: cfg.fy * heroRect.height,
-        rotation: cfg.srot, scale: cfg.sscale, filter: 'blur(' + cfg.sblur + 'px)', opacity: cfg.sop
-      });
-    });
-
-    if (!mobile && window.ScrollTrigger) {
-      /* the dramatic moment: ~2.3 viewports of pinned, scrubbed scroll carries the
-         frames from their scattered rest pose into the sharp locked cluster, with
-         line 2 unmasking in step and a one-shot glow pulse firing right at lock. */
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: '#hero', start: 'top top', end: '+=230%', scrub: .6, pin: true, anticipatePin: 1,
-          onUpdate: function(self){ setLocked(self.progress > 0.93); }
-        }
-      }).add(devices.map(function(el){
-          var cfg = cfgFor(el, false);
-          return cfg ? gsap.to(el, {x:cfg.lx, y:cfg.ly, rotation:cfg.lrot, scale:1, filter:'blur(0px)', opacity:1, ease:'power2.inOut', duration:1}, 0) : null;
-        }).filter(Boolean), 0)
-        .to(line2Spans, {yPercent:0, duration:.7, stagger:.055, ease:'power3.out'}, .2);
-    } else {
-      /* mobile: the same scatter -> lock mechanic, scaled down and time-based on
-         load instead of scroll-pinned — lighter, no scroll-jacking. */
-      var mtl = gsap.timeline({paused:true});
-      devices.forEach(function(el){
-        var cfg = cfgFor(el, true);
-        if (!cfg) return;
-        mtl.to(el, {x:cfg.lx, y:cfg.ly, rotation:cfg.lrot, scale:1, filter:'blur(0px)', opacity:1, ease:'power2.inOut', duration:1.6}, 0);
-      });
-      mtl.to(line2Spans, {yPercent:0, duration:.6, stagger:.05, ease:'power3.out'}, .35)
-         .call(function(){ setLocked(true); });
-      var startM = function(){ setTimeout(function(){ mtl.play(); }, 1200); };
-      if (document.readyState === 'complete') startM(); else window.addEventListener('load', startM, {once:true});
-    }
-  }
-  runHero();
 
   /* ---------- scroll reveals (rest of the page) ---------- */
   if (window.gsap && window.ScrollTrigger) {
@@ -181,7 +182,7 @@ if (form) form.addEventListener('submit', (e) => {
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
   }
 
-  /* ---------- lazy video hydration (hero devices + work-grid loops) ----------
+  /* ---------- lazy video hydration (work-grid loops) ----------
      videos never get a <source>/play() call under reduced motion — the poster
      <img> stays the only visual, satisfying the static/no-autoplay requirement. */
   function hydrateVideo(video){
@@ -204,9 +205,11 @@ if (form) form.addEventListener('submit', (e) => {
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
-          if (entry.isIntersecting) { hydrateVideo(entry.target); io.unobserve(entry.target); }
+          var v = entry.target;
+          if (entry.isIntersecting) { if (!v.dataset.hydrated) hydrateVideo(v); else if (v.paused) { var pp = v.play(); if (pp && pp.catch) pp.catch(function(){}); } }
+          else if (v.dataset.hydrated && !v.paused) v.pause();
         });
-      }, { rootMargin: '400px 0px' });
+      }, { rootMargin: '200px 0px' });
       vids.forEach(function(v){ io.observe(v); });
     } else {
       vids.forEach(hydrateVideo);
@@ -215,96 +218,10 @@ if (form) form.addEventListener('submit', (e) => {
 
   if (!reduceMotion) {
     function startLazyVideos(){
-      lazyLoadVideosIn(document); // hero devices qualify immediately (in viewport); work-grid tiles hydrate as they scroll in
+      lazyLoadVideosIn(document); // work-grid tiles hydrate as they scroll in
     }
     if ('requestIdleCallback' in window) requestIdleCallback(startLazyVideos, {timeout: 1500});
     else window.addEventListener('load', function(){ setTimeout(startLazyVideos, 300); });
   }
 
-  /* ---------- three.js particle field (lazy, desktop + motion-ok only) ---------- */
-  function initParticles(){
-    if (reduceMotion || window.innerWidth < 640) return;
-    import('./three-lite.js').then(function(m){ window.THREE = m; buildParticles(); });
-  }
-  function buildParticles(){
-    var canvas = document.getElementById('hero-canvas');
-    var hero = document.querySelector('.hero');
-    var renderer = new THREE.WebGLRenderer({canvas: canvas, alpha:true, antialias:false});
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    var w = hero.clientWidth, h = hero.clientHeight;
-    renderer.setSize(w, h);
-
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(50, w/h, 1, 2000);
-    camera.position.z = 480;
-
-    var dense = window.innerWidth >= 1100;
-
-    function makeLayer(count, spreadZ, zOffset, size, opacity, color){
-      var geo = new THREE.BufferGeometry();
-      var positions = new Float32Array(count * 3);
-      for (var i=0; i<count; i++){
-        positions[i*3]   = (Math.random()-0.5) * 1500;
-        positions[i*3+1] = (Math.random()-0.5) * 950;
-        positions[i*3+2] = zOffset + (Math.random()-0.5) * spreadZ;
-      }
-      geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      var mat = new THREE.PointsMaterial({
-        color: color, size: size, transparent:true, opacity:opacity,
-        sizeAttenuation:true, blending: THREE.AdditiveBlending, depthWrite:false
-      });
-      var pts = new THREE.Points(geo, mat);
-      scene.add(pts);
-      return pts;
-    }
-
-    /* two depth layers: a dim distant field + a brighter near field, for a sense of real depth */
-    var far = makeLayer(dense ? 1100 : 550, 500, -260, 1.5, 0.32, 0x8C6A2E);
-    var near = makeLayer(dense ? 650 : 320, 400, 180, 2.6, 0.62, 0xE8A33D);
-
-    var mouseX = 0, mouseY = 0;
-    window.addEventListener('mousemove', function(e){
-      mouseX = (e.clientX / window.innerWidth - 0.5);
-      mouseY = (e.clientY / window.innerHeight - 0.5);
-    }, {passive:true});
-
-    var clock = new THREE.Clock();
-    var destroyed = false;
-
-    function animate(){
-      if (destroyed) return;
-      var t = clock.getElapsedTime();
-      far.rotation.y = t * 0.012;
-      far.rotation.x = Math.sin(t*0.08) * 0.02;
-      near.rotation.y = t * 0.026;
-      near.rotation.x = Math.sin(t*0.1 + 1) * 0.035;
-      var breathe = 1 + Math.sin(t*0.25) * 0.015;
-      near.scale.setScalar(breathe);
-      camera.position.x += (mouseX*70 - camera.position.x) * 0.02;
-      camera.position.y += (-mouseY*45 - camera.position.y) * 0.02;
-      camera.lookAt(scene.position);
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
-    }
-    animate();
-    canvas.classList.add('is-ready');
-
-    var resizeTimer;
-    window.addEventListener('resize', function(){
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function(){
-        if (window.innerWidth < 640) { destroyed = true; return; }
-        var w = hero.clientWidth, h = hero.clientHeight;
-        renderer.setSize(w, h);
-        camera.aspect = w/h;
-        camera.updateProjectionMatrix();
-      }, 200);
-    });
-  }
-
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(initParticles, {timeout: 1800});
-  } else {
-    setTimeout(initParticles, 700);
-  }
 })();
