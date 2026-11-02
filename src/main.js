@@ -126,12 +126,12 @@ if (form) {
     intro.from('.hero .eyebrow, .hero-copy-bottom', { y: 16, opacity: 0, duration: .6, stagger: .12 }, .6);
 
     gsap.to(ring, {
-      scale: compact ? 1.12 : 1.55, y: -30, opacity: .2, ease: 'none',
+      scale: compact ? 1.06 : 1.15, y: -20, opacity: 0, ease: 'none',
       scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }
     });
     // Animate parents separate from the intro's targets to avoid competing tweens.
-    gsap.to('.singularity-stage', {
-      y: -30, ease: 'none',
+    gsap.fromTo('.singularity-stage', { y: 0, opacity: 1 }, {
+      y: -90, opacity: 0, ease: 'power1.in', immediateRender: false,
       scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }
     });
 

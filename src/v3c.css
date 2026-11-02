@@ -107,7 +107,7 @@
   .hero h1{font-size:clamp(3.6rem,12.6vw,10.5rem);line-height:.86;letter-spacing:-.02em;font-weight:600;color:#f7f4ec;}
   .hero .hline{display:block;white-space:nowrap;}
   .hero .hline + .hline{margin-top:-12px;}
-  .singularity-convergence{position:relative;width:min(720px,88vw);height:clamp(230px,27vw,320px);margin:-6px 0 14px;z-index:2;pointer-events:none;perspective:1400px;}
+  .singularity-convergence{position:relative;width:min(720px,88vw);height:clamp(230px,27vw,320px);margin:-6px 0 56px;z-index:2;pointer-events:none;perspective:1400px;}
   .singularity-tilt{position:absolute;inset:0;}
   .singularity-core{position:absolute;left:50%;top:50%;width:150px;height:150px;transform:translate(-50%,-50%);
     background:radial-gradient(circle,#fff5def2 0%,#eab54cbf 32%,#eab54c00 72%);}
@@ -290,3 +290,7 @@
 .work-item{position:relative;cursor:pointer;}
 .work-item .work-link{position:absolute;inset:0;z-index:5;border-radius:inherit;}
 .work-item .work-link:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+/* compact mobile nav CTA */
+@media (max-width:480px){.nav{padding:.9rem 16px;}.nav-right .btn{font-size:13px;padding:8px 14px;min-height:0;line-height:1.2;}.nav-brand{font-size:.98rem;}}
+@media (min-width:769px) and (max-height:920px){.hero h1{font-size:clamp(3.6rem,min(12.6vw,16vh),10.5rem);}.singularity-convergence{transform:scale(.88);transform-origin:50% 50%;margin:-22px 0 30px;}}
