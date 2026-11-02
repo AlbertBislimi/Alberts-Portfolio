@@ -11,7 +11,7 @@ if (form) {
   const status = form.querySelector('.form-status');
   const label = btn.textContent;
   const setState = (st, msg) => { form.dataset.state = st; status.textContent = msg || ''; status.className = 'form-status is-' + st; };
-  const mailto = (d) => `mailto:ialbertbislimi@gmail.com?subject=${encodeURIComponent('New project — ' + d.get('type'))}&body=${encodeURIComponent(`Name: ${d.get('name')}\nEmail: ${d.get('email')}\nProject type: ${d.get('type')}\n\n${d.get('message')}`)}`;
+  const mailto = (d) => `mailto:ialbertbislimi@gmail.com?subject=${encodeURIComponent('New project: ' + d.get('type'))}&body=${encodeURIComponent(`Name: ${d.get('name')}\nEmail: ${d.get('email')}\nProject type: ${d.get('type')}\n\n${d.get('message')}`)}`;
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (form.dataset.state === 'loading') return;
@@ -183,7 +183,7 @@ if (form) {
   }
 
   /* ---------- lazy video hydration (work-grid loops) ----------
-     videos never get a <source>/play() call under reduced motion — the poster
+     videos never get a <source>/play() call under reduced motion; the poster
      <img> stays the only visual, satisfying the static/no-autoplay requirement. */
   function hydrateVideo(video){
     if (!video || video.dataset.hydrated) return;
@@ -196,7 +196,7 @@ if (form) {
     video.addEventListener('playing', function(){ video.classList.add('is-playing'); });
     video.load();
     var p = video.play();
-    if (p && p.catch) p.catch(function(){ /* autoplay blocked — poster remains visible */ });
+    if (p && p.catch) p.catch(function(){ /* autoplay blocked, poster remains visible */ });
   }
 
   function lazyLoadVideosIn(root){

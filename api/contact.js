@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   const name = esc(b.name).trim(), email = esc(b.email).trim(), type = esc(b.type).trim(), message = esc(b.message).trim();
   if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || message.length < 10)
     return res.status(400).json({ ok: false, error: 'invalid' });
-  const subject = `New project — ${type || 'enquiry'} — ${name}`;
+  const subject = `New project: ${type || 'enquiry'}, from ${name}`;
   const text = `Name: ${name}\nEmail: ${email}\nProject type: ${type}\n\n${message}`;
   try {
     if (process.env.RESEND_API_KEY) {
