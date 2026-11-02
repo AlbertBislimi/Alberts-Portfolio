@@ -1,129 +1,355 @@
-<!DOCTYPE html>
-<html lang="sq">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Albert Bislimi — Web Studio | Fast, animated websites for growing businesses</title>
+<meta name="description" content="Albert Bislimi designs, builds, and animates fast websites for small and growing businesses — real craft, not templates. Free demo before you pay with the Sitet plan from €19/month.">
+<meta name="author" content="Albert Bislimi">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0b0c10">
+<!-- canonical domain: apex albertbislimi.com -->
+<link rel="canonical" href="https://albertbislimi.com/">
 
-    <!-- Primary SEO -->
-    <title>Albert Bislimi — Web Developer Kosovë | Website Profesionale</title>
-    <meta name="description" content="Albert Bislimi — web developer nga Kosova. Ndërtojmë website profesionale për biznese në Kosovë, Shqipëri dhe Maqedoni. Landing page nga €399, dorëzim brenda 7 ditëve." />
-    <meta name="keywords" content="web developer kosovë, website kosovë, web dizajn ferizaj, ndërtim faqesh, web developer shqipëri, landing page kosovë, e-commerce kosovë, albert bislimi, ab studio" />
-    <meta name="author" content="Albert Bislimi" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://abstudio.dev" />
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://albertbislimi.com/">
+<meta property="og:site_name" content="Albert Bislimi — Web Studio">
+<meta property="og:title" content="Albert Bislimi — Websites that move the way your business does">
+<meta property="og:description" content="Fast, animated websites for small and growing businesses — real craft, not templates. See a free demo before you pay.">
+<meta property="og:image" content="https://albertbislimi.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Albert Bislimi web studio hero: client sites assembled in device frames under the headline Websites that move the way your business does.">
+<meta property="og:locale" content="en_US">
 
-    <!-- Open Graph (Facebook, LinkedIn, WhatsApp previews) -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://abstudio.dev" />
-    <meta property="og:title" content="Albert Bislimi — Web Developer Kosovë" />
-    <meta property="og:description" content="Ndërtojmë website profesionale për biznese në Kosovë. Çmime transparente, dorëzim brenda 7 ditëve, komunikim në shqip." />
-    <meta property="og:image" content="https://abstudio.dev/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="sq_AL" />
-    <meta property="og:site_name" content="AB Studio" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Albert Bislimi — Websites that move the way your business does">
+<meta name="twitter:description" content="Fast, animated websites for small and growing businesses — real craft, not templates.">
+<meta name="twitter:image" content="https://albertbislimi.com/og-image.jpg">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Albert Bislimi — Web Developer Kosovë" />
-    <meta name="twitter:description" content="Ndërtojmë website profesionale për biznese në Kosovë. Çmime transparente, dorëzim brenda 7 ditëve." />
-    <meta name="twitter:image" content="https://abstudio.dev/og-image.png" />
-
-    <!-- Structured Data: Person + LocalBusiness -->
-    <script type="application/ld+json">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": "https://abstudio.dev/#albert",
-          "name": "Albert Bislimi",
-          "jobTitle": "Web Developer",
-          "url": "https://abstudio.dev",
-          "email": "ialbertbislimi@gmail.com",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Kosovë",
-            "addressCountry": "XK"
-          },
-          "sameAs": [
-            "https://github.com/AlbertBislimi",
-            "https://linkedin.com/in/albertbislimi"
-          ]
-        },
-        {
-          "@type": "LocalBusiness",
-          "@id": "https://abstudio.dev/#business",
-          "name": "AB Studio",
-          "description": "Agjenci web nga Kosova. Ndërtojmë website profesionale që sjellin klientë të rinj.",
-          "url": "https://abstudio.dev",
-          "email": "ialbertbislimi@gmail.com",
-          "telephone": "+38349588569",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Kosovë",
-            "addressCountry": "XK"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "42.3706",
-            "longitude": "21.1489"
-          },
-          "priceRange": "€€",
-          "openingHours": "Mo-Fr 09:00-18:00",
-          "areaServed": ["Kosovo", "Albania", "North Macedonia"],
-          "serviceType": ["Web Development", "Web Design", "E-commerce", "SEO"],
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Web Development Services",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "name": "Landing Page",
-                "price": "399",
-                "priceCurrency": "EUR",
-                "description": "Faqe e vetme optimale për të kthyer vizitorët në klientë."
-              },
-              {
-                "@type": "Offer",
-                "name": "Faqe Biznesi",
-                "price": "799",
-                "priceCurrency": "EUR",
-                "description": "Prezencë e plotë online për kompaninë tuaj."
-              },
-              {
-                "@type": "Offer",
-                "name": "E-commerce",
-                "price": "1499",
-                "priceCurrency": "EUR",
-                "description": "Dyqan online i plotë me menaxhim produktesh dhe pagesa."
-              }
-            ]
-          }
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://abstudio.dev/#website",
-          "url": "https://abstudio.dev",
-          "name": "AB Studio — Web Developer Kosovë",
-          "description": "Website profesionale për biznese në Kosovë, Shqipëri dhe Maqedoni.",
-          "inLanguage": "sq",
-          "publisher": { "@id": "https://abstudio.dev/#business" }
-        }
-      ]
+      "@type": "Person",
+      "@id": "https://albertbislimi.com/#albert",
+      "name": "Albert Bislimi",
+      "jobTitle": "Web Developer",
+      "url": "https://albertbislimi.com/",
+      "email": "ialbertbislimi@gmail.com",
+      "sameAs": ["https://github.com/AlbertBislimi", "https://linkedin.com/in/albertbislimi"]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://albertbislimi.com/#business",
+      "name": "Albert Bislimi — Web Studio",
+      "description": "Design, development, and animation of fast websites, web apps, and online stores for small and growing businesses.",
+      "url": "https://albertbislimi.com/",
+      "image": "https://albertbislimi.com/og-image.jpg",
+      "email": "ialbertbislimi@gmail.com",
+      "telephone": "+38349588569",
+      "founder": { "@id": "https://albertbislimi.com/#albert" },
+      "address": { "@type": "PostalAddress", "addressCountry": "XK" },
+      "serviceType": ["Web Design", "Web Development", "E-commerce", "Product / SaaS builds"],
+      "makesOffer": {
+        "@type": "Offer",
+        "name": "Sitet plan — free demo before you pay",
+        "price": "19",
+        "priceCurrency": "EUR",
+        "priceSpecification": { "@type": "UnitPriceSpecification", "price": "19", "priceCurrency": "EUR", "unitText": "MONTH" }
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://albertbislimi.com/#website",
+      "url": "https://albertbislimi.com/",
+      "name": "Albert Bislimi — Web Studio",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://albertbislimi.com/#business" }
     }
-    </script>
+  ]
+}
+</script>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preload" as="image" href="/assets/loops/loop-mysearchagency.jpg">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=switzer@400,500,600,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">Albert Bislimi<span>Web Studio</span></a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#contact" class="btn btn-solid">Start a project</a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <section class="hero" id="hero">
+    <div class="hero-fallback-bg"></div>
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-lock-flash" id="hero-lock-flash" aria-hidden="true"></div>
+
+    <div class="hero-headline-stage">
+      <span class="eyebrow">Available for new projects</span>
+      <h1 id="hero-h1">
+        <span class="hline hline-1">Websites that move</span>
+        <span class="hline hline-2">the way your business does.</span>
+      </h1>
+    </div>
+
+    <div class="hero-devices" id="hero-devices">
+      <div class="device dv-lead">
+        <div class="device-frame">
+          <div class="device-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="durl">mysearchagency.com</span></div>
+          <div class="device-screen">
+            <img src="/assets/loops/loop-mysearchagency.jpg" alt="MySearch Agency site preview" loading="eager">
+            <video muted loop playsinline preload="none" data-mp4="/assets/loops/loop-mysearchagency.mp4" data-webm="/assets/loops/loop-mysearchagency.webm" aria-hidden="true"></video>
+          </div>
+        </div>
+      </div>
+      <div class="device dv-browser-a">
+        <div class="device-frame">
+          <div class="device-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="durl">nubis.app</span></div>
+          <div class="device-screen">
+            <img src="/assets/loops/loop-nubis.jpg" alt="Nubis site preview" loading="eager">
+            <video muted loop playsinline preload="none" data-mp4="/assets/loops/loop-nubis.mp4" data-webm="/assets/loops/loop-nubis.webm" aria-hidden="true"></video>
+          </div>
+        </div>
+      </div>
+      <div class="device dv-browser-b">
+        <div class="device-frame">
+          <div class="device-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="durl">teamawaken.info</span></div>
+          <div class="device-screen">
+            <img src="/assets/loops/loop-teamawaken.jpg" alt="TeamAwaken site preview" loading="eager">
+            <video muted loop playsinline preload="none" data-mp4="/assets/loops/loop-teamawaken.mp4" data-webm="/assets/loops/loop-teamawaken.webm" aria-hidden="true"></video>
+          </div>
+        </div>
+      </div>
+      <div class="device dv-phone-a">
+        <div class="device-frame">
+          <div class="device-screen">
+            <img src="/assets/loops/loop-cultr.jpg" alt="CULTR Sitet demo preview" loading="eager">
+            <video muted loop playsinline preload="none" data-mp4="/assets/loops/loop-cultr.mp4" data-webm="/assets/loops/loop-cultr.webm" aria-hidden="true"></video>
+          </div>
+        </div>
+      </div>
+      <div class="device dv-phone-b">
+        <div class="device-frame">
+          <div class="device-screen">
+            <img src="/assets/loops/loop-daka.jpg" alt="DAKA Wine Sitet demo preview" loading="eager">
+            <video muted loop playsinline preload="none" data-mp4="/assets/loops/loop-daka.mp4" data-webm="/assets/loops/loop-daka.webm" aria-hidden="true"></video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-copy-bottom">
+      <p class="hero-sub">I design, build, and animate fast websites for small and growing businesses — real craft, not templates.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-solid">Start a project</a>
+        <a href="#work" class="btn btn-ghost-dark">See the work</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="proof">
+    <div class="wrap proof-row">
+      <span class="proof-label">Worked with</span>
+      <div class="proof-names">
+        <span>gjejeonline.com</span><span>teamawaken.info</span><span>mysearchagency.com</span><span>Nubis</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Real work</h2>
+        <p class="section-sub">A mix of client sites and Sitet template demos — built, shipped, and still running.</p>
+      </div>
+
+      <div class="work-grid">
+        <article class="work-item wi-gjeje reveal">
+          <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">gjejeonline.com</span></div>
+          <div class="work-media lazy-media">
+            <img src="/assets/loops/loop-gjeje.jpg" alt="Gjeje Online marketplace homepage" loading="lazy">
+            <video muted loop playsinline preload="none" aria-hidden="true" data-mp4="/assets/loops/loop-gjeje.mp4" data-webm="/assets/loops/loop-gjeje.webm"></video>
+          </div>
+          <div class="work-caption"><h3>Gjeje Online</h3><p>Classifieds &amp; marketplace platform</p></div>
+        </article>
+
+        <article class="work-item wi-team reveal">
+          <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">teamawaken.info</span></div>
+          <div class="work-media lazy-media">
+            <img src="/assets/loops/loop-teamawaken.jpg" alt="TeamAwaken wellness retreat homepage" loading="lazy">
+            <video muted loop playsinline preload="none" aria-hidden="true" data-mp4="/assets/loops/loop-teamawaken.mp4" data-webm="/assets/loops/loop-teamawaken.webm"></video>
+          </div>
+          <div class="work-caption"><h3>TeamAwaken</h3><p>Corporate wellness &amp; retreats</p></div>
+        </article>
+
+        <article class="work-item wi-nubis reveal">
+          <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">nubis.app</span></div>
+          <div class="work-media lazy-media">
+            <img src="/assets/loops/loop-nubis.jpg" alt="Nubis AI workspace homepage" loading="lazy">
+            <video muted loop playsinline preload="none" aria-hidden="true" data-mp4="/assets/loops/loop-nubis.mp4" data-webm="/assets/loops/loop-nubis.webm"></video>
+          </div>
+          <div class="work-caption"><h3>Nubis</h3><p>AI workspace for dev teams</p></div>
+        </article>
+
+        <article class="work-item wi-row2 reveal">
+          <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">mysearchagency.com</span></div>
+          <div class="work-media lazy-media">
+            <img src="/assets/loops/loop-mysearchagency.jpg" alt="MySearch Agency listings homepage" loading="lazy">
+            <video muted loop playsinline preload="none" aria-hidden="true" data-mp4="/assets/loops/loop-mysearchagency.mp4" data-webm="/assets/loops/loop-mysearchagency.webm"></video>
+          </div>
+          <div class="work-caption"><h3>MySearch Agency</h3><p>Jobs &amp; listings portal</p></div>
+        </article>
+
+        <article class="work-item wi-row2 reveal">
+          <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">sitet.demo / cultr</span></div>
+          <div class="work-media lazy-media">
+            <img src="/assets/loops/loop-cultr.jpg" alt="CULTR barbershop Sitet demo" loading="lazy">
+            <video muted loop playsinline preload="none" aria-hidden="true" data-mp4="/assets/loops/loop-cultr.mp4" data-webm="/assets/loops/loop-cultr.webm"></video>
+          </div>
+          <div class="work-caption"><h3>CULTR</h3><p>Sitet demo — barbershop</p></div>
+        </article>
+
+        <article class="work-item wi-row2 reveal">
+          <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">sitet.demo / daka</span></div>
+          <div class="work-media lazy-media">
+            <img src="/assets/loops/loop-daka.jpg" alt="DAKA winery Sitet demo" loading="lazy">
+            <video muted loop playsinline preload="none" aria-hidden="true" data-mp4="/assets/loops/loop-daka.mp4" data-webm="/assets/loops/loop-daka.webm"></video>
+          </div>
+          <div class="work-caption"><h3>DAKA Wine</h3><p>Sitet demo — winery</p></div>
+        </article>
+
+        <article class="work-item wi-row2 reveal">
+          <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">sitet.demo / abria</span></div>
+          <div class="work-media"><img src="/assets/demo-abria-travel.png" alt="Abria Travel Sitet demo" loading="lazy"></div>
+          <div class="work-caption"><h3>Abria Travel</h3><p>Sitet demo — travel agency</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>What I do</h2>
+        <p class="section-sub">From a single landing page to a full product build — one person, one point of contact, start to finish.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <h3>Design &amp; development</h3>
+          <p>Custom-built marketing and brand sites — designed, coded, and animated from scratch, not a page-builder theme.</p>
+        </div>
+        <div class="service-card reveal">
+          <h3>Product &amp; SaaS builds</h3>
+          <p>Front-ends for web apps and dashboards — the kind of interface your users actually have to work in every day.</p>
+        </div>
+        <div class="service-card reveal">
+          <h3>E-commerce</h3>
+          <p>Stores built for conversion: fast pages, clear product pages, checkout that doesn't get in the way.</p>
+        </div>
+      </div>
+
+      <div id="process" class="process-rail">
+        <div class="process-step reveal"><span class="num">1</span><h4>Discover</h4><p>A short call about what the site needs to do and for whom.</p></div>
+        <div class="process-step reveal"><span class="num">2</span><h4>Design</h4><p>A real, browsable preview of the site — not a static mockup.</p></div>
+        <div class="process-step reveal"><span class="num">3</span><h4>Build</h4><p>The preview becomes the live, production-ready site.</p></div>
+        <div class="process-step reveal"><span class="num">4</span><h4>Launch &amp; care</h4><p>It ships, and I stay reachable for fixes and changes after.</p></div>
+      </div>
+
+      <div class="sitet-bar reveal">
+        <div>
+          <span class="sitet-tag">The low-friction option</span>
+          <h3>Sitet — I build your demo before you pay anything.</h3>
+          <p>A ready-to-launch site on a monthly plan. See the finished demo first; only subscribe if you want to use it.</p>
+        </div>
+        <div class="sitet-price">
+          <div class="amount">€19</div>
+          <div class="per">per month</div>
+          <a href="#contact" class="btn btn-solid sitet-cta">Request a free demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Let's talk</h2>
+        <p class="section-sub">Tell me about the project — I usually reply within a day.</p>
+      </div>
+
+      <div class="contact-grid">
+        <form class="reveal" id="contact-form">
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" type="text" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" type="email" name="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="f-type">Project type</label>
+            <select id="f-type" name="type">
+              <option>Design &amp; development</option>
+              <option>Product / SaaS build</option>
+              <option>E-commerce</option>
+              <option>Sitet plan</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-msg">Project details</label>
+            <textarea id="f-msg" name="message" required></textarea>
+          </div>
+          <button class="btn btn-solid" type="submit">Send it</button>
+        </form>
+
+        <div class="contact-direct reveal">
+          <div class="direct-row">
+            <a href="https://wa.me/38349588569" target="_blank" rel="noopener" class="btn btn-whatsapp" aria-label="Message on WhatsApp">Message on WhatsApp</a>
+          </div>
+          <div class="direct-row">
+            <span class="ph">Email</span>
+            <a href="mailto:ialbertbislimi@gmail.com">ialbertbislimi@gmail.com</a>
+          </div>
+          <div class="direct-row"><span class="ph">WhatsApp</span><a href="https://wa.me/38349588569" target="_blank" rel="noopener">+383 49 588 569</a></div>
+          <p class="placeholder-note">The form opens your email app with the message filled in. [PLACEHOLDER: server-side form delivery to be added]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 Albert Bislimi</span>
+    <ul class="footer-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script type="module" src="/src/main.js"></script>
+</body>
 </html>
