@@ -47,6 +47,22 @@ if (form) {
     lenis.on('scroll', ScrollTrigger && ScrollTrigger.update);
   }
 
+  /* ---------- smooth in-page anchors ---------- */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href');
+    var target = id === '#' || id === '#top' ? document.body : document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    var navEl = document.getElementById('nav');
+    var offset = -((navEl && navEl.offsetHeight) || 0) - 8;
+    if (target === document.body) offset = 0;
+    if (lenis) lenis.scrollTo(target === document.body ? 0 : target, { offset: offset, duration: 1.1 });
+    else window.scrollTo({ top: target === document.body ? 0 : target.getBoundingClientRect().top + window.scrollY + offset, behavior: reduceMotion ? 'auto' : 'smooth' });
+    if (history.pushState) history.pushState(null, '', id);
+  });
+
   /* ---------- nav bg on scroll ---------- */
   var nav = document.getElementById('nav');
   function onScroll(){
