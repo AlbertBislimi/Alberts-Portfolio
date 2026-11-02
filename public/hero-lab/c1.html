@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Albert Bislimi — Singularity</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500&f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#07070a;
+    --ink-soft:#0e0f14;
+    --paper:#f2efe6;
+    --cream:#f7f4ec;
+    --gold:#eab54c;
+    --gold-deep:#b9842a;
+    --mute:#9a988f;
+    --line:rgba(242,239,230,0.12);
+    --maxw:1440px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--ink);}
+  body{
+    font-family:'Switzer','Helvetica Neue',Arial,sans-serif;
+    color:var(--cream);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .hero{
+    position:relative;
+    min-height:100svh;
+    width:100%;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 48%, rgba(234,181,76,0.16), rgba(234,181,76,0) 62%),
+      radial-gradient(ellipse 120% 90% at 50% 100%, rgba(185,132,42,0.10), transparent 60%),
+      var(--ink);
+    display:flex;
+    flex-direction:column;
+    isolation:isolate;
+  }
+
+  /* ---------- particle field ---------- */
+  .field{
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      radial-gradient(1px 1px at 8% 18%, rgba(234,181,76,.55) 50%, transparent 52%),
+      radial-gradient(1px 1px at 22% 72%, rgba(234,181,76,.4) 50%, transparent 52%),
+      radial-gradient(1.5px 1.5px at 35% 12%, rgba(242,239,230,.45) 50%, transparent 52%),
+      radial-gradient(1px 1px at 48% 85%, rgba(234,181,76,.5) 50%, transparent 52%),
+      radial-gradient(1.5px 1.5px at 62% 30%, rgba(242,239,230,.35) 50%, transparent 52%),
+      radial-gradient(1px 1px at 75% 65%, rgba(234,181,76,.5) 50%, transparent 52%),
+      radial-gradient(1px 1px at 88% 20%, rgba(242,239,230,.4) 50%, transparent 52%),
+      radial-gradient(1.5px 1.5px at 92% 78%, rgba(234,181,76,.45) 50%, transparent 52%),
+      radial-gradient(1px 1px at 15% 45%, rgba(234,181,76,.3) 50%, transparent 52%),
+      radial-gradient(1px 1px at 68% 92%, rgba(242,239,230,.3) 50%, transparent 52%);
+    background-repeat:no-repeat;
+    mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, black 35%, transparent 78%);
+  }
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:relative; z-index:5;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:28px clamp(20px,4vw,56px) 0;
+  }
+  .brand{line-height:1.05;}
+  .brand .name{font-family:'Clash Display',sans-serif; font-weight:600; font-size:18px; color:var(--cream); letter-spacing:-0.01em;}
+  .brand .sub{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--mute); letter-spacing:.06em;}
+  .links{display:flex; gap:32px; font-size:14.5px; color:#d8d5c9;}
+  .links a{color:inherit; text-decoration:none; opacity:.78;}
+  .cta-pill{
+    font-family:'Switzer',sans-serif; font-weight:600; font-size:13.5px;
+    color:var(--ink); background:var(--gold); border-radius:999px;
+    padding:11px 20px; text-decoration:none; white-space:nowrap;
+  }
+  @media (max-width:760px){ .links{display:none;} }
+
+  /* ---------- main content column ---------- */
+  .stage{
+    position:relative; z-index:2;
+    flex:1;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:8px clamp(16px,4vw,40px) 28px;
+    gap:0;
+  }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.04em;
+    color:var(--gold); margin-bottom:clamp(10px,2vw,22px);
+  }
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--gold); box-shadow:0 0 10px 2px rgba(234,181,76,.7);}
+
+  .headline{
+    margin:0; text-align:center;
+    font-family:'Clash Display',sans-serif; font-weight:600;
+    letter-spacing:-0.02em;
+    line-height:0.86;
+    color:var(--cream);
+    font-size:clamp(3.6rem, 12.6vw, 10.5rem);
+  }
+  .headline .l1{display:block; margin-bottom:clamp(-18px,-3vw,-6px);}
+  .headline .l2{display:block; margin-top:clamp(-18px,-3vw,-6px);}
+
+  /* ---------- convergence cluster ---------- */
+  .convergence{
+    position:relative;
+    width:min(720px,88vw);
+    height:clamp(230px,30vw,400px);
+    margin:clamp(-10px,-1.5vw,-4px) 0 clamp(2px,1vw,14px);
+    z-index:3;
+  }
+  .core{
+    position:absolute; left:50%; top:50%;
+    width:120px; height:120px;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(255,245,222,0.95) 0%, rgba(234,181,76,0.75) 32%, rgba(234,181,76,0) 72%);
+    filter:blur(2px);
+    z-index:1;
+  }
+  .mock{
+    position:absolute; left:50%; top:50%;
+    width:230px;
+    border-radius:10px;
+    overflow:hidden;
+    background:var(--paper);
+    box-shadow:0 30px 60px -18px rgba(0,0,0,.65), 0 0 0 1px rgba(242,239,230,0.06);
+    transform-origin:center;
+  }
+  .mock__bar{
+    height:20px; background:#e7e2d4; display:flex; align-items:center; gap:5px; padding:0 9px;
+  }
+  .mock__bar span{width:6px; height:6px; border-radius:50%; background:#c9c3af;}
+  .mock__img{
+    width:100%; height:138px; background-size:cover; background-position:top center; display:block;
+  }
+
+  .mock--1{ transform:translate(-50%,-50%) translate(-210px,-64px) rotate(-9deg) scale(.92); z-index:2;}
+  .mock--2{ transform:translate(-50%,-50%) translate(198px,-78px) rotate(7deg) scale(.88); z-index:2;}
+  .mock--3{ transform:translate(-50%,-50%) translate(-128px,70px) rotate(6deg) scale(1.0); z-index:4;}
+  .mock--4{ transform:translate(-50%,-50%) translate(140px,66px) rotate(-8deg) scale(.95); z-index:4;}
+  .mock--5{ transform:translate(-50%,-50%) translate(-18px,-108px) rotate(-3deg) scale(.8); z-index:2;}
+  .mock--6{ transform:translate(-50%,-50%) translate(26px,96px) rotate(4deg) scale(.82); z-index:3;}
+
+  .tag{
+    position:absolute; top:-9px; left:9px;
+    font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.03em;
+    color:var(--ink); background:var(--gold); padding:2px 6px; border-radius:4px;
+  }
+
+  .sub{
+    max-width:620px; text-align:center;
+    font-size:clamp(14.5px,1.6vw,17px); line-height:1.55;
+    color:#cfccc0; margin:clamp(6px,1.4vw,14px) 0 clamp(16px,2.2vw,26px);
+  }
+
+  .ctas{display:flex; gap:14px; margin-bottom:clamp(20px,3vw,34px);}
+  .btn{
+    font-family:'Switzer',sans-serif; font-weight:600; font-size:14.5px;
+    padding:14px 26px; border-radius:999px; text-decoration:none; white-space:nowrap;
+  }
+  .btn--primary{background:var(--gold); color:var(--ink);}
+  .btn--ghost{background:transparent; color:var(--cream); border:1px solid rgba(242,239,230,0.28);}
+
+  .logos{
+    position:relative; z-index:2;
+    width:100%;
+    border-top:1px solid var(--line);
+    padding:16px clamp(20px,4vw,56px) 20px;
+    display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
+    gap:clamp(18px,3vw,44px);
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.03em;
+    color:var(--mute);
+  }
+
+  /* ---------- kinetic type ---------- */
+  .headline .l1, .headline .l2{ perspective:700px; }
+  .ch{ display:inline-block; }
+
+  /* ---------- motion perf/perspective ---------- */
+  .stage{ perspective:1400px; }
+  .convergence, .core, .mock{ will-change:transform; }
+
+  /* ---------- lab chrome ---------- */
+  .lab-back{
+    display:inline-block;
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.05em;
+    color:var(--mute); text-decoration:none; margin-bottom:6px; opacity:.85;
+  }
+  .lab-back:hover{ color:var(--cream); }
+
+  .replay-btn{
+    position:fixed; right:18px; bottom:18px; z-index:50;
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.03em;
+    color:var(--cream); background:rgba(242,239,230,0.08);
+    border:1px solid rgba(242,239,230,0.22);
+    padding:10px 16px; border-radius:999px; cursor:pointer;
+    transition:background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .replay-btn:hover{ background:rgba(242,239,230,0.14); border-color:rgba(242,239,230,0.36); }
+  .replay-btn:active{ transform:scale(.96); }
+
+  .next-section{
+    position:relative; min-height:150vh; background:var(--ink);
+    border-top:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    padding:40px 24px;
+  }
+  .next-section__inner{ text-align:center; max-width:460px; }
+  .next-section__label{
+    display:block; font-family:'IBM Plex Mono',monospace; font-size:12px;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;
+  }
+  .next-section__inner p{ font-family:'Switzer',sans-serif; font-size:16px; line-height:1.6; color:#cfccc0; margin:0; }
+
+  @media (max-width:760px){
+    .replay-btn{ right:14px; bottom:14px; font-size:11px; padding:9px 14px; }
+    .lab-back{ font-size:9.5px; }
+    .nav{padding:20px 18px 0;}
+    .stage{padding:4px 16px 20px;}
+    .headline{font-size:clamp(2.8rem,15vw,4.4rem); line-height:0.9;}
+    .headline .l1, .headline .l2{margin:0;}
+    .convergence{width:100%; height:300px; margin:6px 0 10px;}
+    .mock{width:148px;}
+    .mock__img{height:90px;}
+    .mock--1{ transform:translate(-50%,-50%) translate(-108px,-78px) rotate(-10deg) scale(.86);}
+    .mock--2{ transform:translate(-50%,-50%) translate(96px,-82px) rotate(8deg) scale(.82);}
+    .mock--3{ transform:translate(-50%,-50%) translate(-70px,62px) rotate(6deg) scale(.92);}
+    .mock--4{ transform:translate(-50%,-50%) translate(74px,60px) rotate(-7deg) scale(.88);}
+    .mock--5{ transform:translate(-50%,-50%) translate(-6px,-104px) rotate(-3deg) scale(.7);}
+    .mock--6{ transform:translate(-50%,-50%) translate(10px,88px) rotate(4deg) scale(.74);}
+    .core{width:84px; height:84px;}
+    .sub{font-size:14px; padding:0 6px;}
+    .logos{gap:14px 22px; font-size:10.5px;}
+    .ctas{flex-direction:row; flex-wrap:wrap; justify-content:center;}
+  }
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="field"></div>
+
+  <header class="nav">
+    <div class="brand">
+      <a class="lab-back" href="index.html">← All concepts</a>
+      <div class="name">Albert Bislimi</div>
+      <div class="sub">Web&nbsp;Studio</div>
+    </div>
+    <nav class="links">
+      <a href="#">Work</a>
+      <a href="#">Services</a>
+      <a href="#">Process</a>
+      <a href="#">Contact</a>
+    </nav>
+    <a class="cta-pill" href="#">Start a project</a>
+  </header>
+
+  <div class="stage">
+    <div class="eyebrow"><span class="dot"></span>Available for new projects</div>
+
+    <h1 class="headline">
+      <span class="l1">Websites</span>
+      <span class="l2">that move</span>
+    </h1>
+
+    <div class="convergence">
+      <div class="core"></div>
+      <div class="mock mock--1" data-dx="-210" data-dy="-64" data-r="-9" data-s=".92" data-dxm="-108" data-dym="-78" data-rm="-10" data-sm=".86"><span class="tag">gjejeonline.com</span><div class="mock__bar"><span></span><span></span><span></span></div><div class="mock__img" style="background-image:url('/assets/loops/loop-gjeje.jpg')"></div></div>
+      <div class="mock mock--2" data-dx="198" data-dy="-78" data-r="7" data-s=".88" data-dxm="96" data-dym="-82" data-rm="8" data-sm=".82"><span class="tag">nubis.app</span><div class="mock__bar"><span></span><span></span><span></span></div><div class="mock__img" style="background-image:url('/assets/loops/loop-nubis.jpg')"></div></div>
+      <div class="mock mock--3" data-dx="-128" data-dy="70" data-r="6" data-s="1.0" data-dxm="-70" data-dym="62" data-rm="6" data-sm=".92"><span class="tag">cultr.</span><div class="mock__bar"><span></span><span></span><span></span></div><div class="mock__img" style="background-image:url('/assets/loops/loop-cultr.jpg')"></div></div>
+      <div class="mock mock--4" data-dx="140" data-dy="66" data-r="-8" data-s=".95" data-dxm="74" data-dym="60" data-rm="-7" data-sm=".88"><span class="tag">mysearchagency.com</span><div class="mock__bar"><span></span><span></span><span></span></div><div class="mock__img" style="background-image:url('/assets/loops/loop-mysearchagency.jpg')"></div></div>
+      <div class="mock mock--5" data-dx="-18" data-dy="-108" data-r="-3" data-s=".8" data-dxm="-6" data-dym="-104" data-rm="-3" data-sm=".7"><span class="tag">teamawaken.info</span><div class="mock__bar"><span></span><span></span><span></span></div><div class="mock__img" style="background-image:url('/assets/loops/loop-teamawaken.jpg')"></div></div>
+      <div class="mock mock--6" data-dx="26" data-dy="96" data-r="4" data-s=".82" data-dxm="10" data-dym="88" data-rm="4" data-sm=".74"><span class="tag">daka.wine</span><div class="mock__bar"><span></span><span></span><span></span></div><div class="mock__img" style="background-image:url('/assets/loops/loop-daka.jpg')"></div></div>
+    </div>
+
+    <p class="sub">I design, build, and animate fast websites for small and growing businesses — real craft, not templates.</p>
+
+    <div class="ctas">
+      <a class="btn btn--primary" href="#">Start a project</a>
+      <a class="btn btn--ghost" href="#">See the work</a>
+    </div>
+  </div>
+
+  <div class="logos">
+    <span>gjejeonline.com</span>
+    <span>teamawaken.info</span>
+    <span>nubis.app</span>
+    <span>mysearchagency.com</span>
+    <span>cultr.</span>
+    <span>daka.wine</span>
+  </div>
+</section>
+
+<section class="next-section">
+  <div class="next-section__inner">
+    <span class="next-section__label">Next section</span>
+    <p>Work, process, and case studies continue here — this is just scroll space for the prototype.</p>
+  </div>
+</section>
+
+<button class="replay-btn" id="replayBtn" type="button" aria-label="Replay hero animation">↺ Replay</button>
+
+<script src="gsap.min.js"></script>
+<script src="ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mocks = gsap.utils.toArray('.mock');
+  var core = document.querySelector('.core');
+  var convergence = document.querySelector('.convergence');
+  var replayBtn = document.getElementById('replayBtn');
+  var idleTweens = [];
+  var introTl = null;
+  var cursorBound = false;
+
+  function isMobile(){ return window.matchMedia('(max-width:760px)').matches; }
+
+  function baseFor(el){
+    var m = isMobile();
+    return {
+      x: parseFloat(m ? el.dataset.dxm : el.dataset.dx),
+      y: parseFloat(m ? el.dataset.dym : el.dataset.dy),
+      rotation: parseFloat(m ? el.dataset.rm : el.dataset.r),
+      scale: parseFloat(m ? el.dataset.sm : el.dataset.s)
+    };
+  }
+
+  function scatterFor(i){
+    var angle = (i / mocks.length) * Math.PI * 2 + (i % 2 ? 0.35 : -0.35);
+    var dist = isMobile() ? 360 : 680;
+    return {
+      x: Math.cos(angle) * dist,
+      y: Math.sin(angle) * dist,
+      rotation: (i % 2 ? 1 : -1) * (110 + i * 18),
+      scale: 0.35,
+      opacity: 0
+    };
+  }
+
+  function splitChars(el){
+    var text = el.textContent;
+    el.innerHTML = text.split('').map(function(ch){
+      return ch === ' ' ? ' ' : '<span class="ch">' + ch + '</span>';
+    }).join('');
+    return el.querySelectorAll('.ch');
+  }
+
+  var charsL1 = splitChars(document.querySelector('.headline .l1'));
+  var charsL2 = splitChars(document.querySelector('.headline .l2'));
+
+  function killIdle(){
+    idleTweens.forEach(function(t){ t.kill(); });
+    idleTweens = [];
+  }
+
+  function startIdle(){
+    if (reduceMotion) return;
+    killIdle();
+    mocks.forEach(function(m, i){
+      idleTweens.push(gsap.to(m, {
+        y: '+=' + (7 + (i % 3) * 4),
+        duration: 2.4 + i * 0.3, ease: 'sine.inOut', yoyo: true, repeat: -1
+      }));
+      idleTweens.push(gsap.to(m, {
+        rotation: '+=' + (i % 2 ? 2.5 : -2.5),
+        duration: 3.6 + i * 0.4, ease: 'sine.inOut', yoyo: true, repeat: -1
+      }));
+    });
+    idleTweens.push(gsap.to(core, {
+      scale: 1.08, opacity: 0.85, duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1
+    }));
+    idleTweens.push(gsap.to(convergence, {
+      rotation: '+=360', duration: 140, ease: 'none', repeat: -1
+    }));
+  }
+
+  function setScattered(){
+    gsap.set(core, { xPercent: -50, yPercent: -50, scale: 0, opacity: 0 });
+    mocks.forEach(function(m, i){
+      gsap.set(m, Object.assign({ xPercent: -50, yPercent: -50 }, scatterFor(i)));
+    });
+    gsap.set(charsL1, { opacity: 0, y: 46, rotationX: -80 });
+    gsap.set(charsL2, { opacity: 0, y: 46, rotationX: -80 });
+    gsap.set(['.eyebrow', '.sub', '.ctas', '.logos'], { opacity: 0, y: 16 });
+  }
+
+  function setFinalInstant(){
+    gsap.set(core, { xPercent: -50, yPercent: -50, scale: 1, opacity: 1 });
+    mocks.forEach(function(m){
+      var b = baseFor(m);
+      gsap.set(m, { xPercent: -50, yPercent: -50, x: b.x, y: b.y, rotation: b.rotation, scale: b.scale, opacity: 1 });
+    });
+    gsap.set(charsL1, { opacity: 1, y: 0, rotationX: 0 });
+    gsap.set(charsL2, { opacity: 1, y: 0, rotationX: 0 });
+    gsap.set(['.eyebrow', '.sub', '.ctas', '.logos'], { opacity: 1, y: 0 });
+  }
+
+  function playIntro(){
+    killIdle();
+    if (introTl) introTl.kill();
+    setScattered();
+    var tl = gsap.timeline({ onComplete: startIdle });
+    introTl = tl;
+    tl.to(core, { scale: 1, opacity: 1, duration: 0.9, ease: 'power2.out' }, 0.1);
+    mocks.forEach(function(m, i){
+      var b = baseFor(m);
+      tl.to(m, {
+        x: b.x, y: b.y, rotation: b.rotation, scale: b.scale, opacity: 1,
+        duration: 1.5, ease: 'power3.out'
+      }, 0.15 + i * 0.09);
+    });
+    tl.to('.eyebrow', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.25);
+    tl.to(charsL1, { opacity: 1, y: 0, rotationX: 0, duration: 0.6, stagger: 0.02, ease: 'power3.out' }, 0.65);
+    tl.to(charsL2, { opacity: 1, y: 0, rotationX: 0, duration: 0.6, stagger: 0.02, ease: 'power3.out' }, 0.8);
+    tl.to('.sub, .ctas, .logos', { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power2.out' }, 1.2);
+    return tl;
+  }
+
+  function onMouseMove(e){
+    var rect = convergence.getBoundingClientRect();
+    var relX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+    var relY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+    gsap.to(convergence, {
+      rotationY: gsap.utils.clamp(-9, 9, relX * 8),
+      rotationX: gsap.utils.clamp(-9, 9, -relY * 8),
+      duration: 0.6, ease: 'power2.out', overwrite: 'auto'
+    });
+  }
+
+  function updateCursorBinding(){
+    var shouldBind = !isMobile() && !('ontouchstart' in window) && !reduceMotion;
+    if (shouldBind && !cursorBound){
+      window.addEventListener('mousemove', onMouseMove);
+      cursorBound = true;
+    } else if (!shouldBind && cursorBound){
+      window.removeEventListener('mousemove', onMouseMove);
+      cursorBound = false;
+      gsap.to(convergence, { rotationX: 0, rotationY: 0, duration: 0.4 });
+    }
+  }
+
+  if (!reduceMotion){
+    gsap.to(convergence, {
+      scale: 1.55, y: -30, opacity: 0.2, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+    gsap.to('.stage .eyebrow, .stage .headline, .stage .sub, .stage .ctas', {
+      opacity: 0, y: -30, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+  }
+
+  replayBtn.addEventListener('click', function(){
+    killIdle();
+    if (introTl) introTl.kill();
+    if (reduceMotion){ setFinalInstant(); return; }
+    playIntro();
+  });
+
+  var resizeTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function(){
+      updateCursorBinding();
+      ScrollTrigger.refresh();
+    }, 200);
+  });
+
+  if (reduceMotion){
+    setFinalInstant();
+  } else {
+    playIntro();
+    updateCursorBinding();
+  }
+})();
+</script>
+</body>
+</html>

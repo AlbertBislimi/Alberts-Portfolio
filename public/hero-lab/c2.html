@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Albert Bislimi — Impact</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500&f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0910;
+    --ink-2:#120f1a;
+    --paper:#f2efe6;
+    --cream:#f7f4ec;
+    --gold:#eab54c;
+    --ember:#ff7a42;
+    --white-hot:#fff6e8;
+    --mute:#a9a4b4;
+    --line:rgba(247,244,236,0.1);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--ink);}
+  body{
+    font-family:'Switzer','Helvetica Neue',Arial,sans-serif;
+    color:var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+  .hero{
+    position:relative;
+    min-height:100svh;
+    width:100%;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse 60% 70% at 72% 58%, rgba(255,122,66,0.16), transparent 60%),
+      radial-gradient(ellipse 90% 60% at 10% 10%, rgba(234,181,76,0.08), transparent 55%),
+      var(--ink);
+    display:flex; flex-direction:column;
+  }
+
+  .nav{
+    position:relative; z-index:6;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:28px clamp(20px,4vw,56px) 0;
+  }
+  .brand .name{font-family:'Clash Display',sans-serif; font-weight:600; font-size:18px; letter-spacing:-0.01em;}
+  .brand .sub{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--mute); letter-spacing:.06em;}
+  .links{display:flex; gap:32px; font-size:14.5px; color:#dcd8e4;}
+  .links a{color:inherit; text-decoration:none; opacity:.78;}
+  .cta-pill{
+    font-family:'Switzer',sans-serif; font-weight:600; font-size:13.5px;
+    color:var(--ink); background:var(--gold); border-radius:999px;
+    padding:11px 20px; text-decoration:none; white-space:nowrap;
+  }
+  @media (max-width:760px){ .links{display:none;} }
+
+  .stage{
+    position:relative; z-index:2; flex:1;
+    display:grid;
+    grid-template-columns:1.02fr 1fr;
+    align-items:center;
+    padding:10px clamp(20px,4vw,64px) 0;
+    gap:10px;
+  }
+
+  .copy{position:relative; z-index:4;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.04em;
+    color:var(--ember); margin-bottom:clamp(14px,2vw,26px);
+  }
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--ember); box-shadow:0 0 10px 2px rgba(255,122,66,.7);}
+
+  .headline{
+    margin:0;
+    font-family:'Clash Display',sans-serif; font-weight:700;
+    letter-spacing:-0.02em; line-height:0.88;
+    font-size:clamp(3.4rem, 7.6vw, 7.2rem);
+    transform:skewX(-3deg);
+  }
+  .headline .l1{display:block;}
+  .headline .l2{display:block; margin-left:clamp(10px,3vw,46px); color:var(--cream);}
+
+  .sub{
+    max-width:420px;
+    font-size:clamp(14.5px,1.4vw,16.5px); line-height:1.6;
+    color:#d2cedd; margin:clamp(18px,2.6vw,30px) 0 clamp(20px,2.8vw,32px);
+  }
+  .ctas{display:flex; gap:14px;}
+  .btn{
+    font-family:'Switzer',sans-serif; font-weight:600; font-size:14.5px;
+    padding:14px 26px; border-radius:999px; text-decoration:none; white-space:nowrap;
+  }
+  .btn--primary{background:var(--gold); color:var(--ink);}
+  .btn--ghost{background:transparent; color:var(--cream); border:1px solid rgba(247,244,236,0.28);}
+
+  /* ---------- impact cluster ---------- */
+  .impact{
+    position:relative;
+    height:min(78vh,680px);
+    width:100%;
+  }
+  .burst{
+    position:absolute; left:58%; top:52%; width:360px; height:360px;
+    transform:translate(-50%,-50%);
+    background:
+      repeating-conic-gradient(from 0deg, rgba(255,246,232,0.22) 0deg 3deg, transparent 3deg 24deg);
+    border-radius:50%;
+    filter:blur(.3px);
+    z-index:1;
+    mask-image:radial-gradient(circle, black 0%, black 30%, transparent 72%);
+  }
+  .flash{
+    position:absolute; left:58%; top:52%; width:130px; height:130px;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, var(--white-hot) 0%, var(--ember) 45%, transparent 75%);
+    filter:blur(3px); z-index:1;
+  }
+  .trail{
+    position:absolute; left:58%; top:52%;
+    width:3px; height:var(--len,220px);
+    background:linear-gradient(to top, rgba(255,122,66,0) 0%, rgba(255,122,66,.55) 60%, rgba(255,246,232,.75) 100%);
+    transform-origin:bottom center;
+    transform:translate(-50%,-100%) rotate(var(--ang,0deg));
+    filter:blur(.5px);
+    z-index:1;
+  }
+  .mock{
+    position:absolute; left:58%; top:52%;
+    width:250px; border-radius:10px; overflow:hidden; background:var(--paper);
+    box-shadow:0 26px 54px -16px rgba(0,0,0,.7), 0 0 0 1px rgba(10,9,16,0.4);
+    z-index:3;
+  }
+  .mock__bar{height:20px; background:#e7e2d4; display:flex; align-items:center; gap:5px; padding:0 9px;}
+  .mock__bar span{width:6px; height:6px; border-radius:50%; background:#c9c3af;}
+  .mock__img{width:100%; height:150px; background-size:cover; background-position:top center; display:block;}
+  .tag{
+    position:absolute; top:-9px; left:9px;
+    font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.03em;
+    color:var(--ink); background:var(--ember); padding:2px 6px; border-radius:4px; z-index:2;
+  }
+
+  .mock--1{ transform:translate(-50%,-50%) translate(-150px,-168px) rotate(-16deg) scale(.86); z-index:2;}
+  .mock--2{ transform:translate(-50%,-50%) translate(176px,-120px) rotate(13deg) scale(.82); z-index:2;}
+  .mock--3{ transform:translate(-50%,-50%) translate(-176px,86px) rotate(11deg) scale(.9); z-index:4;}
+  .mock--4{ transform:translate(-50%,-50%) translate(150px,118px) rotate(-14deg) scale(.88); z-index:4;}
+  .mock--5{ transform:translate(-50%,-50%) translate(-8px,-40px) rotate(4deg) scale(1.02); z-index:5;}
+  .mock--6{ transform:translate(-50%,-50%) translate(26px,36px) rotate(-6deg) scale(.8); z-index:3;}
+
+  .t1{--ang:-26deg; --len:260px; opacity:.6;}
+  .t2{--ang:34deg; --len:230px; opacity:.5;}
+  .t3{--ang:150deg; --len:240px; opacity:.55;}
+  .t4{--ang:-150deg; --len:210px; opacity:.45;}
+
+  .logos{
+    position:relative; z-index:2; width:100%;
+    border-top:1px solid var(--line);
+    padding:16px clamp(20px,4vw,56px) 20px;
+    display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
+    gap:clamp(18px,3vw,44px);
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.03em;
+    color:var(--mute);
+  }
+
+  /* ---------- kinetic type ---------- */
+  .headline .l1, .headline .l2{ perspective:700px; }
+  .ch{ display:inline-block; }
+
+  /* ---------- motion perf/perspective ---------- */
+  .stage{ perspective:1400px; }
+  .impact, .mock, .burst, .flash, .trail{ will-change:transform; }
+
+  /* ---------- lab chrome ---------- */
+  .lab-back{
+    display:inline-block;
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:.05em;
+    color:var(--mute); text-decoration:none; margin-bottom:6px; opacity:.85;
+  }
+  .lab-back:hover{ color:var(--cream); }
+
+  .replay-btn{
+    position:fixed; right:18px; bottom:18px; z-index:50;
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.03em;
+    color:var(--cream); background:rgba(247,244,236,0.08);
+    border:1px solid rgba(247,244,236,0.22);
+    padding:10px 16px; border-radius:999px; cursor:pointer;
+    transition:background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .replay-btn:hover{ background:rgba(247,244,236,0.14); border-color:rgba(247,244,236,0.36); }
+  .replay-btn:active{ transform:scale(.96); }
+
+  .next-section{
+    position:relative; min-height:150vh; background:var(--ink);
+    border-top:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    padding:40px 24px;
+  }
+  .next-section__inner{ text-align:center; max-width:460px; }
+  .next-section__label{
+    display:block; font-family:'IBM Plex Mono',monospace; font-size:12px;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--ember); margin-bottom:12px;
+  }
+  .next-section__inner p{ font-family:'Switzer',sans-serif; font-size:16px; line-height:1.6; color:#d2cedd; margin:0; }
+
+  @media (max-width:760px){
+    .replay-btn{ right:14px; bottom:14px; font-size:11px; padding:9px 14px; }
+    .lab-back{ font-size:9.5px; }
+  }
+
+  @media (max-width:900px){
+    .stage{grid-template-columns:1fr;}
+  }
+
+  @media (max-width:760px){
+    .nav{padding:20px 18px 0;}
+    .stage{padding:6px 18px 0; gap:0;}
+    .headline{font-size:clamp(2.6rem,13.5vw,3.6rem); transform:skewX(-2deg);}
+    .headline .l2{margin-left:14px;}
+    .sub{max-width:100%; margin:16px 0 20px;}
+    .impact{height:360px; margin-top:6px;}
+    .mock{width:150px;}
+    .mock__img{height:92px;}
+    .burst,.flash{left:52%; top:50%;}
+    .trail{left:52%; top:50%;}
+    .mock--1{ transform:translate(-50%,-50%) translate(-86px,-100px) rotate(-16deg) scale(.82);}
+    .mock--2{ transform:translate(-50%,-50%) translate(98px,-72px) rotate(13deg) scale(.78);}
+    .mock--3{ transform:translate(-50%,-50%) translate(-98px,54px) rotate(11deg) scale(.84);}
+    .mock--4{ transform:translate(-50%,-50%) translate(84px,70px) rotate(-14deg) scale(.82);}
+    .mock--5{ transform:translate(-50%,-50%) translate(-4px,-20px) rotate(4deg) scale(.94);}
+    .mock--6{ transform:translate(-50%,-50%) translate(14px,22px) rotate(-6deg) scale(.74);}
+    .burst{width:220px; height:220px;}
+    .flash{width:80px; height:80px;}
+    .t1{--len:150px;} .t2{--len:140px;} .t3{--len:140px;} .t4{--len:130px;}
+    .logos{gap:14px 22px; font-size:10.5px;}
+  }
+</style>
+</head>
+<body>
+<section class="hero">
+  <header class="nav">
+    <div class="brand">
+      <a class="lab-back" href="index.html">← All concepts</a>
+      <div class="name">Albert Bislimi</div>
+      <div class="sub">Web&nbsp;Studio</div>
+    </div>
+    <nav class="links">
+      <a href="#">Work</a>
+      <a href="#">Services</a>
+      <a href="#">Process</a>
+      <a href="#">Contact</a>
+    </nav>
+    <a class="cta-pill" href="#">Start a project</a>
+  </header>
+
+  <div class="stage">
+    <div class="copy">
+      <div class="eyebrow"><span class="dot"></span>Available for new projects</div>
+      <h1 class="headline">
+        <span class="l1">Websites</span>
+        <span class="l2">that move</span>
+      </h1>
+      <p class="sub">I design, build, and animate fast websites for small and growing businesses — real craft, not templates.</p>
+      <div class="ctas">
+        <a class="btn btn--primary" href="#">Start a project</a>
+        <a class="btn btn--ghost" href="#">See the work</a>
+      </div>
+    </div>
+
+    <div class="impact">
+      <div class="burst"></div>
+      <div class="flash"></div>
+      <div class="trail t1" data-ang="-26" data-op=".6"></div>
+      <div class="trail t2" data-ang="34" data-op=".5"></div>
+      <div class="trail t3" data-ang="150" data-op=".55"></div>
+      <div class="trail t4" data-ang="-150" data-op=".45"></div>
+
+      <div class="mock mock--1" data-dx="-150" data-dy="-168" data-r="-16" data-s=".86" data-dxm="-86" data-dym="-100" data-rm="-16" data-sm=".82"><span class="tag">gjejeonline.com</span><div class="mock__bar"><span></span><span></span><span></span></div><div class="mock__img" style="background-image:url('/assets/loops/loop-gjeje.jpg')"></div></div>
+      <div class="mock mock--2" data-dx="176" data-dy="-120" data-r="13" data-s=".82" data-dxm="98" data-dym="-72" data-rm="13" data-sm=".78"><span class="tag">nubis.app</span><div class="mock__bar"><span></span><span></span><span></span></div><div class="mock__img" style="background-image:url('/assets/loops/loop-nubis.jpg')"></div></div>
+      <div class="mock mock--3" data-dx="-176" data-dy="86" data-r="11" data-s=".9" data-dxm="-98" data-dym="54" data-rm="11" data-sm=".84"><span class="tag">teamawaken.info</span><div class="mock__bar"><span></span><span></span><span></span></div><div class="mock__img" style="background-image:url('/assets/loops/loop-teamawaken.jpg')"></div></div>
+      <div class="mock mock--4" data-dx="150" data-dy="118" data-r="-14" data-s=".88" data-dxm="84" data-dym="70" data-rm="-14" data-sm=".82"><span class="tag">mysearchagency.com</span><div class="mock__bar"><span></span><span></span><span></span></div><div class="mock__img" style="background-image:url('/assets/loops/loop-mysearchagency.jpg')"></div></div>
+      <div class="mock mock--5" data-dx="-8" data-dy="-40" data-r="4" data-s="1.02" data-dxm="-4" data-dym="-20" data-rm="4" data-sm=".94"><span class="tag">cultr.</span><div class="mock__bar"><span></span><span></span><span></span></div><div class="mock__img" style="background-image:url('/assets/loops/loop-cultr.jpg')"></div></div>
+      <div class="mock mock--6" data-dx="26" data-dy="36" data-r="-6" data-s=".8" data-dxm="14" data-dym="22" data-rm="-6" data-sm=".74"><span class="tag">daka.wine</span><div class="mock__bar"><span></span><span></span><span></span></div><div class="mock__img" style="background-image:url('/assets/loops/loop-daka.jpg')"></div></div>
+    </div>
+  </div>
+
+  <div class="logos">
+    <span>gjejeonline.com</span>
+    <span>teamawaken.info</span>
+    <span>nubis.app</span>
+    <span>mysearchagency.com</span>
+    <span>cultr.</span>
+    <span>daka.wine</span>
+  </div>
+</section>
+
+<section class="next-section">
+  <div class="next-section__inner">
+    <span class="next-section__label">Next section</span>
+    <p>Work, process, and case studies continue here — this is just scroll space for the prototype.</p>
+  </div>
+</section>
+
+<button class="replay-btn" id="replayBtn" type="button" aria-label="Replay hero animation">↺ Replay</button>
+
+<script src="gsap.min.js"></script>
+<script src="ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mocks = gsap.utils.toArray('.mock');
+  var trails = gsap.utils.toArray('.trail');
+  var burst = document.querySelector('.burst');
+  var flash = document.querySelector('.flash');
+  var impact = document.querySelector('.impact');
+  var replayBtn = document.getElementById('replayBtn');
+  var idleTweens = [];
+  var introTl = null;
+  var cursorBound = false;
+
+  function isMobile(){ return window.matchMedia('(max-width:760px)').matches; }
+
+  function baseFor(el){
+    var m = isMobile();
+    return {
+      x: parseFloat(m ? el.dataset.dxm : el.dataset.dx),
+      y: parseFloat(m ? el.dataset.dym : el.dataset.dy),
+      rotation: parseFloat(m ? el.dataset.rm : el.dataset.r),
+      scale: parseFloat(m ? el.dataset.sm : el.dataset.s)
+    };
+  }
+
+  function scatterFor(i){
+    var angle = (i / mocks.length) * Math.PI * 2 + (i % 2 ? 0.4 : -0.4);
+    var dist = isMobile() ? 420 : 820;
+    return {
+      x: Math.cos(angle) * dist,
+      y: Math.sin(angle) * dist,
+      rotation: (i % 2 ? 1 : -1) * (140 + i * 20),
+      scale: 0.3,
+      opacity: 0
+    };
+  }
+
+  function splitChars(el){
+    var text = el.textContent;
+    el.innerHTML = text.split('').map(function(ch){
+      return ch === ' ' ? ' ' : '<span class="ch">' + ch + '</span>';
+    }).join('');
+    return el.querySelectorAll('.ch');
+  }
+
+  var charsL1 = splitChars(document.querySelector('.headline .l1'));
+  var charsL2 = splitChars(document.querySelector('.headline .l2'));
+
+  function killIdle(){
+    idleTweens.forEach(function(t){ t.kill(); });
+    idleTweens = [];
+  }
+
+  function startIdle(){
+    if (reduceMotion) return;
+    killIdle();
+    mocks.forEach(function(m, i){
+      idleTweens.push(gsap.to(m, {
+        y: '+=' + (6 + (i % 3) * 4),
+        duration: 2.2 + i * 0.3, ease: 'sine.inOut', yoyo: true, repeat: -1
+      }));
+      idleTweens.push(gsap.to(m, {
+        rotation: '+=' + (i % 2 ? 2 : -2),
+        duration: 3.2 + i * 0.4, ease: 'sine.inOut', yoyo: true, repeat: -1
+      }));
+    });
+    idleTweens.push(gsap.to(flash, {
+      scale: 1.15, opacity: 0.75, duration: 1.8, ease: 'sine.inOut', yoyo: true, repeat: -1
+    }));
+    idleTweens.push(gsap.to(burst, {
+      rotation: '+=360', duration: 70, ease: 'none', repeat: -1
+    }));
+    trails.forEach(function(t, i){
+      var op = parseFloat(t.dataset.op);
+      idleTweens.push(gsap.to(t, {
+        opacity: op * 0.5, duration: 1.6 + i * 0.3, ease: 'sine.inOut', yoyo: true, repeat: -1
+      }));
+    });
+  }
+
+  function setScattered(){
+    gsap.set(burst, { xPercent: -50, yPercent: -50, scale: 0, rotation: -50, opacity: 0 });
+    gsap.set(flash, { xPercent: -50, yPercent: -50, scale: 0, opacity: 0 });
+    trails.forEach(function(t){
+      gsap.set(t, { xPercent: -50, yPercent: -100, rotation: parseFloat(t.dataset.ang), scaleY: 0, opacity: 0, transformOrigin: 'bottom center' });
+    });
+    mocks.forEach(function(m, i){
+      gsap.set(m, Object.assign({ xPercent: -50, yPercent: -50 }, scatterFor(i)));
+    });
+    gsap.set(charsL1, { opacity: 0, y: 46, rotationX: -80 });
+    gsap.set(charsL2, { opacity: 0, y: 46, rotationX: -80 });
+    gsap.set(['.eyebrow', '.sub', '.ctas'], { opacity: 0, y: 16 });
+    gsap.set('.logos', { opacity: 0, y: 16 });
+  }
+
+  function setFinalInstant(){
+    gsap.set(burst, { xPercent: -50, yPercent: -50, scale: 1, rotation: 0, opacity: 1 });
+    gsap.set(flash, { xPercent: -50, yPercent: -50, scale: 1, opacity: 1 });
+    trails.forEach(function(t){
+      gsap.set(t, { xPercent: -50, yPercent: -100, rotation: parseFloat(t.dataset.ang), scaleY: 1, opacity: parseFloat(t.dataset.op), transformOrigin: 'bottom center' });
+    });
+    mocks.forEach(function(m){
+      var b = baseFor(m);
+      gsap.set(m, { xPercent: -50, yPercent: -50, x: b.x, y: b.y, rotation: b.rotation, scale: b.scale, opacity: 1 });
+    });
+    gsap.set(charsL1, { opacity: 1, y: 0, rotationX: 0 });
+    gsap.set(charsL2, { opacity: 1, y: 0, rotationX: 0 });
+    gsap.set(['.eyebrow', '.sub', '.ctas', '.logos'], { opacity: 1, y: 0 });
+  }
+
+  function playIntro(){
+    killIdle();
+    if (introTl) introTl.kill();
+    setScattered();
+    var tl = gsap.timeline({ onComplete: startIdle });
+    introTl = tl;
+
+    tl.to('.eyebrow', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 0.1);
+    mocks.forEach(function(m, i){
+      var b = baseFor(m);
+      tl.to(m, {
+        x: b.x, y: b.y, rotation: b.rotation, scale: b.scale, opacity: 1,
+        duration: 0.8, ease: 'power4.out'
+      }, i * 0.03);
+    });
+    tl.to(flash, { scale: 1.3, opacity: 1, duration: 0.22, ease: 'power4.out' }, 0.82)
+      .to(flash, { scale: 1, opacity: 0.85, duration: 0.4, ease: 'power2.out' }, 1.04);
+    tl.to(burst, { scale: 1, rotation: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, 0.82);
+    trails.forEach(function(t, i){
+      tl.to(t, {
+        scaleY: 1, opacity: parseFloat(t.dataset.op), duration: 0.5, ease: 'power2.out'
+      }, 0.95 + i * 0.05);
+    });
+    tl.to(charsL1, { opacity: 1, y: 0, rotationX: 0, duration: 0.55, stagger: 0.02, ease: 'power3.out' }, 1.1);
+    tl.to(charsL2, { opacity: 1, y: 0, rotationX: 0, duration: 0.55, stagger: 0.02, ease: 'power3.out' }, 1.24);
+    tl.to('.sub, .ctas, .logos', { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power2.out' }, 1.55);
+    return tl;
+  }
+
+  function onMouseMove(e){
+    var rect = impact.getBoundingClientRect();
+    var relX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+    var relY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+    gsap.to(impact, {
+      rotationY: gsap.utils.clamp(-9, 9, relX * 8),
+      rotationX: gsap.utils.clamp(-9, 9, -relY * 8),
+      duration: 0.6, ease: 'power2.out', overwrite: 'auto'
+    });
+  }
+
+  function updateCursorBinding(){
+    var shouldBind = !isMobile() && !('ontouchstart' in window) && !reduceMotion;
+    if (shouldBind && !cursorBound){
+      window.addEventListener('mousemove', onMouseMove);
+      cursorBound = true;
+    } else if (!shouldBind && cursorBound){
+      window.removeEventListener('mousemove', onMouseMove);
+      cursorBound = false;
+      gsap.to(impact, { rotationX: 0, rotationY: 0, duration: 0.4 });
+    }
+  }
+
+  if (!reduceMotion){
+    gsap.to(impact, {
+      scale: 1.5, y: -30, opacity: 0.18, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+    gsap.to('.copy .eyebrow, .copy .headline, .copy .sub, .copy .ctas', {
+      opacity: 0, y: -30, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+  }
+
+  replayBtn.addEventListener('click', function(){
+    killIdle();
+    if (introTl) introTl.kill();
+    if (reduceMotion){ setFinalInstant(); return; }
+    playIntro();
+  });
+
+  var resizeTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function(){
+      updateCursorBinding();
+      ScrollTrigger.refresh();
+    }, 200);
+  });
+
+  if (reduceMotion){
+    setFinalInstant();
+  } else {
+    playIntro();
+    updateCursorBinding();
+  }
+})();
+</script>
+</body>
+</html>

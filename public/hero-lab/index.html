@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero lab — 3 concepts</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500&f[]=switzer@400,500,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#07070a;
+    --cream:#f7f4ec;
+    --gold:#eab54c;
+    --mute:#9a988f;
+    --line:rgba(242,239,230,0.12);
+    --panel:#0e0f14;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--ink);}
+  body{
+    font-family:'Switzer','Helvetica Neue',Arial,sans-serif;
+    color:var(--cream);
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  .wrap{
+    max-width:1320px; margin:0 auto;
+    padding:clamp(28px,5vw,64px) clamp(20px,4vw,48px) 80px;
+  }
+  .top{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:24px;
+    margin-bottom:clamp(28px,4vw,48px);
+    flex-wrap:wrap;
+  }
+  .top .brand{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em;
+    color:var(--mute); text-transform:uppercase; margin-bottom:10px;
+  }
+  h1{
+    margin:0; font-family:'Clash Display',sans-serif; font-weight:600;
+    letter-spacing:-0.02em; line-height:1.02;
+    font-size:clamp(2.2rem, 4.4vw, 3.4rem);
+    color:var(--cream);
+  }
+  .top p{
+    margin:12px 0 0; max-width:480px; font-size:15px; line-height:1.6; color:#cfccc0;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:clamp(18px,2.4vw,28px);
+  }
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    display:flex; flex-direction:column;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .card:hover{ border-color:rgba(234,181,76,0.4); transform:translateY(-3px); }
+  .card__preview{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/10;
+    overflow:hidden;
+    background:#000;
+    border-bottom:1px solid var(--line);
+  }
+  .card__preview iframe{
+    position:absolute; top:0; left:0;
+    width:1280px; height:800px;
+    transform-origin:top left;
+    border:0;
+    pointer-events:auto;
+  }
+  .card__preview__veil{
+    position:absolute; inset:0; z-index:2;
+    background:transparent; cursor:pointer;
+  }
+  .card__badge{
+    position:absolute; top:10px; left:10px; z-index:3;
+    font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.05em;
+    color:var(--ink); background:var(--gold);
+    padding:3px 8px; border-radius:5px; pointer-events:none;
+  }
+  .card__meta{ padding:18px 20px 20px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .card__meta h2{
+    margin:0; font-family:'Clash Display',sans-serif; font-weight:600; font-size:19px;
+    letter-spacing:-0.01em; color:var(--cream);
+  }
+  .card__meta p{ margin:0; font-size:13.5px; line-height:1.55; color:#b9b6ac; flex:1; }
+  .card__open{
+    display:inline-flex; align-items:center; gap:6px;
+    margin-top:6px;
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.03em;
+    color:var(--gold); text-decoration:none;
+  }
+  .card__open:hover{ color:var(--cream); }
+
+  @media (max-width:980px){
+    .grid{ grid-template-columns:1fr; }
+    .card__preview{ aspect-ratio:16/11; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .card{ transition:none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <div class="brand">Albert Bislimi — Hero&nbsp;Lab</div>
+      <h1>Hero lab — 3 concepts</h1>
+      <p>Three fully animated hero directions for albertbislimi.com. Each preview below is a live, running instance — click one or open it full screen to feel the intro, idle loop, cursor reaction, and scroll behavior.</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card__preview" data-card>
+        <span class="card__badge">01 · Singularity</span>
+        <iframe src="c1.html" title="Singularity hero preview" loading="lazy" tabindex="-1"></iframe>
+        <a class="card__preview__veil" href="c1.html" aria-label="Open Singularity full screen"></a>
+      </div>
+      <div class="card__meta">
+        <h2>Singularity</h2>
+        <p>Windows lock into a glowing ring round a gold core.</p>
+        <a class="card__open" href="c1.html">Open full screen →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card__preview" data-card>
+        <span class="card__badge">02 · Impact</span>
+        <iframe src="c2.html" title="Impact hero preview" loading="lazy" tabindex="-1"></iframe>
+        <a class="card__preview__veil" href="c2.html" aria-label="Open Impact full screen"></a>
+      </div>
+      <div class="card__meta">
+        <h2>Impact</h2>
+        <p>Windows crash together off-centre with motion trails.</p>
+        <a class="card__open" href="c2.html">Open full screen →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card__preview" data-card>
+        <span class="card__badge">03 · Assembly</span>
+        <iframe src="c3.html" title="Assembly hero preview" loading="lazy" tabindex="-1"></iframe>
+        <a class="card__preview__veil" href="c3.html" aria-label="Open Assembly full screen"></a>
+      </div>
+      <div class="card__meta">
+        <h2>Assembly</h2>
+        <p>Blueprint grid, windows stack into one deck.</p>
+        <a class="card__open" href="c3.html">Open full screen →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('[data-card]'));
+  var SRC_W = 1280, SRC_H = 800;
+
+  function scaleCard(card){
+    var iframe = card.querySelector('iframe');
+    var w = card.clientWidth;
+    var scale = w / SRC_W;
+    iframe.style.transform = 'scale(' + scale + ')';
+    card.style.height = Math.round(SRC_H * scale) + 'px';
+  }
+
+  function scaleAll(){ cards.forEach(scaleCard); }
+
+  window.addEventListener('resize', scaleAll);
+  if (document.readyState === 'complete'){
+    scaleAll();
+  } else {
+    window.addEventListener('load', scaleAll);
+  }
+  scaleAll();
+})();
+</script>
+</body>
+</html>
