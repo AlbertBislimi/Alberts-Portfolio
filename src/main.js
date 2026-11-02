@@ -4,14 +4,36 @@ import Lenis from 'lenis';
 import './v3c.css';
 window.gsap = gsap; window.ScrollTrigger = ScrollTrigger; window.Lenis = Lenis;
 
-/* contact form: no backend yet — compose an email in the visitor's mail app */
+/* contact form: POST to /api/contact (serverless) with mailto fallback on error */
 const form = document.getElementById('contact-form');
-if (form) form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const d = new FormData(form);
-  const body = `Name: ${d.get('name')}\nEmail: ${d.get('email')}\nProject type: ${d.get('type')}\n\n${d.get('message')}`;
-  location.href = `mailto:ialbertbislimi@gmail.com?subject=${encodeURIComponent('New project — ' + d.get('type'))}&body=${encodeURIComponent(body)}`;
-});
+if (form) {
+  const btn = form.querySelector('button[type=submit]');
+  const status = form.querySelector('.form-status');
+  const label = btn.textContent;
+  const setState = (st, msg) => { form.dataset.state = st; status.textContent = msg || ''; status.className = 'form-status is-' + st; };
+  const mailto = (d) => `mailto:ialbertbislimi@gmail.com?subject=${encodeURIComponent('New project — ' + d.get('type'))}&body=${encodeURIComponent(`Name: ${d.get('name')}\nEmail: ${d.get('email')}\nProject type: ${d.get('type')}\n\n${d.get('message')}`)}`;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (form.dataset.state === 'loading') return;
+    const d = new FormData(form);
+    const email = String(d.get('email') || '').trim(), msg = String(d.get('message') || '').trim();
+    if (!String(d.get('name') || '').trim()) return setState('error', 'Please add your name.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setState('error', 'That email doesn’t look right.');
+    if (msg.length < 10) return setState('error', 'A few more words about the project, please.');
+    setState('loading', 'Sending…'); btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      const r = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(d)) });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || !j.ok) throw new Error('send');
+      form.reset(); setState('success', 'Sent. I’ll reply within one working day.'); btn.textContent = 'Sent ✓';
+    } catch {
+      status.innerHTML = '';
+      setState('error', 'Couldn’t send just now. ');
+      const a = document.createElement('a'); a.href = mailto(d); a.textContent = 'Email me directly instead →'; status.appendChild(a);
+      btn.disabled = false; btn.textContent = label;
+    }
+  });
+}
 
 (function(){
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -19,7 +41,7 @@ if (form) form.addEventListener('submit', (e) => {
   /* ---------- Lenis smooth scroll ---------- */
   var lenis = null;
   if (!reduceMotion && window.Lenis) {
-    lenis = new Lenis({ duration: 1.05, smoothWheel: true });
+    lenis = new Lenis({ lerp: 0.13, wheelMultiplier: 1.1, smoothWheel: true, syncTouch: false });
     function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
     lenis.on('scroll', ScrollTrigger && ScrollTrigger.update);
@@ -138,7 +160,7 @@ if (form) form.addEventListener('submit', (e) => {
          line 2 unmasking in step and a one-shot glow pulse firing right at lock. */
       gsap.timeline({
         scrollTrigger: {
-          trigger: '#hero', start: 'top top', end: '+=230%', scrub: .6, pin: true, anticipatePin: 1,
+          trigger: '#hero', start: 'top top', end: '+=230%', scrub: .35, pin: true, anticipatePin: 1,
           onUpdate: function(self){ setLocked(self.progress > 0.93); }
         }
       }).add(devices.map(function(el){
@@ -204,9 +226,11 @@ if (form) form.addEventListener('submit', (e) => {
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
-          if (entry.isIntersecting) { hydrateVideo(entry.target); io.unobserve(entry.target); }
+          var v = entry.target;
+          if (entry.isIntersecting) { if (!v.dataset.hydrated) hydrateVideo(v); else if (v.paused) { var pp = v.play(); if (pp && pp.catch) pp.catch(function(){}); } }
+          else if (v.dataset.hydrated && !v.paused) v.pause();
         });
-      }, { rootMargin: '400px 0px' });
+      }, { rootMargin: '200px 0px' });
       vids.forEach(function(v){ io.observe(v); });
     } else {
       vids.forEach(hydrateVideo);

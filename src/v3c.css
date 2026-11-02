@@ -345,3 +345,11 @@
     .hero-fallback-bg{animation:none !important;}
     *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
   }
+
+/* contact form states */
+#contact-form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+#contact-form[data-state=loading] .btn{opacity:.7;cursor:progress;}
+.form-status{min-height:1.4em;margin-top:.9rem;font-size:.92rem;letter-spacing:.01em;transition:opacity var(--dur-fast) var(--ease);}
+.form-status.is-success{color:var(--gold);}
+.form-status.is-error{color:#e8776b;}
+.form-status a{color:var(--gold);text-decoration:underline;text-underline-offset:3px;}

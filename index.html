@@ -296,7 +296,8 @@
       </div>
 
       <div class="contact-grid">
-        <form class="reveal" id="contact-form">
+        <form class="reveal" id="contact-form" novalidate>
+          <div class="hp" aria-hidden="true"><label>Leave empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
           <div class="field">
             <label for="f-name">Name</label>
             <input id="f-name" type="text" name="name" autocomplete="name" required>
@@ -317,9 +318,10 @@
           </div>
           <div class="field">
             <label for="f-msg">Project details</label>
-            <textarea id="f-msg" name="message" required></textarea>
+            <textarea id="f-msg" name="message" required minlength="10"></textarea>
           </div>
           <button class="btn btn-solid" type="submit">Send it</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
         </form>
 
         <div class="contact-direct reveal">
