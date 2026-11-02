@@ -129,6 +129,11 @@ if (form) {
       scale: compact ? 1.06 : 1.15, y: -20, opacity: 0, ease: 'none',
       scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }
     });
+    intro.from('.drift-win', { opacity: 0, scale: .8, duration: 1.6, stagger: .08, ease: 'power2.out' }, .1);
+    gsap.utils.toArray('.drift-win').forEach((el, i) => gsap.to(el, {
+      yPercent: -(40 + (i % 3) * 35), ease: 'none',
+      scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }
+    }));
     // Animate parents separate from the intro's targets to avoid competing tweens.
     gsap.fromTo('.singularity-stage', { y: 0, opacity: 1 }, {
       y: -90, opacity: 0, ease: 'power1.in', immediateRender: false,
