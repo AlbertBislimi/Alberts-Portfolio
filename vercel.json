@@ -1,0 +1,11 @@
+{
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [{ "type": "host", "value": "www.albertbislimi.com" }],
+      "destination": "https://albertbislimi.com/:path",
+      "permanent": true,
+      "statusCode": 301
+    }
+  ]
+}
